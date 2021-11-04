@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +22,7 @@ public class ModeratorController {
     public List<QAMessage> getUnapprovedMessages(){
         return messageRepository.findUnapprovedMessage();
     }
+
+    @PutMapping
+    public QAMessage approveMessage() {}
 }
