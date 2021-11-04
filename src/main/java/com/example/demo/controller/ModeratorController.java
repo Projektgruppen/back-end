@@ -24,5 +24,5 @@ public class ModeratorController {
     }
 
     @PutMapping
-    public QAMessage approveMessage() {}
+    public QAMessage approveMessage() { return messageRepository.findUnapprovedMessage(qAMessage);}
 }
