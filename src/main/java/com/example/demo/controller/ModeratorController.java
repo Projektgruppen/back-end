@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +25,15 @@ public class ModeratorController {
         return messageRepository.findUnapprovedMessage();
     }
 
-    @PutMapping
-    public QAMessage approveMessage() { return messageRepository.findUnapprovedMessage(qAMessage);}
+    //Finds message by Id and set approve to true
+    @PutMapping("{id}")
+    public ResponseEntity<QAMessage> approveMessage(@PathVariable long id) {
+        QAMessage approveQAMessage = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
+
+        approveQAMessage.setApprove(true);
+
+        messageRepository.save(approveQAMessage);
+
+        return ResponseEntity.ok(approveQAMessage);
+    }
 }
