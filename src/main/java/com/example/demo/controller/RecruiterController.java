@@ -19,7 +19,7 @@ public class RecruiterController {
     //Check if message is approved.
     @GetMapping
     public List<QAMessage> getApprovedMessages(){
-        return messageRepository.findApprovedMessages();
+        return messageRepository.findNoneAnsweredApprovedMessage();
     }
 
     //Answer message
