@@ -15,7 +15,7 @@ import com.example.demo.model.QAMessage;
 
 public class CSVHelper {
 
-    public static ByteArrayInputStream tutorialsToCSV(List<QAMessage> qaMessages) {
+    public static ByteArrayInputStream qaMessageToCSV(List<QAMessage> qaMessages) {
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
