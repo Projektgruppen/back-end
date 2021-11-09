@@ -16,7 +16,7 @@ public interface MessageRepository extends JpaRepository<QAMessage,Long> {
     @Query(value = "SELECT * FROM QAMessage WHERE approve = false", nativeQuery = true)
     List<QAMessage> findUnapprovedMessage();
 
-    @Query(value = "SELECT * FROM QAMessage WHERE (answer = '' AND approve = true)", nativeQuery = true)
-    List<QAMessage> findNoneAnsweredApprovedMessage();
+    @Query(value = "SELECT * FROM QAMessage WHERE (answer IS NULL AND approve = true)", nativeQuery = true)
+    List<QAMessage> getNoneAnsweredApprovedMessage();
     //crud
 }

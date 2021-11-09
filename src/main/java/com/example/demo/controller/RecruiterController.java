@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +20,19 @@ public class RecruiterController {
 
     //Check if message is approved.
     @GetMapping
-    public List<QAMessage> getApprovedMessages(){
-        return messageRepository.findNoneAnsweredApprovedMessage();
+    public List<QAMessage> getNoneAnsweredApprovedMessages(){
+        return messageRepository.getNoneAnsweredApprovedMessage();
     }
 
-    //Answer message
-    @PutMapping
-    public QAMessage answerMessage(@RequestBody QAMessage qaMessage){
-        return messageRepository.save(qaMessage);
+    @PutMapping("{id}")
+    public ResponseEntity<QAMessage> updateAnswer(@PathVariable long id, @RequestBody String answer){
+        QAMessage updateQAMessage = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
+
+        updateQAMessage.setAnswer(answer);
+
+        messageRepository.save(updateQAMessage);
+
+        return ResponseEntity.ok(updateQAMessage);
     }
 
 }

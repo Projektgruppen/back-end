@@ -27,7 +27,7 @@ public class Application implements CommandLineRunner {
 
         QAMessage qaMessage2 = new QAMessage();
         qaMessage2.setQuestion("Hvilke våben skyder man med?");
-        qaMessage2.setAnswer("");
+        qaMessage2.setAnswer(null);
         qaMessage2.setApprove(true);
         messageRepository.save(qaMessage2);
 
