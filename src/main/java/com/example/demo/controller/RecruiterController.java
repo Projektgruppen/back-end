@@ -2,7 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
+import org.apache.tomcat.util.json.JSONParser;
 import org.apache.velocity.exception.ResourceNotFoundException;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +28,13 @@ public class RecruiterController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<QAMessage> updateAnswer(@PathVariable long id, @RequestBody String answer){
+    public ResponseEntity<QAMessage> updateAnswer(@PathVariable long id, @RequestBody String answer) throws JSONException {
         QAMessage updateQAMessage = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
 
-        updateQAMessage.setAnswer(answer);
+        JSONObject obj = new JSONObject(answer);
+        String answer1 = (String) obj.get("a");
+
+        updateQAMessage.setAnswer(answer1);
 
         messageRepository.save(updateQAMessage);
 
