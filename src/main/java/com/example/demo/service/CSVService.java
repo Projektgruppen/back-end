@@ -19,7 +19,7 @@ public class CSVService {
     public ByteArrayInputStream load() {
         List<QAMessage> qaMessages = repository.findAll();
 
-        ByteArrayInputStream in = CSVHelper.tutorialsToCSV(qaMessages);
+        ByteArrayInputStream in = CSVHelper.qaMessageToCSV(qaMessages);
         return in;
     }
 }
