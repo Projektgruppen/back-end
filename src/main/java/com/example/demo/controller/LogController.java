@@ -16,7 +16,7 @@ import com.example.demo.service.CSVService;
 
 @CrossOrigin("*")
 @Controller
-@RequestMapping("/api/csv")
+@RequestMapping("/api/v1/logs")
 public class LogController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class LogController {
 
     @GetMapping("/download")
     public ResponseEntity<Resource> getFile() {
-        String filename = "tutorials.csv";
+        String filename = "log.csv";
         InputStreamResource file = new InputStreamResource(fileService.load());
 
         return ResponseEntity.ok()
