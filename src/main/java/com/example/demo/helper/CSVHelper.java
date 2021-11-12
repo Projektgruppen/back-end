@@ -23,9 +23,8 @@ public class CSVHelper {
             for (QAMessage qaMessage : qaMessages) {
                 List<String> data = Arrays.asList(
                         String.valueOf(qaMessage.getId()),
-                        qaMessage.getAnswer(),
                         qaMessage.getQuestion(),
-                        String.valueOf(qaMessage.isApprove())
+                        qaMessage.getAnswer()
                 );
 
                 csvPrinter.printRecord(data);
