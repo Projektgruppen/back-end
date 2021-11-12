@@ -15,19 +15,18 @@ import java.util.List;
 @RequestMapping("/api/v1/moderators")
 public class ModeratorController {
 
-
     @Autowired
     private MessageRepository messageRepository;
 
     //Check if message is unapproved.
     @GetMapping
-    public List<QAMessage> getUnapprovedMessages(){
-        return messageRepository.findUnapprovedMessage();
+    public List<QAMessage> getALlUnapprovedQAMessages(){
+        return messageRepository.getAllUnapprovedQAMessages();
     }
 
     //Finds message by Id and set approve to true
     @PutMapping("{id}")
-    public ResponseEntity<QAMessage> approveMessage(@PathVariable long id) {
+    public ResponseEntity<QAMessage> approveQAMessage(@PathVariable long id) {
         QAMessage approveQAMessage = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
 
         approveQAMessage.setApprove(true);

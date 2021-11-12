@@ -9,14 +9,12 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<QAMessage,Long> {
 
-
     @Query(value = "SELECT * FROM QAMessage WHERE approve = true", nativeQuery = true)
-    List<QAMessage> findApprovedMessages();
+    List<QAMessage> getAllApprovedQAMessages();
 
     @Query(value = "SELECT * FROM QAMessage WHERE approve = false", nativeQuery = true)
-    List<QAMessage> findUnapprovedMessage();
+    List<QAMessage> getAllUnapprovedQAMessages();
 
     @Query(value = "SELECT * FROM QAMessage WHERE (answer IS NULL AND approve = true)", nativeQuery = true)
-    List<QAMessage> getNoneAnsweredApprovedMessage();
-    //crud
+    List<QAMessage> getAllNoneAnsweredApprovedQAMessages();
 }

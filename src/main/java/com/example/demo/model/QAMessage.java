@@ -9,12 +9,12 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class QAMessage {
     @Id
     @SequenceGenerator(
-            name = "message_sequence",
-            sequenceName = "messsage_sequence",
+            name = "id_sequence",
+            sequenceName = "id_sequence",
             allocationSize = 1
     )
     @GeneratedValue(strategy = SEQUENCE,
-                    generator = "message_sequence"
+                    generator = "id_sequence"
     )
 
     @Column(
@@ -49,13 +49,13 @@ public class QAMessage {
 
     }
 
-    public QAMessage(Long id, String question, String answer) {
+    // Should be deleted when testing phase is done.
+    public QAMessage(Long id, boolean approve, String question, String answer) {
         this.id = id;
+        this.approve = approve;
         this.question = question;
         this.answer = answer;
     }
-
-
 
     public Long getId() {
         return id;

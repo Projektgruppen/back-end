@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
-import org.apache.tomcat.util.json.JSONParser;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,28 +16,27 @@ import java.util.List;
 @RequestMapping("/api/v1/recruiters")
 public class RecruiterController {
 
-
     @Autowired
     private MessageRepository messageRepository;
 
     //Check if message is approved.
     @GetMapping
-    public List<QAMessage> getNoneAnsweredApprovedMessages(){
-        return messageRepository.getNoneAnsweredApprovedMessage();
+    public List<QAMessage> getAllNoneAnsweredApprovedQAMessages(){
+        return messageRepository.getAllNoneAnsweredApprovedQAMessages();
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<QAMessage> updateAnswer(@PathVariable long id, @RequestBody String answer) throws JSONException {
-        QAMessage updateQAMessage = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
+    public ResponseEntity<QAMessage> updateQAMessageAnswer(@PathVariable long id, @RequestBody String answer) throws JSONException {
+        QAMessage updateQAMessageAnswer = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
 
-        JSONObject obj = new JSONObject(answer);
-        String answer1 = (String) obj.get("a");
+        JSONObject answerObj = new JSONObject(answer);
+        String answerString = (String) answerObj.get("a");
 
-        updateQAMessage.setAnswer(answer1);
+        updateQAMessageAnswer.setAnswer(answerString);
 
-        messageRepository.save(updateQAMessage);
+        messageRepository.save(updateQAMessageAnswer);
 
-        return ResponseEntity.ok(updateQAMessage);
+        return ResponseEntity.ok(updateQAMessageAnswer);
     }
 
 }
