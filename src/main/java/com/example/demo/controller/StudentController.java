@@ -19,6 +19,7 @@ public class StudentController {
     //Check if message is approved.
     @GetMapping
     public List<QAMessage> getAllApprovedQAMessages(){
+
         return messageRepository.getAllApprovedQAMessages();
     }
 

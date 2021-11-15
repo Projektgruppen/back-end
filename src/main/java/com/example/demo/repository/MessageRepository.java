@@ -9,12 +9,17 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<QAMessage,Long> {
 
+    //Students
     @Query(value = "SELECT * FROM QAMessage WHERE approve = true", nativeQuery = true)
     List<QAMessage> getAllApprovedQAMessages();
 
-    @Query(value = "SELECT * FROM QAMessage WHERE approve = false", nativeQuery = true)
+    //Moderators
+    @Query(value = "SELECT * FROM QAMessage", nativeQuery = true)
     List<QAMessage> getAllUnapprovedQAMessages();
 
-    @Query(value = "SELECT * FROM QAMessage WHERE (answer IS NULL AND approve = true)", nativeQuery = true)
+    //Recruiters!TODO add review
+    @Query(value = "SELECT * FROM QAMessage WHERE review = true", nativeQuery = true)
     List<QAMessage> getAllNoneAnsweredApprovedQAMessages();
+
+
 }

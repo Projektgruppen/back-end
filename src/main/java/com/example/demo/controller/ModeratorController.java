@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
+import com.example.demo.service.ModeratorService;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,23 +17,23 @@ import java.util.List;
 public class ModeratorController {
 
     @Autowired
-    private MessageRepository messageRepository;
+    private ModeratorService moderatorService;
 
     //Check if message is unapproved.
     @GetMapping
     public List<QAMessage> getALlUnapprovedQAMessages(){
-        return messageRepository.getAllUnapprovedQAMessages();
+        return moderatorService.getAllUnapprovedQAMessages();
     }
 
     //Finds message by Id and set approve to true
-    @PutMapping("{id}")
-    public ResponseEntity<QAMessage> approveQAMessage(@PathVariable long id) {
-        QAMessage approveQAMessage = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
+    @PutMapping("approve/{id}")
+    public ResponseEntity<QAMessage> approve(@PathVariable long id) {
+        return ResponseEntity.ok(moderatorService.approveAndReviewQAMessage(id));
+    }
 
-        approveQAMessage.setApprove(true);
-
-        messageRepository.save(approveQAMessage);
-
-        return ResponseEntity.ok(approveQAMessage);
+    //When we review we dont do anyting else
+    @PutMapping("review/{id}")
+    public ResponseEntity<QAMessage> review(@PathVariable long id) {
+        return ResponseEntity.ok(moderatorService.reviewQAMessage(id));
     }
 }
