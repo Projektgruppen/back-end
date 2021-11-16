@@ -5,60 +5,30 @@ import java.util.Date;
 @Entity(name = "Question")
 public class Question {
     @Id
-    @SequenceGenerator(
-        name ="question_id",
-        sequenceName = "question_id",
-        allocationSize = 1
-    )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                generator = "question_id"
-    )
+    @SequenceGenerator(name ="question_id", sequenceName = "question_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "question_id")
+    @Column(name="id", updatable = false, nullable = false)
+    private long id;
 
-    @Column(
-            name="id",
-            updatable = false,
-            nullable = false
-    )
-            private Long id;
-
-    @Column(
-            name="question",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
-
+    @Column(name="question", nullable = false, columnDefinition = "TEXT")
     private String question;
 
-    @Column(
-        name = "question_id",
-        columnDefinition = "int"
-    )
-    Integer question_id;
-
-    @Column(
-        name = "approve",
-        columnDefinition = "BOOLEAN"
-    )
+    @Column(name = "approve", columnDefinition = "BOOLEAN")
     private boolean approve;
 
-    @Column(
-            name = "student_id",
-            nullable = false
-    )
+    @Column(name = "student_id", nullable = false)
+    private long student_id;
 
-    private Integer student_id;
-
-    @Column(
-            name = "time_sent",
-            nullable = false
-    )
-
+    @Column(name = "time_sent", nullable = false)
     private Date time_sent;
 
-    @Column(
-            name = "likes"
-    )
-    private Integer likes;
+    @Column(name = "likes")
+    private int likes;
+
+    public Question(long id, String question) {
+        this.id = id;
+        this.question = question;
+    }
 
     public String getQuestion() {
         return question;
@@ -68,7 +38,7 @@ public class Question {
         this.question = question;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -80,10 +50,17 @@ public class Question {
         this.approve = approve;
     }
 
-    public Integer getQuestion_id() {
-        return question_id;
+    public Date getTimestamp() {
+        return time_sent;
     }
 
+    public int getLikes() {
+        return likes;
+    }
+
+    public long getStudent_id() {
+        return student_id;
+    }
 
     @Override
     public String toString() {
