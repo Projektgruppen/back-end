@@ -25,8 +25,8 @@ public class ModeratorService {
     //Approves and Reviews a QAMessage from id
     public QAMessage approveAndReviewQAMessage(Long id){
         QAMessage qaMessage = findByID(id);
-        qaMessage.setReview(true);
         qaMessage.setApprove(true);
+        qaMessage.setReview(true);
         messageRepository.save(qaMessage);
         return qaMessage;
     }

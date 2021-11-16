@@ -34,6 +34,8 @@ public class RecruiterController {
 
         updateQAMessageAnswer.setAnswer(answerString);
 
+        updateQAMessageAnswer.setApprove(true);
+
         messageRepository.save(updateQAMessageAnswer);
 
         return ResponseEntity.ok(updateQAMessageAnswer);
