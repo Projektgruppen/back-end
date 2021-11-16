@@ -12,6 +12,9 @@ public class Student {
         sequenceName = "id_sequence",
         allocationSize = 1
     )
+    @GeneratedValue(strategy = SEQUENCE,
+            generator = "id_sequence"
+    )
     @Column(
             name = "id",
             nullable = false,
@@ -20,9 +23,7 @@ public class Student {
 
     private Long id;
 
-    @GeneratedValue(strategy = SEQUENCE,
-        generator = "id_sequence"
-    )
+
     @Column(
         name = "question_id",
         columnDefinition = "int"

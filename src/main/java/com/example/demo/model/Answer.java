@@ -13,7 +13,11 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
                     generator = "answer_id"
     )
-
+    @Column(
+            name = "approve",
+            columnDefinition = "BOOLEAN"
+    )
+    private boolean approve;
     @Column(
             name = "id",
             updatable = false,
@@ -57,12 +61,20 @@ public class Answer {
     public Long getId() {
         return id;
     }
+    public boolean isApprove() {
+        return approve;
+    }
+    public void setApprove(boolean approve) {
+        this.approve = approve;
+    }
 
     @Override
     public String toString() {
         return "Answer{" +
-                "id=" + id +
+                "approve=" + approve +
+                ", id=" + id +
                 ", answer='" + answer + '\'' +
+                ", question_id=" + question_id +
                 ", recruiter_id=" + recruiter_id +
                 ", date=" + date +
                 '}';
