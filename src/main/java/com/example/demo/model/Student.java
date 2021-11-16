@@ -17,18 +17,25 @@ public class Student {
         generator = "id_sequence"
     )
     @Column(
-        name = "question",
-        columnDefinition = "TEXT"
+        name = "question_id",
+        columnDefinition = "int"
 
     )
     Integer question_id;
 
-    public Integer getQuestion() {
+    public Integer getQuestion_id() {
         return question_id;
     }
 
-    public void setQuestion(String question) {
+    public void setQuestion_id(Integer question_id) {
         this.question_id = question_id;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", question_id=" + question_id +
+                '}';
+    }
 }

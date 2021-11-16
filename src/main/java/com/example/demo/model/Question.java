@@ -46,6 +46,22 @@ public class Question {
     )
     private Integer likes;
 
+    public String getQuestion() {
+        return question;
+    }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
 
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", question='" + question + '\'' +
+                ", student_id=" + student_id +
+                ", time_sent=" + time_sent +
+                ", likes=" + likes +
+                '}';
+    }
 }

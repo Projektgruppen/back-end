@@ -35,7 +35,8 @@ public class Moderator {
 
     private boolean approve;
 
-    public Integer getQuestion() {
+
+    public Integer getQuestion_id() {
         return question_id;
     }
 
@@ -47,5 +48,12 @@ public class Moderator {
         this.approve = approve;
     }
 
-
+    @Override
+    public String toString() {
+        return "Moderator{" +
+                "id=" + id +
+                ", question_id=" + question_id +
+                ", approve=" + approve +
+                '}';
+    }
 }

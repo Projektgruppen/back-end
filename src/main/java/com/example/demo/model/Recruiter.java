@@ -38,9 +38,11 @@ public class Recruiter {
         this.answer_id = answer_id;
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Recruiter{" +
+                "id=" + id +
+                ", answer_id=" + answer_id +
+                '}';
+    }
 }
