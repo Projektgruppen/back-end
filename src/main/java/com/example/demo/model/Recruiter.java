@@ -1,15 +1,46 @@
 package com.example.demo.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "Recruiter")
 public class Recruiter {
     @Id
+    @SequenceGenerator(
+            name = "recruiter_id",
+            sequenceName = "recruiter_id",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator = "recruiter_id"
+    )
+
+    @Column(
+            name = "id",
+            updatable = false,
+            nullable = false
+    )
+
+    private Integer id;
+
+    @Column(
+            name = "answer_id",
+            updatable = true
+    )
+
+    private Integer answer_id;
+
+    public Integer getAnswer_id() {
+        return answer_id;
+    }
+
+    public void setAnswer_id(Integer answer_id) {
+        this.answer_id = answer_id;
+    }
 
 
-    int id;
+
+
 
 
 }

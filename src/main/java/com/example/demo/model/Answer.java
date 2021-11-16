@@ -27,6 +27,12 @@ public class Answer {
     private String answer;
 
     @Column(
+            name ="question_id",
+            nullable = false
+    )
+    private Integer question_id;
+
+    @Column(
             name = "recruiter_id",
             updatable = false
     )
