@@ -7,6 +7,4 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository <Student, Long> {
-    @Query(value = "SELECT * FROM Question WHERE approve = true", nativeQuery = true)
-    List<Student> getAllApprovedQuestions();
 }

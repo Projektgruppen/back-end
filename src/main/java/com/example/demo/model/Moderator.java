@@ -23,27 +23,7 @@ public class Moderator {
     )
     private Long id;
 
-    @Column(
-        name = "question_id",
-        columnDefinition = "int"
-    )
-    Integer question_id;
-
-    @Column(
-        name = "approve",
-        columnDefinition = "BOOLEAN"
-    )
-
     private boolean approve;
-
-
-    public Integer getQuestion_id() {
-        return question_id;
-    }
-
-    public boolean isApprove() {
-        return approve;
-    }
 
     public void setApprove(boolean approve) {
         this.approve = approve;
@@ -57,7 +37,6 @@ public class Moderator {
     public String toString() {
         return "Moderator{" +
                 "id=" + id +
-                ", question_id=" + question_id +
                 ", approve=" + approve +
                 '}';
     }

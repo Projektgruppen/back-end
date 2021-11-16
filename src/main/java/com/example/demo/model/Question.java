@@ -30,6 +30,12 @@ public class Question {
     private String question;
 
     @Column(
+        name = "question_id",
+        columnDefinition = "int"
+    )
+    Integer question_id;
+
+    @Column(
         name = "approve",
         columnDefinition = "BOOLEAN"
     )
@@ -72,6 +78,10 @@ public class Question {
 
     public void setApprove(boolean approve) {
         this.approve = approve;
+    }
+
+    public Integer getQuestion_id() {
+        return question_id;
     }
 
 
