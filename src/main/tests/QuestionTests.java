@@ -10,12 +10,11 @@ class QuestionTests {
 
     @BeforeEach
     void setup() {
-        q = new Question();
+        q = new Question(10L, "Foo");
     }
 
     @Test
     void getQuestionNotNull() {
-        q = new Question();
         assertNotNull(q.getQuestion());
     }
 
@@ -36,10 +35,18 @@ class QuestionTests {
     }
 
     @Test
-    void cannotSetNegativeID() {
+    void newQuestionWithNegativeIdThrowsNumberFormatException() {
         NumberFormatException thrown = assertThrows(NumberFormatException.class,
-                () -> q.setId(-1L)
+                () -> q = new Question(-1L, "foo")
                 ,"ID was set to negative value!"); // In case no exception is thrown show this.
+        assertNotNull(thrown.getMessage());
+    }
+
+    @Test
+    void newQuestionWithNullQuestionThrowsIllegalStateException() {
+        IllegalStateException thrown = assertThrows(IllegalStateException.class,
+                () -> q = new Question(42L, null)
+                ,"Question was initialized with null!");
         assertNotNull(thrown.getMessage());
     }
 
@@ -50,6 +57,22 @@ class QuestionTests {
 
     @Test
     void getLikesNotLessThanZero() {
-        assertFalse(q.getLikes < 0);
+        assertFalse(q.getLikes() < 0);
+    }
+
+    @Test
+    void isApproveReturnsFalseByDefault() {
+        assertFalse(q.isApprove());
+    }
+
+    @Test
+    void setApproveThenIsApproveReturnsTrue() {
+        q.setApprove(true);
+        assertTrue(q.isApprove());
+    }
+
+    @Test
+    void getStudent_idNotLessThanZero() {
+        assertFalse(q.getStudent_id() < 0);
     }
 }
