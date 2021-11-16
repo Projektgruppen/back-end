@@ -19,7 +19,7 @@ public interface MessageRepository extends JpaRepository<QAMessage,Long> {
 
     //Recruiters!TODO add review
     @Query(value = "SELECT * FROM QAMessage WHERE review = true", nativeQuery = true)
-    List<QAMessage> getAllNoneAnsweredApprovedQAMessages();
+    List<QAMessage> getAllReviewedQAMessages();
 
 
 }
