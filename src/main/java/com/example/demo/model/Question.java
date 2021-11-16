@@ -30,6 +30,12 @@ public class Question {
     private String question;
 
     @Column(
+        name = "approve",
+        columnDefinition = "BOOLEAN"
+    )
+    private boolean approve;
+
+    @Column(
             name = "student_id",
             nullable = false
     )
@@ -60,11 +66,21 @@ public class Question {
         return id;
     }
 
+    public boolean isApprove() {
+        return approve;
+    }
+
+    public void setApprove(boolean approve) {
+        this.approve = approve;
+    }
+
+
     @Override
     public String toString() {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
+                ", aproove='" + approve +
                 ", student_id=" + student_id +
                 ", time_sent=" + time_sent +
                 ", likes=" + likes +

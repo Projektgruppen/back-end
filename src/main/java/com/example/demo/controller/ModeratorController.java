@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Moderator;
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
+import com.example.demo.repository.ModeratorRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,23 +18,23 @@ import java.util.List;
 public class ModeratorController {
 
     @Autowired
-    private MessageRepository messageRepository;
+    private ModeratorRepository moderatorRepository;
 
     //Check if message is unapproved.
     @GetMapping
-    public List<QAMessage> getAllUnapprovedQAMessages(){
-        return messageRepository.getAllUnapprovedQAMessages();
+    public List<Moderator> getAllUnapprovedQAMessages(){
+        return moderatorRepository.getAllUnapprovedQAMessages();
     }
 
     //Finds message by Id and set approve to true
     @PutMapping("{id}")
-    public ResponseEntity<QAMessage> approveQAMessage(@PathVariable long id) {
-        QAMessage approveQAMessage = messageRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("QAMessage does not exist with id " + id)));
+    public ResponseEntity<Moderator> approveQuestion(@PathVariable long id) {
+        Moderator approveQuestion = moderatorRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("Question does not exist with id " + id)));
 
-        approveQAMessage.setApprove(true);
+        approveQuestion.setApprove(true);
 
-        messageRepository.save(approveQAMessage);
+        moderatorRepository.save(approveQuestion);
 
-        return ResponseEntity.ok(approveQAMessage);
+        return ResponseEntity.ok(approveQuestion);
     }
 }

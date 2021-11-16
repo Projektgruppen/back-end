@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-
-import com.example.demo.model.QAMessage;
-import com.example.demo.repository.MessageRepository;
+import com.example.demo.model.Question;
+import com.example.demo.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,18 +13,18 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private MessageRepository messageRepository;
+    private QuestionRepository questionRepository;
 
     //Check if message is approved.
     @GetMapping
-    public List<QAMessage> getAllApprovedQAMessages(){
-        return messageRepository.getAllApprovedQAMessages();
+    public List<Question> getAllApprovedQuestions(){
+        return questionRepository.getAllApprovedQuestions();
     }
 
     //Create new message
-    @PostMapping
-    public QAMessage createQAMessage(@RequestBody QAMessage qaMessage){
-        return messageRepository.save(qaMessage);
+    @PostMapping()
+    public Question createQuestion(@RequestBody Question question){
+        return questionRepository.save(question);
     }
 
 }
