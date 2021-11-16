@@ -16,13 +16,15 @@ public class Question {
 
     @Column(
             name="id",
-            updatable = false
+            updatable = false,
+            nullable = false
     )
             private Long id;
 
     @Column(
             name="question",
-            nullable = false
+            nullable = false,
+            columnDefinition = "TEXT"
     )
 
     private String question;
@@ -52,6 +54,10 @@ public class Question {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override

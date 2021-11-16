@@ -18,9 +18,10 @@ public class Moderator {
 
     @Column(
         name = "id",
-        updatable = false
+        updatable = false,
+        nullable = false
     )
-    Integer id;
+    private Long id;
 
     @Column(
         name = "question_id",
@@ -46,6 +47,10 @@ public class Moderator {
 
     public void setApprove(boolean approve) {
         this.approve = approve;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Recruiter {
             nullable = false
     )
 
-    private Integer id;
+    private Long id;
 
     @Column(
             name = "answer_id",
@@ -38,6 +38,9 @@ public class Recruiter {
         this.answer_id = answer_id;
     }
 
+    public Long getId() {
+        return id;
+    }
     @Override
     public String toString() {
         return "Recruiter{" +

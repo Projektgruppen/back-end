@@ -12,7 +12,14 @@ public class Student {
         sequenceName = "id_sequence",
         allocationSize = 1
     )
-    Integer id;
+    @Column(
+            name = "id",
+            nullable = false,
+            updatable = false
+    )
+
+    private Long id;
+
     @GeneratedValue(strategy = SEQUENCE,
         generator = "id_sequence"
     )
@@ -29,6 +36,10 @@ public class Student {
 
     public void setQuestion_id(Integer question_id) {
         this.question_id = question_id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override

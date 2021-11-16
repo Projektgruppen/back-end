@@ -16,13 +16,15 @@ public class Answer {
 
     @Column(
             name = "id",
-            updatable = false
+            updatable = false,
+            nullable = false
     )
     private Long id;
 
     @Column(
             name = "answer",
-            nullable = false
+            nullable = false,
+            columnDefinition = "TEXT"
     )
     private String answer;
 
@@ -51,7 +53,10 @@ public class Answer {
     }
 
     public String getAnswer(){return answer;}
-    public String setAnswer(){return this.answer = answer;}
+    public String setAnswer(String answerString){return this.answer = answer;}
+    public Long getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
