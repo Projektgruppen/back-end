@@ -29,5 +29,17 @@ public class Session {
 
     private Long organisation_id;
 
+    public Session() {}
+    public Session(long id) {
+        this.id = id;
+    }
 
+
+    public long getId() {
+        return id;
+    }
+
+    public long getOrgId() {
+        return organisation_id;
+    }
 }

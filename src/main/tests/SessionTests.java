@@ -24,16 +24,16 @@ class SessionTests {
     }
 
     @Test
-    void cannotSetNegativeID() {
+    void newSessionWithNegativeIdThrowsException() {
         NumberFormatException thrown = assertThrows(NumberFormatException.class,
-                () -> s.setId(-1L)
+                () -> s = new Session(-1L)
                 ,"ID was set to negative value!"); // In case no exception is thrown show this.
         assertNotNull(thrown.getMessage());
     }
 
     @Test
-    void getOrgIdNotNull() {
+    void getOrgIdNotLessThanZero() {
         s = new Session();
-        assertNotNull(s.getOrgId());
+        assertFalse(s.getOrgId() < 0);
     }
 }

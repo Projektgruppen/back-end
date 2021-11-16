@@ -56,6 +56,10 @@ public class Answer {
 
     }
 
+    public Answer(long id) {
+        this.id = id;
+    }
+
     public String getAnswer(){return answer;}
     public String setAnswer(String answerString){return this.answer = answer;}
     public Long getId() {

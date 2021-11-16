@@ -30,9 +30,9 @@ class AnswerTests {
     }
 
     @Test
-    void cannotSetNegativeID() {
+    void newAnswerWithNegativeIdThrowsException() {
         NumberFormatException thrown = assertThrows(NumberFormatException.class,
-                () -> a.setId(-1L)
+                () -> a = new Answer(-1L)
                 ,"ID was set to negative value!"); // In case no exception is thrown show this.
         assertNotNull(thrown.getMessage());
     }
