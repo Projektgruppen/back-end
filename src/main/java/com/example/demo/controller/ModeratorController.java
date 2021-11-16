@@ -20,7 +20,7 @@ public class ModeratorController {
 
     //Check if message is unapproved.
     @GetMapping
-    public List<QAMessage> getALlUnapprovedQAMessages(){
+    public List<QAMessage> getAllUnapprovedQAMessages(){
         return messageRepository.getAllUnapprovedQAMessages();
     }
 
