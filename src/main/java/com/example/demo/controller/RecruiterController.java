@@ -21,8 +21,8 @@ public class RecruiterController {
 
     //Check if message is approved.
     @GetMapping
-    public List<QAMessage> getAllNoneAnsweredApprovedQAMessages(){
-        return messageRepository.getAllNoneAnsweredApprovedQAMessages();
+    public List<QAMessage> getAllReviewedQAMessages(){
+        return messageRepository.getAllReviewedQAMessages();
     }
 
     @PutMapping("{id}")

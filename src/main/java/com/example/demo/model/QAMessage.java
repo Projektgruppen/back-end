@@ -29,6 +29,12 @@ public class QAMessage {
     )
     private boolean approve;
 
+    @Column(
+            name = "review",
+            columnDefinition = "BOOLEAN"
+    )
+    private boolean review;
+
 
     @Column(
             name = "question",
@@ -49,12 +55,20 @@ public class QAMessage {
 
     }
 
-    // Should be deleted when testing phase is done.
-    public QAMessage(Long id, boolean approve, String question, String answer) {
+    public QAMessage(Long id, boolean approve, boolean review, String question, String answer) {
         this.id = id;
         this.approve = approve;
+        this.review = review;
         this.question = question;
         this.answer = answer;
+    }
+
+    public boolean isReview() {
+        return review;
+    }
+
+    public void setReview(boolean review) {
+        this.review = review;
     }
 
     public Long getId() {
@@ -94,6 +108,7 @@ public class QAMessage {
         return "QAMessage{" +
                 "id=" + id +
                 ", approve=" + approve +
+                ", review=" + review +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
                 '}';
