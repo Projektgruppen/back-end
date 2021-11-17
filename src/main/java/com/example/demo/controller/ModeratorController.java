@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Moderator;
-import com.example.demo.model.QAMessage;
-import com.example.demo.repository.MessageRepository;
+//import com.example.demo.model.QAMessage;
+//import com.example.demo.repository.MessageRepository;
 import com.example.demo.repository.ModeratorRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -17,15 +17,13 @@ public class Recruiter {
 
     @Column(
             name = "id",
-            updatable = false,
-            nullable = false
+            updatable = false
     )
 
     private Long id;
 
     @Column(
-            name = "answer_id",
-            updatable = true
+            name = "answer_id"
     )
 
     private Integer answer_id;

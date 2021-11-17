@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+/*package com.example.demo.controller;
 
 import com.example.demo.model.QAMessage;
 import com.example.demo.repository.MessageRepository;
@@ -62,4 +62,4 @@ public class QAMessageTestController {
 
         return ResponseEntity.ok(approveQAMessage);
     }
-}
+}*/

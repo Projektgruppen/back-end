@@ -1,4 +1,4 @@
-package com.example.demo.model;
+/*package com.example.demo.model;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -99,3 +99,4 @@ public class QAMessage {
                 '}';
     }
 }
+*/

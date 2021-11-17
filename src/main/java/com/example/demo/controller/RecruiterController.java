@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Answer;
-import com.example.demo.model.QAMessage;
+//import com.example.demo.model.QAMessage;
 import com.example.demo.repository.AnswerRepository;
-import com.example.demo.repository.MessageRepository;
+//import com.example.demo.repository.MessageRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -17,8 +17,7 @@ public class Session {
 
    @Column(
            name = "id",
-           updatable = false,
-           nullable = false
+           updatable = false
    )
     private Long id;
 
@@ -30,6 +29,7 @@ public class Session {
     private Long organisation_id;
 
     public Session() {}
+
     public Session(long id) {
         this.id = id;
     }

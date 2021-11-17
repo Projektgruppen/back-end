@@ -10,24 +10,25 @@ public class Question {
     @Column(name="id", updatable = false, nullable = false)
     private long id;
 
-    @Column(name="question", nullable = false, columnDefinition = "TEXT")
+    @Column(name="question", columnDefinition = "TEXT")
     private String question;
 
     @Column(name = "approve", columnDefinition = "BOOLEAN")
     private boolean approve;
 
-    @Column(name = "student_id", nullable = false)
+    @Column(name = "student_id")
     private long student_id;
 
-    @Column(name = "time_sent", nullable = false)
+    @Column(name = "time_sent")
     private Date time_sent;
 
     @Column(name = "likes")
     private int likes;
 
-    public Question(long id, String question) {
-        this.id = id;
-        this.question = question;
+    @Column(name = "answer_id")
+    private Long answer_id;
+
+    public Question() {
     }
 
     public String getQuestion() {

@@ -18,8 +18,7 @@ public class Moderator {
 
     @Column(
         name = "id",
-        updatable = false,
-        nullable = false
+        updatable = false
     )
     private Long id;
 

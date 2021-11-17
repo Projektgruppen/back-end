@@ -14,27 +14,25 @@ public class Answer {
                     generator = "answer_id"
     )
     @Column(
-            name = "approve",
-            columnDefinition = "BOOLEAN"
-    )
-    private boolean approve;
-    @Column(
             name = "id",
-            updatable = false,
-            nullable = false
+            updatable = false
     )
     private Long id;
 
     @Column(
+            name = "approve",
+            columnDefinition = "BOOLEAN"
+    )
+    private boolean approve;
+
+    @Column(
             name = "answer",
-            nullable = false,
             columnDefinition = "TEXT"
     )
     private String answer;
 
     @Column(
-            name ="question_id",
-            nullable = false
+            name ="question_id"
     )
     private Integer question_id;
 
@@ -46,8 +44,7 @@ public class Answer {
     private Integer recruiter_id;
 
     @Column(
-            name = "time",
-            nullable = false
+            name = "time"
     )
 
     private Date date;
@@ -61,7 +58,7 @@ public class Answer {
     }
 
     public String getAnswer(){return answer;}
-    public String setAnswer(String answerString){return this.answer = answer;}
+    public String setAnswer(String answer){return this.answer = answer;}
     public Long getId() {
         return id;
     }
