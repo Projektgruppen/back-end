@@ -54,6 +54,11 @@ public class Question {
     public Question() {
     }
 
+    public Question(long id, String question) {
+        this.id = id;
+        this.question = question;
+    }
+
     public String getQuestion() {
         return question;
     }
