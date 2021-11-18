@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "Session")
 public class Session {
@@ -23,10 +24,24 @@ public class Session {
 
     @Column(
             name = "organisation_id",
-            nullable = false
+            insertable = false,
+            updatable = false
     )
-
     private Long organisation_id;
+
+    @ManyToOne
+    private Organisation organisation;
+
+    @OneToMany
+    private Set<Question> questions;
+
+    @OneToMany
+    private Set<Student> students;
+
+    @ManyToOne
+    private Moderator moderator;
+
+
 
     public Session() {}
 

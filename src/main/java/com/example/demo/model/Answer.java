@@ -32,13 +32,16 @@ public class Answer {
     private String answer;
 
     @Column(
-            name ="question_id"
+            name ="question_id",
+            insertable = false,
+            updatable = false
     )
     private Integer question_id;
 
     @Column(
             name = "recruiter_id",
-            updatable = false
+            updatable = false,
+            insertable = false
     )
 
     private Integer recruiter_id;
@@ -48,6 +51,12 @@ public class Answer {
     )
 
     private Date date;
+
+    @OneToOne
+    private Question question;
+
+    @ManyToOne
+    private Recruiter recruiter;
 
     public Answer(){
 

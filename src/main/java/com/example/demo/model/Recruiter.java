@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "Recruiter")
 public class Recruiter {
@@ -23,10 +24,16 @@ public class Recruiter {
     private Long id;
 
     @Column(
-            name = "answer_id"
+            name = "answer_id",
+            insertable = false,
+            updatable = false
     )
 
     private Integer answer_id;
+
+
+    @OneToMany
+    private Set<Answer> answers;
 
     public Integer getAnswer_id() {
         return answer_id;

@@ -18,8 +18,10 @@ public class StudentController {
     @Autowired
     private QuestionRepository questionRepository;
 
+    /*
     @Autowired
     private AnswerRepository answerRepository;
+     */
 
     //Check if message is approved.
     @GetMapping("/getQ")
@@ -27,8 +29,10 @@ public class StudentController {
         return questionRepository.getAllApprovedQuestions();
     }
 
+    /*
     @GetMapping("/getA")
     public List<Answer> getAllAnswers(){return answerRepository.findAll();}
+    */
 
     //Create new message
     @PostMapping()

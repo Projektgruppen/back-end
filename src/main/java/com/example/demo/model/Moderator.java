@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 
+import java.util.Set;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "Moderator")
@@ -22,7 +24,16 @@ public class Moderator {
     )
     private Long id;
 
+    @Column(
+            name = "approve"
+    )
     private boolean approve;
+
+
+    @OneToMany
+    private Set<Session> sessions;
+
+
 
     public void setApprove(boolean approve) {
         this.approve = approve;

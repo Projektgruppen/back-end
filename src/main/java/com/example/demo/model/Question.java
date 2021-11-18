@@ -16,8 +16,12 @@ public class Question {
     @Column(name = "approve", columnDefinition = "BOOLEAN")
     private boolean approve;
 
-    @Column(name = "student_id")
-    private long student_id;
+    @Column(
+            name = "student_id",
+            insertable = false,
+            updatable = false
+    )
+    private Long student_id;
 
     @Column(name = "time_sent")
     private Date time_sent;
@@ -25,8 +29,27 @@ public class Question {
     @Column(name = "likes")
     private int likes;
 
-    @Column(name = "answer_id")
+    @Column(
+            name = "answer_id",
+            insertable = false,
+            updatable = false
+    )
     private Long answer_id;
+
+
+    @ManyToOne
+    private Session session;
+
+    @ManyToOne
+    private Student student;
+
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn( name = "answer_id", unique = true, referencedColumnName = "id"),
+            @JoinColumn(name = "answer",referencedColumnName = "answer")
+            })
+    private Answer answer;
+
 
     public Question() {
     }
@@ -59,9 +82,9 @@ public class Question {
         return likes;
     }
 
-    public long getStudent_id() {
+    /*public long getStudent_id() {
         return student_id;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -69,7 +92,7 @@ public class Question {
                 "id=" + id +
                 ", question='" + question + '\'' +
                 ", aproove='" + approve +
-                ", student_id=" + student_id +
+                //", student_id=" + student_id +
                 ", time_sent=" + time_sent +
                 ", likes=" + likes +
                 '}';

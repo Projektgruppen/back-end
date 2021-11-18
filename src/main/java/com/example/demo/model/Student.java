@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 
+import java.util.Set;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "Student")
@@ -25,10 +27,20 @@ public class Student {
 
     @Column(
         name = "question_id",
-        columnDefinition = "int"
+        columnDefinition = "int",
+        insertable = false,
+        updatable = false
 
     )
     Integer question_id;
+
+    @OneToMany
+    private Set<Question> questions;
+
+    @ManyToOne
+    private Session session;
+
+
 
     public Integer getQuestion_id() {
         return question_id;
