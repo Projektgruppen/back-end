@@ -29,8 +29,8 @@ public class Session {
     )
     private Long organisation_id;
 
-    @ManyToOne
-    private Organisation organisation;
+    /*@ManyToOne
+    private Organisation organisation;*/
 
     @OneToMany
     private Set<Question> questions;

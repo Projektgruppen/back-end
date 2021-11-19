@@ -16,47 +16,22 @@ public class Question {
     @Column(name = "approve", columnDefinition = "BOOLEAN")
     private boolean approve;
 
-    @Column(
-            name = "student_id",
-            insertable = false,
-            updatable = false
-    )
-    private Long student_id;
-
-    @Column(name = "time_sent")
-    private Date time_sent;
-
-    @Column(name = "likes")
-    private int likes;
-
-    @Column(
-            name = "answer_id",
-            insertable = false,
-            updatable = false
-    )
-    private Long answer_id;
-
+    @OneToOne
+    @JoinColumn(name = "answer",referencedColumnName = "answer")
+    private Answer answer;
 
     @ManyToOne
     private Session session;
 
-    @ManyToOne
-    private Student student;
-
-    @OneToOne
-    @JoinColumns({
-            @JoinColumn( name = "answer_id", unique = true, referencedColumnName = "id"),
-            @JoinColumn(name = "answer",referencedColumnName = "answer")
-            })
-    private Answer answer;
-
-
     public Question() {
     }
 
-    public Question(long id, String question) {
-        this.id = id;
-        this.question = question;
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
     public String getQuestion() {
@@ -71,35 +46,12 @@ public class Question {
         return id;
     }
 
-    public boolean isApprove() {
+    public boolean getApprove() {
         return approve;
     }
 
     public void setApprove(boolean approve) {
         this.approve = approve;
     }
-
-    public Date getTimestamp() {
-        return time_sent;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    /*public long getStudent_id() {
-        return student_id;
-    }*/
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", question='" + question + '\'' +
-                ", aproove='" + approve +
-                //", student_id=" + student_id +
-                ", time_sent=" + time_sent +
-                ", likes=" + likes +
-                '}';
-    }
+    
 }

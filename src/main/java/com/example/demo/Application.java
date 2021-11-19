@@ -28,15 +28,21 @@ public class Application implements CommandLineRunner {
 
         //Test example 1
         Question questions = new Question();
-        Answer answers = new Answer();
-
-
         questions.setQuestion("Hvor høj skal man være for at komme i forsvaret?");
-        answers.setAnswer("167cm");
         questions.setApprove(true);
         questionRepository.save(questions);
-        answerRepository.save(answers);
 
+        Answer answers = new Answer();
+        answers.setAnswer("167cm");
+        questions.setAnswer(answers);
+        answerRepository.save(answers);
+        questionRepository.save(questions);
+
+
+        Question questions1 = new Question();
+        questions1.setQuestion("Hvor høj skal man være for at komme i forsvaret?");
+        questions1.setApprove(true);
+        questionRepository.save(questions1);
         /*
         //Test example 2
         QAMessage qaMessage2 = new QAMessage();

@@ -20,73 +20,21 @@ public class Answer {
     private Long id;
 
     @Column(
-            name = "approve",
-            columnDefinition = "BOOLEAN"
-    )
-    private boolean approve;
-
-    @Column(
             name = "answer",
             columnDefinition = "TEXT"
     )
     private String answer;
 
-    @Column(
-            name ="question_id",
-            insertable = false,
-            updatable = false
-    )
-    private Integer question_id;
-
-    @Column(
-            name = "recruiter_id",
-            updatable = false,
-            insertable = false
-    )
-
-    private Integer recruiter_id;
-
-    @Column(
-            name = "time"
-    )
-
-    private Date date;
-
-    @OneToOne
-    private Question question;
-
-    @ManyToOne
-    private Recruiter recruiter;
-
     public Answer(){
 
     }
 
-    public Answer(long id) {
-        this.id = id;
-    }
-
     public String getAnswer(){return answer;}
+
     public String setAnswer(String answer){return this.answer = answer;}
+
     public Long getId() {
         return id;
     }
-    public boolean isApprove() {
-        return approve;
-    }
-    public void setApprove(boolean approve) {
-        this.approve = approve;
-    }
 
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "approve=" + approve +
-                ", id=" + id +
-                ", answer='" + answer + '\'' +
-                ", question_id=" + question_id +
-                ", recruiter_id=" + recruiter_id +
-                ", date=" + date +
-                '}';
-    }
 }

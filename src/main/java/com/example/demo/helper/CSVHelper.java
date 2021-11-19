@@ -29,7 +29,7 @@ public class CSVHelper {
                 List<String> data = Arrays.asList(
                         String.valueOf(question.getId()),
                         question.getQuestion(),
-                        String.valueOf(question.isApprove()),
+                        String.valueOf(question.getApprove()),
                         answer.getAnswer()
                 );
 
