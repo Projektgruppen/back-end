@@ -1,16 +1,16 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Answer;
-//import com.example.demo.model.QAMessage;
-import com.example.demo.repository.AnswerRepository;
-//import com.example.demo.repository.MessageRepository;
+import com.example.demo.model.Question;
 import org.apache.velocity.exception.ResourceNotFoundException;
+import com.example.demo.service.RecruiterService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}
@@ -19,26 +19,16 @@ import java.util.List;
 public class RecruiterController {
 
     @Autowired
-    private AnswerRepository answerRepository;
+    private RecruiterService recruiterService;
 
     //Check if message is approved.
-    @GetMapping
-    public List<Answer> getAllNoneAnsweredApprovedQAMessages(){
-        return answerRepository.getAllNoneAnsweredApprovedQAMessages();
+    @GetMapping("/{organisationName}")
+    public List<Collection> getReviewedQuestions(@PathVariable String organisationName){
+        return recruiterService.getReviewedQuestions(organisationName);
     }
-
-    @PutMapping("{id}")
-    public ResponseEntity<Answer> updateAnswer(@PathVariable long id, @RequestBody String answer) throws JSONException {
-        Answer updateAnswer = answerRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("Answer does not exist with id " + id)));
-
-        JSONObject answerObj = new JSONObject(answer);
-        String answerString = (String) answerObj.get("a");
-
-        updateAnswer.setAnswer(answerString);
-
-        answerRepository.save(updateAnswer);
-
-        return ResponseEntity.ok(updateAnswer);
+    @PutMapping("/{questionId}")
+    public ResponseEntity<Answer> updateAnswer(@RequestBody Answer answer, @PathVariable long questionId) {
+        return ResponseEntity.ok(recruiterService.updateAnswer(answer, questionId));
     }
 
 }

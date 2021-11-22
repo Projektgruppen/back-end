@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 import com.example.demo.model.Answer;
 import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
