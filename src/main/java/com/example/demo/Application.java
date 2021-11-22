@@ -3,9 +3,13 @@ package com.example.demo;
 //import com.example.demo.model.QAMessage;
 //import com.example.demo.repository.MessageRepository;
 import com.example.demo.model.Answer;
+import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
+import com.example.demo.model.Session;
 import com.example.demo.repository.AnswerRepository;
+import com.example.demo.repository.OrganisationRepository;
 import com.example.demo.repository.QuestionRepository;
+import com.example.demo.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,36 +26,34 @@ public class Application implements CommandLineRunner {
     private QuestionRepository questionRepository;
     @Autowired
     private AnswerRepository answerRepository;
+    @Autowired
+    private SessionRepository sessionRepository;
+    @Autowired
+    private OrganisationRepository organisationRepository;
 
     @Override
     public void run(String... args){
 
-        //Test example 1
-        Question questions = new Question();
-        questions.setQuestion("Hvor høj skal man være for at komme i forsvaret?");
-        questions.setApprove(true);
-        questionRepository.save(questions);
+        //Make organisation
+        Organisation organisation = new Organisation();
+        organisationRepository.save(organisation);
 
-        Answer answers = new Answer();
-        answers.setAnswer("167cm");
-        questions.setAnswer(answers);
-        answerRepository.save(answers);
-        questionRepository.save(questions);
+        //Make Session
+        Session session = new Session(organisation);
+        sessionRepository.save(session);
 
+        //Make Questions
+        Session testSession = sessionRepository.getOne((long)1);
+        Question question = new Question("Hejsa", true, true, testSession);
+        questionRepository.save(question);
 
-        Question questions1 = new Question();
-        questions1.setQuestion("Hvor høj skal man være for at komme i forsvaret?");
-        questions1.setApprove(true);
-        questionRepository.save(questions1);
-        /*
-        //Test example 2
-        QAMessage qaMessage2 = new QAMessage();
-        qaMessage2.setQuestion("Hvilke våben skyder man med?");
-        qaMessage2.setAnswer(null);
-        qaMessage2.setApprove(true);
-        messageRepository.save(qaMessage2);
+        Session testSession2 = sessionRepository.getOne((long)1);
+        Question question2 = new Question("Hejsa2", true, true, testSession2);
+        questionRepository.save(question2);
 
-         */
+        //Make Answers
+        Answer answer = new Answer("hej med dig", questionRepository.getOne((long)1));
+        answerRepository.save(answer);
 
     }
 

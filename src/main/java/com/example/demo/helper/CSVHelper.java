@@ -19,7 +19,7 @@ public class CSVHelper {
 
     public static ByteArrayInputStream qaMessageToCSV(List<Question> questions, List<Answer> answers) {
 
-        Answer answer = new Answer();
+        //Answer answer = new Answer();
 
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
@@ -29,8 +29,8 @@ public class CSVHelper {
                 List<String> data = Arrays.asList(
                         String.valueOf(question.getId()),
                         question.getQuestion(),
-                        String.valueOf(question.getApprove()),
-                        answer.getAnswer()
+                        String.valueOf(question.getApprove())
+                        //answer.getAnswer()
                 );
 
                 csvPrinter.printRecord(data);

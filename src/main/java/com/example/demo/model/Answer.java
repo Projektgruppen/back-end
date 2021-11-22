@@ -1,37 +1,43 @@
 package com.example.demo.model;
-import javax.persistence.*;
-import java.util.Date;
 
-@Entity(name = "Answer")
+import javax.persistence.*;
+
+@Entity
+@Table(name = "answers")
 public class Answer {
+    //Fields
     @Id
-    @SequenceGenerator(
-            name = "answer_id",
-            sequenceName = "answer_id",
-            allocationSize = 1
-    )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                    generator = "answer_id"
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(
-            name = "answer",
-            columnDefinition = "TEXT"
-    )
     private String answer;
 
-    public Answer(){
+    @OneToOne
+    private Question question;
 
+    //Constructors
+    public Answer(String answer, Question question){
+    this.answer = answer;
+    this.question = question;
+    }
+
+    public Answer() {
+
+    }
+
+    //Methods
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public String getAnswer(){return answer;}
 
     public String setAnswer(String answer){return this.answer = answer;}
+
 
     public Long getId() {
         return id;

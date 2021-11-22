@@ -1,60 +1,55 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity(name = "Session")
+
+@Entity
+@Table(name = "sessions")
 public class Session {
+    //Fields
     @Id
-    @SequenceGenerator(
-            name = "session_id_sequence",
-            sequenceName = "session_id_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "session_id_sequence"
-    )
-
-   @Column(
-           name = "id",
-           updatable = false
-   )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(
-            name = "organisation_id",
-            insertable = false,
-            updatable = false
-    )
-    private Long organisation_id;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "session")
+    private List<Question> questions = new ArrayList<>();
 
-    /*@ManyToOne
-    private Organisation organisation;*/
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "organisation_id", referencedColumnName = "id")
+    private Organisation organisation;
 
-    @OneToMany
-    private Set<Question> questions;
+    //Constructors
+    public Session(Organisation organisation) {
+        this.organisation = organisation;
+    }
+    public Session() {
 
-    @OneToMany
-    private Set<Student> students;
-
-    @ManyToOne
-    private Moderator moderator;
-
-
-
-    public Session() {}
-
-    public Session(long id) {
-        this.id = id;
     }
 
+    //Methods
+    public Organisation getOrganisation() {
+        return organisation;
+    }
 
-    public long getId() {
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public long getOrgId() {
-        return organisation_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

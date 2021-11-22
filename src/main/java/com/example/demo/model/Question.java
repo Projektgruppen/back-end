@@ -1,37 +1,55 @@
 package com.example.demo.model;
+
 import javax.persistence.*;
-import java.util.Date;
 
-@Entity(name = "Question")
+@Entity
+@Table(name = "questions")
 public class Question {
+    //Fields
     @Id
-    @SequenceGenerator(name ="question_id", sequenceName = "question_id", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "question_id")
-    @Column(name="id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(name="question", columnDefinition = "TEXT")
     private String question;
-
-    @Column(name = "approve", columnDefinition = "BOOLEAN")
     private boolean approve;
+    private boolean review;
 
-    @OneToOne
-    @JoinColumn(name = "answer",referencedColumnName = "answer")
-    private Answer answer;
-
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "session_id", referencedColumnName = "id")
     private Session session;
+
+    //Constructors
+    public Question(String question, boolean approve, boolean review, Session session) {
+    this.question = question;
+    this.approve = approve;
+    this.review = review;
+    this.session = session;
+    }
 
     public Question() {
     }
-
-    public Answer getAnswer() {
-        return answer;
+    //Methods
+    public Session getSession() {
+        return session;
     }
 
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public boolean isApprove() {
+        return approve;
+    }
+
+    public boolean getApprove() {
+        return approve;
+    }
+
+    public boolean isReview() {
+        return review;
+    }
+
+    public void setReview(boolean review) {
+        this.review = review;
     }
 
     public String getQuestion() {
@@ -44,10 +62,6 @@ public class Question {
 
     public long getId() {
         return id;
-    }
-
-    public boolean getApprove() {
-        return approve;
     }
 
     public void setApprove(boolean approve) {

@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Moderator;
+import com.example.demo.model.user.Moderator;
 //import com.example.demo.model.QAMessage;
 //import com.example.demo.repository.MessageRepository;
-import com.example.demo.repository.ModeratorRepository;
+import com.example.demo.repository.user.ModeratorRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class ModeratorController {
     public ResponseEntity<Moderator> approveQuestion(@PathVariable long id) {
         Moderator approveQuestion = moderatorRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("Question does not exist with id " + id)));
 
-        approveQuestion.setApprove(true);
+        //approveQuestion.setApprove(true);
 
         moderatorRepository.save(approveQuestion);
 
