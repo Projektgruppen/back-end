@@ -11,12 +11,16 @@ public class Organisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String name;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "organisation")
     private List<Session> sessions = new ArrayList<>();
 
 
     //Constructors
+    public Organisation(String name) {
+        this.name = name;
+    }
     public Organisation() {
 
     }
