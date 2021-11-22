@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 
 import com.example.demo.model.Answer;
+import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
 import com.example.demo.repository.AnswerRepository;
+import com.example.demo.repository.OrganisationRepository;
 import com.example.demo.repository.QuestionRepository;
 import com.example.demo.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class StudentService {
     @Autowired
     SessionRepository sessionRepository;
 
+    @Autowired
+    OrganisationRepository organisationRepository;
+
 
     public List<Collection> getApprovedQuestions(String organisationName){
         //!TODO fixes noget med enums her måske. (eller noget som henter listen af organisationer i databasen og sammenligner med dem) map måske?
@@ -33,11 +38,17 @@ public class StudentService {
     }
 
     public Question saveQuestion(Question question, String organisationName) {
+        List<Organisation> organisations = organisationRepository.findAll();
 
-        if (organisationName.equals("forsvaret")){
-            question.setSession(sessionRepository.getOne((long) 1));
+        for (Organisation organisation: organisations) {
+            System.out.println(organisation.getName());
+            System.out.println(organisationName);
+            if (organisation.getName().equals(organisationName)){
+                System.out.println("if statement");
+                question.setSession(sessionRepository.getOne(organisation.getId()));
 
-            return questionRepository.save(question);
+                return questionRepository.save(question);
+            }
         }
         return null;
     }

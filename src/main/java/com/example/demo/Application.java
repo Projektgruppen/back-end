@@ -35,9 +35,9 @@ public class Application implements CommandLineRunner {
     public void run(String... args){
 
         //Make organisation
-        Organisation forsvaret = new Organisation("Forsvaret");
+        Organisation forsvaret = new Organisation("forsvaret");
         organisationRepository.save(forsvaret);
-        Organisation politiet = new Organisation("Politiet");
+        Organisation politiet = new Organisation("politiet");
         organisationRepository.save(politiet);
 
         //Make Session
