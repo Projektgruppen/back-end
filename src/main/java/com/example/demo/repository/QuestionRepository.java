@@ -1,11 +1,12 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.Answer;
 import com.example.demo.model.Question;
-import com.example.demo.model.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
+
+import java.util.Collection;
 import java.util.List;
 
 public interface QuestionRepository extends JpaRepository <Question, Long> {
@@ -13,10 +14,13 @@ public interface QuestionRepository extends JpaRepository <Question, Long> {
     List<Question> getAllApprovedQuestions();
 
 
-    @Query(value = "SELECT answers.id, answers.answer, questions.question\n" +
+    @Query(value = "SELECT answers.answer, questions.question\n" +
             "FROM answers\n" +
             "INNER JOIN  questions ON answers.id = questions.id\n" +
             "WHERE questions.session_id = ?1", nativeQuery = true)
-    List<Object> getApprovedQuestions(int session_id);
+    List<Collection> getApprovedQuestions(int session_id);
+
+    @Query("SELECT u FROM Answer u WHERE u.id = ?1")
+    Answer findUserByStatus(long id);
 
 }

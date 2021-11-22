@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.service.CSVService;
 
-
 @CrossOrigin("*")
 @Controller
 @RequestMapping("/api/v1/logs")
