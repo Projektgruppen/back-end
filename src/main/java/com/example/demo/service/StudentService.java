@@ -41,10 +41,7 @@ public class StudentService {
         List<Organisation> organisations = organisationRepository.findAll();
 
         for (Organisation organisation: organisations) {
-            System.out.println(organisation.getName());
-            System.out.println(organisationName);
             if (organisation.getName().equals(organisationName)){
-                System.out.println("if statement");
                 question.setSession(sessionRepository.getOne(organisation.getId()));
 
                 return questionRepository.save(question);
