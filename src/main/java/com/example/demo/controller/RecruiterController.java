@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Answer;
+import com.example.demo.model.QAMessage;
 import com.example.demo.model.Question;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import com.example.demo.service.RecruiterService;
@@ -23,7 +24,7 @@ public class RecruiterController {
 
     //Check if message is approved.
     @GetMapping("/{organisationName}")
-    public List<Collection> getReviewedQuestions(@PathVariable String organisationName){
+    public List<QAMessage> getReviewedQuestions(@PathVariable String organisationName){
         return recruiterService.getReviewedQuestions(organisationName);
     }
     @PutMapping("/{questionId}")

@@ -16,11 +16,11 @@ public interface QuestionRepository extends JpaRepository <Question, Long> {
             "WHERE questions.session_id = ?1", nativeQuery = true)
     List<Collection> getApprovedQuestions(int session_id);
 
-    @Query(value = "SELECT answers.answer, questions.question\n" +
+    @Query(value = "SELECT answers.question_id, questions.question, answers.id, answers.answer\n" +
         "FROM answers\n" +
         "INNER JOIN questions ON answers.id = questions.id\n" +
         "WHERE questions.session_id = ?1 \n" +
         "AND questions.review = true", nativeQuery = true)
-    List<Collection> getReviewedQuestions(int session_id);
+    List<Collection> getReviewedQuestions(long session_id);
 
 }

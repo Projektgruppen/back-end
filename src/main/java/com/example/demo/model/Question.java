@@ -67,5 +67,15 @@ public class Question {
     public void setApprove(boolean approve) {
         this.approve = approve;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", question='" + question + '\'' +
+                ", approve=" + approve +
+                ", review=" + review +
+                ", session=" + session +
+                '}';
+    }
 }
