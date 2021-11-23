@@ -1,7 +1,5 @@
 package com.example.demo;
 
-//import com.example.demo.model.QAMessage;
-//import com.example.demo.repository.MessageRepository;
 import com.example.demo.model.Answer;
 import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
@@ -22,14 +20,10 @@ public class Application implements CommandLineRunner {
         SpringApplication.run(Application.class, args);
     }
 
-    @Autowired
-    private QuestionRepository questionRepository;
-    @Autowired
-    private AnswerRepository answerRepository;
-    @Autowired
-    private SessionRepository sessionRepository;
-    @Autowired
-    private OrganisationRepository organisationRepository;
+    @Autowired private QuestionRepository questionRepository;
+    @Autowired private AnswerRepository answerRepository;
+    @Autowired private SessionRepository sessionRepository;
+    @Autowired private OrganisationRepository organisationRepository;
 
     @Override
     public void run(String... args){
