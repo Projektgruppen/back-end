@@ -24,9 +24,9 @@ public class RecruiterController {
     private RecruiterService recruiterService;
 
     //Check if message is approved.
-    @GetMapping("{organisationName}/questions")
-    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName){
-        return recruiterService.getReviewedQuestions(organisationName);
+    @GetMapping("{session}/questions")
+    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String session){
+        return recruiterService.getReviewedQuestions(session);
     }
     @PutMapping("answer/{questionId}")
     public ResponseEntity<Answer> updateAnswer(@RequestBody Answer answer, @PathVariable long questionId) {

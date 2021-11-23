@@ -23,11 +23,11 @@ public class RecruiterService {
     @Autowired
     AnswerRepository answerRepository;
 
-    public List<QARecruiterDTO> getReviewedQuestions(String organisationName) {
+    public List<QARecruiterDTO> getReviewedQuestions(String session) {
         List<Organisation> organisations = organisationRepository.findAll();
 
         for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
+            if (organisation.getName().equals(session)){
                 return questionRepository.findReviewed(organisation.getId());
             }
         }

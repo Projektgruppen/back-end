@@ -23,11 +23,11 @@ public class StudentService {
     OrganisationRepository organisationRepository;
 
 
-    public List<QAStudentDTO> getApprovedQuestions(String organisationName){
+    public List<QAStudentDTO> getApprovedQuestions(String session){
         List<Organisation> organisations = organisationRepository.findAll();
 
         for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
+            if (organisation.getName().equals(session)){
                 return questionRepository.findApproved(organisation.getId());
             }
         }
@@ -35,11 +35,11 @@ public class StudentService {
         return null;
     }
 
-    public Question saveQuestion(Question question, String organisationName) {
+    public Question saveQuestion(Question question, String session) {
         List<Organisation> organisations = organisationRepository.findAll();
 
         for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
+            if (organisation.getName().equals(session)){
                 question.setSession(sessionRepository.getOne(organisation.getId()));
 
                 return questionRepository.save(question);

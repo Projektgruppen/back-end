@@ -20,10 +20,16 @@ public class ModeratorController {
     private ModeratorService moderatorService;
 
 
+    //Get all unapproved questions from session
+    @GetMapping("{session}/questions")
+    public List<QAModeratorDTO> getAllUnapprovedSessionQuestions(@PathVariable String session){
+        return moderatorService.findUnapprovedSessionQuestions(session);
+    }
+
     //Check if message is unapproved.
-    @GetMapping("{organisationName}/questions")
-    public List<QAModeratorDTO> getAllUnapprovedQuestions(@PathVariable String organisationName){
-        return moderatorService.findUnapprovedQuestions(organisationName);
+    @GetMapping("questions")
+    public List<QAModeratorDTO> getAllUnapprovedQuestions(){
+        return moderatorService.findUnapprovedQuestions();
     }
 
     //Finds message by Id and set approve to true

@@ -23,16 +23,21 @@ public class ModeratorService {
 
 
 
-    public List<QAModeratorDTO> findUnapprovedQuestions(String organisationName) {
+    public List<QAModeratorDTO> findUnapprovedSessionQuestions(String session) {
         List<Organisation> organisations = organisationRepository.findAll();
 
         for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
+            if (organisation.getName().equals(session)){
                 return questionRepository.findUnApproved(organisation.getId());
             }
         }
         return null;
     }
+
+    public List<QAModeratorDTO> findUnapprovedQuestions() {
+        return questionRepository.findAllUnApproved();
+    }
+
 
     public Question approveQuestion(long questionId) {
         Question approveQuestion = questionRepository.findById(questionId).orElseThrow(( () -> new ResourceNotFoundException("Question does not exist with id " + questionId)));
@@ -46,4 +51,6 @@ public class ModeratorService {
         reviewQuestion.setReview(true);
         return questionRepository.save(reviewQuestion);
     }
+
+
 }
