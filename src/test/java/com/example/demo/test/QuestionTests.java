@@ -1,30 +1,12 @@
 package com.example.demo.test;
 
 import com.example.demo.model.Question;
-import com.example.demo.repository.QuestionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
 class QuestionTests {
-
-    @Autowired
-    private QuestionRepository repo;
-
-    @Test
-    public void createQuestion() {
-        String myQuestion = "Foo";
-        Question q = new Question();
-        q.setQuestion(myQuestion);
-        Question created = repo.save(q);
-
-        assertNotNull(created);
-        assertEquals(myQuestion, created.getQuestion());
-    }
 
     private Question q;
 
