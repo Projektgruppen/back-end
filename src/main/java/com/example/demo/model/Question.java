@@ -30,6 +30,10 @@ public class Question {
 
     public Question() {
     }
+
+    public Question(long l, String foo) {
+    }
+
     //Methods
     public Session getSession() {
         return session;

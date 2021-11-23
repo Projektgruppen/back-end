@@ -1,3 +1,5 @@
+package com.example.demo.test;
+
 import com.example.demo.model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,12 +54,12 @@ class QuestionTests {
 
     @Test
     void getTimestampNotNull() {
-        assertNotNull(q.getTimestamp());
+        assertNotNull(null); // TODO: someone removed this method: q.getTimestamp());
     }
 
     @Test
     void getLikesNotLessThanZero() {
-        assertFalse(q.getLikes() < 0);
+        assertFalse(true); // TODO: someone removed this method: q.getLikes() < 0);
     }
 
     @Test
@@ -73,6 +75,6 @@ class QuestionTests {
 
     @Test
     void getStudent_idNotLessThanZero() {
-        assertFalse(q.getStudent_id() < 0);
+        assertFalse(true); // TODO: someone removed this method: q.getStudent_id() < 0);
     }
 }
