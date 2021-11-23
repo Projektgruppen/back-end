@@ -2,11 +2,8 @@ package com.example.demo.model;
 
 public class QAMessage {
     private long question_id;
-
     private String question;
-
     private long answer_id;
-
     private String answer;
 
     public QAMessage(long questionId, String question) {

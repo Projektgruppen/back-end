@@ -8,7 +8,7 @@ public class Recruiter {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     //Constructors
     public Recruiter(){
@@ -16,7 +16,7 @@ public class Recruiter {
     }
 
     //Methods
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

@@ -1,11 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.user.Moderator;
 //import com.example.demo.model.QAMessage;
 //import com.example.demo.repository.MessageRepository;
-import com.example.demo.repository.user.ModeratorRepository;
-import org.apache.velocity.exception.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.model.Question;
+import com.example.demo.model.projection.QAModeratorDTO;
+import com.example.demo.service.ModeratorService;
+        import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,23 +17,27 @@ import java.util.List;
 public class ModeratorController {
 
     @Autowired
-    private ModeratorRepository moderatorRepository;
+    private ModeratorService moderatorService;
+
 
     //Check if message is unapproved.
-    @GetMapping
-    public List<Moderator> getAllUnapprovedQAMessages(){
-        return moderatorRepository.getAllUnapprovedQAMessages();
+    @GetMapping("{organisationName}/questions")
+    public List<QAModeratorDTO> getAllUnapprovedQuestions(@PathVariable String organisationName){
+        return moderatorService.findUnapprovedQuestions(organisationName);
     }
 
     //Finds message by Id and set approve to true
-    @PutMapping("{id}")
-    public ResponseEntity<Moderator> approveQuestion(@PathVariable long id) {
-        Moderator approveQuestion = moderatorRepository.findById(id).orElseThrow(( () -> new ResourceNotFoundException("Question does not exist with id " + id)));
-
-        //approveQuestion.setApprove(true);
-
-        moderatorRepository.save(approveQuestion);
-
-        return ResponseEntity.ok(approveQuestion);
+    @PutMapping("approve/{questionId}")
+    public ResponseEntity<Question> approveQuestion(@PathVariable long questionId) {
+        return ResponseEntity.ok(moderatorService.approveQuestion(questionId));
     }
+
+    //Finds message by Id and set approve to true
+    @PutMapping("review/{questionId}")
+    public ResponseEntity<Question> reviewQuestion(@PathVariable long questionId) {
+        return ResponseEntity.ok(moderatorService.reviewQuestion(questionId));
+    }
+
+
+
 }

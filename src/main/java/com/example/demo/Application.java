@@ -56,24 +56,22 @@ public class Application implements CommandLineRunner {
         questionRepository.save(question2);
 
         Session testSession3 = sessionRepository.getOne((long)2);
-        Question question3 = new Question("Spørgsmål 3", true, true, testSession3);
+        Question question3 = new Question("Spørgsmål 3", false, false, testSession3);
         questionRepository.save(question3);
 
         Session testSession4 = sessionRepository.getOne((long)2);
-        Question question4 = new Question("Spørgsmål 4", true, true, testSession4);
+        Question question4 = new Question("Spørgsmål 4", false, false, testSession4);
         questionRepository.save(question4);
 
         //Make Answers
-        Answer answer = new Answer("Svar 1", questionRepository.getOne((long)1));
+        Answer answer = new Answer("Svar 1", questionRepository.getOne(1L));
         answerRepository.save(answer);
-        Answer answer2 = new Answer("Svar 2", questionRepository.getOne((long)2));
+        Answer answer2 = new Answer("Svar 2", questionRepository.getOne(2L));
         answerRepository.save(answer2);
-        Answer answer3 = new Answer("Svar 3", questionRepository.getOne((long)3));
+        Answer answer3 = new Answer("Svar 3", questionRepository.getOne(3L));
         answerRepository.save(answer3);
-        Answer answer4 = new Answer("Svar 4", questionRepository.getOne((long)4));
+        Answer answer4 = new Answer("Svar 4", questionRepository.getOne(4L));
         answerRepository.save(answer4);
-
     }
-
 }
 

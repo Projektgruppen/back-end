@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Organisation {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "organisation")
+    @JsonIgnore
     private List<Session> sessions = new ArrayList<>();
 
 

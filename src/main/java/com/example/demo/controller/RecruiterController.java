@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Answer;
 import com.example.demo.model.QAMessage;
 import com.example.demo.model.Question;
+import com.example.demo.model.projection.QARecruiterDTO;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import com.example.demo.service.RecruiterService;
 import org.json.JSONException;
@@ -23,11 +24,11 @@ public class RecruiterController {
     private RecruiterService recruiterService;
 
     //Check if message is approved.
-    @GetMapping("/{organisationName}")
-    public List<QAMessage> getReviewedQuestions(@PathVariable String organisationName){
+    @GetMapping("{organisationName}/questions")
+    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName){
         return recruiterService.getReviewedQuestions(organisationName);
     }
-    @PutMapping("/{questionId}")
+    @PutMapping("answer/{questionId}")
     public ResponseEntity<Answer> updateAnswer(@RequestBody Answer answer, @PathVariable long questionId) {
         return ResponseEntity.ok(recruiterService.updateAnswer(answer, questionId));
     }

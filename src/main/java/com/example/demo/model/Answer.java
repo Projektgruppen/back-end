@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,11 +10,12 @@ public class Answer {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private String answer;
 
     @OneToOne
+    @JsonIgnore
     private Question question;
 
     //Constructors
@@ -39,7 +42,7 @@ public class Answer {
     public String setAnswer(String answer){return this.answer = answer;}
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

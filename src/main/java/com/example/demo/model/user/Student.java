@@ -8,7 +8,7 @@ public class Student {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     //Constructors
     public Student(){
@@ -16,7 +16,7 @@ public class Student {
     }
 
     //Methods
-    public Long getId() {
+    public long getId() {
         return id;
     }
 }

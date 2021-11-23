@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Session {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "organisation_id", referencedColumnName = "id")
+    @JsonIgnore
     private Organisation organisation;
 
     //Constructors

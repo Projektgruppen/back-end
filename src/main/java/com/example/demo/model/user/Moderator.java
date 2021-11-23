@@ -8,7 +8,7 @@ public class Moderator {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     //Constructors
     public Moderator() {
@@ -16,7 +16,7 @@ public class Moderator {
     }
 
     //Methods
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
