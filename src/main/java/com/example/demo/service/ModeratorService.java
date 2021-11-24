@@ -23,11 +23,11 @@ public class ModeratorService {
 
 
 
-    public List<QAModeratorDTO> findUnapprovedSessionQuestions(String session) {
+    public List<QAModeratorDTO> findUnapprovedSessionQuestions(String organisationName) {
         List<Organisation> organisations = organisationRepository.findAll();
 
         for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(session)){
+            if (organisation.getName().equals(organisationName)){
                 return questionRepository.findUnApproved(organisation.getId());
             }
         }

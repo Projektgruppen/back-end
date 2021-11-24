@@ -18,15 +18,15 @@ public class StudentController {
     private StudentService studentService;
 
     //Check if message is approved.
-    @GetMapping("{session}/questions")
-    public List<QAStudentDTO> getAllApprovedQuestions(@PathVariable String session){
-        return studentService.getApprovedQuestions(session);
+    @GetMapping("{organisationName}/questions")
+    public List<QAStudentDTO> getAllApprovedQuestions(@PathVariable String organisationName){
+        return studentService.getApprovedQuestions(organisationName);
     }
 
     //Create new message
-    @PostMapping("{session}/question")
-    public ResponseEntity<Question> createQuestion(@RequestBody Question question, @PathVariable String session){
-        return ResponseEntity.ok(studentService.saveQuestion(question, session));
+    @PostMapping("{organisationName}/question")
+    public ResponseEntity<Question> createQuestion(@RequestBody Question question, @PathVariable String organisationName){
+        return ResponseEntity.ok(studentService.saveQuestion(question, organisationName));
     }
 
 }
