@@ -35,22 +35,13 @@ public class Answer {
     private String answer;
 
     /**
-     * Contains the question, which the answer belongs to.
-     *
-     */
-    @OneToOne
-    @JsonIgnore
-    private Question question;
-
-    /**
      * Initializes a newly created {@code Answer} object with a given answer {@code String} and {@link Question} object.
      * Id is not provided.
      * @param answer, a {@code String} object containing the answer text as a {@code String}.
-     * @param question, a {@code Question} object which the answer belongs to.
+  //   * @param question, a {@code Question} object which the answer belongs to.
      */
-    public Answer(String answer, Question question){
+    public Answer(String answer){
     this.answer = answer;
-    this.question = question;
     }
 
     /**
@@ -58,22 +49,6 @@ public class Answer {
      */
     public Answer() {
 
-    }
-
-    /**
-     * Getter for the question belonging to the answer.
-     * @return the {@code Question} belonging to the answer.
-     */
-    public Question getQuestion() {
-        return question;
-    }
-
-    /**
-     * Setter for the question belonging to the answer.
-     * @param question, a {@code Question} belonging to the answer.
-     */
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 
     /**

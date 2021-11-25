@@ -8,6 +8,9 @@ public class QAStudentDTO {
         this.question = question;
         this.answer = answer;
     }
+    public QAStudentDTO(String question){
+        this.question = question;
+    }
 
     public String getQuestion() {
         return question;

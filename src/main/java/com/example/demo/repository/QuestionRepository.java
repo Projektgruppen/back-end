@@ -12,9 +12,9 @@ import java.util.Collection;
 import java.util.List;
 
 public interface QuestionRepository extends JpaRepository <Question, Long> {
-    @Query("SELECT new com.example.demo.model.projection.QAStudentDTO(q.question, a.answer) " +
-            "FROM Answer a JOIN a.question q " +
-            "WHERE a.question.approve = true AND a.question.session.id = :session_id")
+    @Query("SELECT new com.example.demo.model.projection.QAStudentDTO(q.question, q.answer.answer) " +
+            "FROM Question q LEFT OUTER JOIN q.answer a " +
+            "WHERE q.approve = true AND q.session.id = :session_id")
     List<QAStudentDTO> findApproved(long session_id);
 
     //TODO: QAModeratorDTO and QARecruiterDTO is the same - consider revising into one DTO
@@ -33,5 +33,5 @@ public interface QuestionRepository extends JpaRepository <Question, Long> {
             "WHERE q.approve = false")
     List<QAModeratorDTO> findAllUnApproved();
 
-
+//TODO: change answer_id to be in Question
 }

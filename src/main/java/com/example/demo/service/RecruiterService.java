@@ -36,11 +36,12 @@ public class RecruiterService {
 
     }
 
-    public Answer updateAnswer(Answer answer, long questionId) {
-        Question question = questionRepository.getOne(questionId);
+    public Question updateAnswer(Answer answer, long questionId) {
+        answerRepository.save(answer);
+        Question question = questionRepository.findById(questionId).get();
+        question.setAnswer(answer);
         question.setApprove(true);
         question.setReview(false);
-        answer.setQuestion(question);
-        return answerRepository.save(answer);
+        return questionRepository.save(question);
     }
 }

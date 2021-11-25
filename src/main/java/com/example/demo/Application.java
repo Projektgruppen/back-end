@@ -29,7 +29,7 @@ public class Application implements CommandLineRunner {
     public void run(String... args){
 
         //TODO: Remove this if no one has use for it.
-        /*
+
         //Make organisation
         Organisation forsvaret = new Organisation("forsvaret");
         forsvaret.setCurrentSession(1);
@@ -46,31 +46,44 @@ public class Application implements CommandLineRunner {
 
         //Make Questions
         Session testSession = sessionRepository.getOne((long)1);
-        Question question = new Question("Spørgsmål 1", true, true, testSession);
+        Question question = new Question("Spørgsmål 1", testSession);
         questionRepository.save(question);
 
         Session testSession2 = sessionRepository.getOne((long)2);
-        Question question2 = new Question("Spørgsmål 2", true, true, testSession2);
+        Question question2 = new Question("Spørgsmål 2", testSession2);
         questionRepository.save(question2);
 
         Session testSession3 = sessionRepository.getOne((long)2);
-        Question question3 = new Question("Spørgsmål 3", false, false, testSession3);
+        Question question3 = new Question("Spørgsmål 3", testSession3);
         questionRepository.save(question3);
 
         Session testSession4 = sessionRepository.getOne((long)2);
-        Question question4 = new Question("Spørgsmål 4", false, false, testSession4);
+        Question question4 = new Question("Spørgsmål 4", testSession4);
         questionRepository.save(question4);
 
+        Session testSession5 = sessionRepository.getOne((long)2);
+        Question question5 = new Question("Spørgsmål 5", testSession5);
+        questionRepository.save(question5);
+
         //Make Answers
-        Answer answer = new Answer("Svar 1", questionRepository.getOne(1L));
+        Answer answer = new Answer("svar 1");
         answerRepository.save(answer);
-        //Answer answer2 = new Answer(null, questionRepository.getOne(2L));
-        //answerRepository.save(answer2);
-        Answer answer3 = new Answer("Svar 3", questionRepository.getOne(3L));
+        Question foundQuestion = questionRepository.findById(1L).get();
+        foundQuestion.setAnswer(answer);
+        questionRepository.save(foundQuestion);
+
+        Answer answer3 = new Answer("svar 3");
         answerRepository.save(answer3);
-        Answer answer4 = new Answer("Svar 4", questionRepository.getOne(4L));
+        Question foundQuestion3 = questionRepository.findById(3L).get();
+        foundQuestion3.setAnswer(answer3);
+        questionRepository.save(foundQuestion3);
+
+        Answer answer4 = new Answer("svar 4");
         answerRepository.save(answer4);
-        */
+        Question foundQuestion4 = questionRepository.findById(4L).get();
+        foundQuestion4.setAnswer(answer4);
+        questionRepository.save(foundQuestion4);
+
     }
 }
 

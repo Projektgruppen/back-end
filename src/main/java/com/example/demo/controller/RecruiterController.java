@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Answer;
+import com.example.demo.model.Question;
 import com.example.demo.model.projection.QAModeratorDTO;
 import com.example.demo.model.projection.QARecruiterDTO;
 import com.example.demo.service.RecruiterService;
@@ -28,7 +29,7 @@ public class RecruiterController {
         return recruiterService.getReviewedQuestions(organisationName);
     }
     @PutMapping("answer/{questionId}")
-    public ResponseEntity<Answer> updateAnswer(@PathVariable long questionId,@RequestBody Answer answer) {
+    public ResponseEntity<Question> updateAnswer(@PathVariable long questionId, @RequestBody Answer answer) {
         return ResponseEntity.ok(recruiterService.updateAnswer(answer, questionId));
     }
 

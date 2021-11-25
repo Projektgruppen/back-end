@@ -3,6 +3,7 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 /**
  * The {@code Question} class represents a question that has been asked by a student. A {@code Question} object contains an
@@ -41,17 +42,20 @@ public class Question {
      */
     private String question;
 
+    @OneToOne
+    private Answer answer;
+
     /**
      * Boolean specifying whether the question has been approved.
      */
     //TODO refactor to approved
-    private boolean approve;
+    private boolean approve = false;
 
     /**
      * Boolean specifying whether the question has been marked for review.
      */
     //TODO refactor to markedForReview
-    private boolean review;
+    private boolean review = false;
 
     /**
      * Object that specifies which session the question belongs to.
@@ -65,21 +69,16 @@ public class Question {
      * Initializes a newly created {@code Question} object with a given question as text, information on whether the
      * question has been approved and/or reviewed and which session the question belongs to.
      * @param question, a {@code String} containing the question as text.
-     * @param approve, a {@code Boolean} specifying whether the question has been approved.
-     * @param review, a {@code Boolean} specifying whether the question has been marked for review.
+  //   * @param approve, a {@code Boolean} specifying whether the question has been approved.
+  //   * @param review, a {@code Boolean} specifying whether the question has been marked for review.
      * @param session, a {@code Session} specifying which session the question belongs to.
      */
-    public Question(String question, boolean approve, boolean review, Session session) {
-    this.question = question;
-    this.approve = approve;
-    this.review = review;
-    this.session = session;
+    public Question(String question, Session session) {
+        this.question = question;
+        this.session = session;
     }
 
     public Question() {
-    }
-
-    public Question(long l, String foo) {
     }
 
     /**
@@ -132,14 +131,6 @@ public class Question {
     }
 
     /**
-     * Setter for the question as text.
-     * @param question, a {@code String} containing the question as text.
-     */
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    /**
      * Getter for the Id of the question.
      * @return a {@code long} specifying the Id of a question.
      */
@@ -153,6 +144,14 @@ public class Question {
      */
     public void setApprove(boolean approve) {
         this.approve = approve;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
     @Override
