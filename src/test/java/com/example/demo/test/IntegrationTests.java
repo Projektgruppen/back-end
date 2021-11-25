@@ -10,12 +10,15 @@ import com.example.demo.repository.AnswerRepository;
 import com.example.demo.repository.OrganisationRepository;
 import com.example.demo.repository.QuestionRepository;
 import com.example.demo.repository.SessionRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.DirtiesContext;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-public class IntegrationTests {
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+class IntegrationTests {
 
     @Autowired private TestEntityManager entityManager;
 
@@ -38,9 +42,8 @@ public class IntegrationTests {
     private Answer          a1, a2, a3, a4, a5;
 
     /** sets up all the stuff that was previously in Application.java */
-    // TODO: This doesn't work as intended -> Run tests one by one.
     @BeforeEach
-    public void eachSetup() {
+    void eachSetup() {
         // Setup Organisations
         o1 = oRepo.save(new Organisation("Forsvaret"));
         o2 = oRepo.save(new Organisation("Politiet"));
@@ -64,8 +67,12 @@ public class IntegrationTests {
         a5 = aRepo.save(new Answer("fejl 40!", qRepo.getOne(5L)));
     }
 
+    @AfterEach
+    void tearDown () {
+    }
+
     @Test
-    public void find_approved_question() {
+    void find_approved_question() {
         String expected = q1.getQuestion();
         List<QAStudentDTO> result = qRepo.findApproved(1);
         assertFalse(result.isEmpty());
@@ -73,7 +80,7 @@ public class IntegrationTests {
     }
 
     @Test
-    public void find_reviewed_question() {
+    void find_reviewed_question() {
         String expected = q2.getQuestion();
         List<QAModeratorDTO> result = qRepo.findReviewed(2);
         assertFalse(result.isEmpty());
@@ -81,7 +88,7 @@ public class IntegrationTests {
     }
 
     @Test
-    public void find_unapproved_question() {
+    void find_unapproved_question() {
         String expectedA = q3.getQuestion();
         String expectedB = q4.getQuestion();
         List<QAModeratorDTO> result = qRepo.findUnApproved(2);
@@ -91,7 +98,7 @@ public class IntegrationTests {
     }
 
     @Test
-    public void find_all_unapproved_questions() {
+    void find_all_unapproved_questions() {
         List<QAModeratorDTO> expectedList = new ArrayList<>();
         expectedList.add(new QAModeratorDTO(q3.getQuestion(), q3.getId()));
         expectedList.add(new QAModeratorDTO(q4.getQuestion(), q4.getId()));
@@ -108,7 +115,7 @@ public class IntegrationTests {
     }
 
     @Test
-    public void createQuestion() {
+    void createQuestion() {
         String myQuestion = "Foo";
         Question q = new Question();
         q.setQuestion(myQuestion);
@@ -119,7 +126,7 @@ public class IntegrationTests {
     }
 
     @Test
-    public void whenFindByNameThenReturnOrg() {
+    void whenFindByNameThenReturnOrg() {
         Organisation expected = new Organisation("Politi");
         entityManager.persist(expected);
         entityManager.flush();
