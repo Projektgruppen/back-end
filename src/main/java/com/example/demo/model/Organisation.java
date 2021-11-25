@@ -51,7 +51,7 @@ public class Organisation {
 
     /**
      * Initializes a newly created {@code Organisation} object with a given name.
-     * @param name, a {@code String} object containing the name of the organisation.
+     * @param name, A {@code String} object containing the name of the organisation.
      */
     public Organisation(String name) {
         this.name = name;
@@ -78,7 +78,7 @@ public class Organisation {
 
     /**
      * Getter for the organisation's list of sessions.
-     * @return a {@code List} of sessions belonging to the organisation.
+     * @return A {@code List} of sessions belonging to the organisation.
      */
     public List<Session> getSessions() {
         return sessions;
@@ -94,7 +94,7 @@ public class Organisation {
 
     /**
      * Getter for the organisation's id.
-     * @return a {@code Long} specifying the id of the organisation.
+     * @return A {@code Long} specifying the id of the organisation.
      */
     public long getId() {
         return id;
@@ -102,7 +102,7 @@ public class Organisation {
 
     /**
      * Getter for the name of the organisation.
-     * @return a {@code String} containing the name of the organisation.
+     * @return A {@code String} containing the name of the organisation.
      */
     public String getName() {
         return name;
@@ -110,7 +110,7 @@ public class Organisation {
 
     /**
      * Setter for the name of the organisation.
-     * @param name, a {@code String} object containing the name of the organisation.
+     * @param name, A {@code String} object containing the name of the organisation.
      */
     public void setName(String name) {
         this.name = name;

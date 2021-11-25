@@ -64,10 +64,10 @@ public class Question {
     /**
      * Initializes a newly created {@code Question} object with a given question as text, information on whether the
      * question has been approved and/or reviewed and which session the question belongs to.
-     * @param question, a {@code String} containing the question as text.
-     * @param approve, a {@code Boolean} specifying whether the question has been approved.
-     * @param review, a {@code Boolean} specifying whether the question has been marked for review.
-     * @param session, a {@code Session} specifying which session the question belongs to.
+     * @param question, A {@code String} containing the question as text.
+     * @param approve, A {@code Boolean} specifying whether the question has been approved.
+     * @param review, A {@code Boolean} specifying whether the question has been marked for review.
+     * @param session, A {@code Session} specifying which session the question belongs to.
      */
     public Question(String question, boolean approve, boolean review, Session session) {
     this.question = question;
@@ -76,15 +76,24 @@ public class Question {
     this.session = session;
     }
 
+    /**
+     * Creates an empty Question object
+     */
     public Question() {
     }
 
+
+    /**
+     * Initializes a newly created {@code Question} object with a given question as text and an id.
+     * @param l, A {@code long} specifying the id of the question.
+     * @param foo, A {@code String} object containing the question as text.
+     */
     public Question(long l, String foo) {
     }
 
     /**
      * Getter for the session which the question belongs to.
-     * @return {@code Session}, an object specifying the session which the question belongs to.
+     * @return {@code Session}, An object specifying the session which the question belongs to.
      */
     public Session getSession() {
         return session;
@@ -92,7 +101,7 @@ public class Question {
 
     /**
      * Setter for the session which the question belongs to.
-     * @param session, the {@code Session} which the question belongs to.
+     * @param session, The {@code Session} which the question belongs to.
      */
     public void setSession(Session session) {
         this.session = session;
@@ -109,7 +118,7 @@ public class Question {
 
     /**
      * Getter for the Boolean review, which specifies whether the question has been marked for review.
-     * @return a {@code Boolean}, which specifies whether the question has been marked for review.
+     * @return A {@code Boolean}, which specifies whether the question has been marked for review.
      */
     public boolean isReview() {
         return review;
@@ -117,7 +126,7 @@ public class Question {
 
     /**
      * Setter for the Boolean review, which specifies whether the question has been marked for review.
-     * @param review, a {@code Boolean} specifying whether the question has been marked for review.
+     * @param review, A {@code Boolean} specifying whether the question has been marked for review.
      */
     public void setReview(boolean review) {
         this.review = review;
@@ -125,7 +134,7 @@ public class Question {
 
     /**
      * Getter for the question as text.
-     * @return a {@code String} containing the question as text.
+     * @return A {@code String} containing the question as text.
      */
     public String getQuestion() {
         return question;
@@ -133,7 +142,7 @@ public class Question {
 
     /**
      * Setter for the question as text.
-     * @param question, a {@code String} containing the question as text.
+     * @param question, A {@code String} containing the question as text.
      */
     public void setQuestion(String question) {
         this.question = question;
@@ -141,7 +150,7 @@ public class Question {
 
     /**
      * Getter for the Id of the question.
-     * @return a {@code long} specifying the Id of a question.
+     * @return A {@code long} specifying the Id of a question.
      */
     public long getId() {
         return id;
@@ -149,7 +158,7 @@ public class Question {
 
     /**
      * Setter for the Boolean approve, which specifies whether the question has been approved.
-     * @param approve, a {@code Boolean} specifying whether the question has been approved.
+     * @param approve, A {@code Boolean} specifying whether the question has been approved.
      */
     public void setApprove(boolean approve) {
         this.approve = approve;

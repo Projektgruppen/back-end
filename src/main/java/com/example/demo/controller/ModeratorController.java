@@ -21,7 +21,11 @@ public class ModeratorController {
     @Autowired
     private ModeratorService moderatorService;
 
-    //Get all unapproved questions from session
+    /**
+     * Returns every unapproved question from a given session.
+     * @param session, A {@code String} that contains the name of a session.
+     * @return A {@code List} containing every approved question from a given organisation's session.
+     */
     @GetMapping("{session}/questions")
     public List<QAModeratorDTO> getAllUnapprovedSessionQuestions(@PathVariable String session){
         return moderatorService.findUnapprovedSessionQuestions(session);
@@ -39,7 +43,11 @@ public class ModeratorController {
         return ResponseEntity.ok(moderatorService.approveQuestion(questionId));
     }
 
-    //Finds message by Id and set approve to true
+    /**
+     * Uses a given id to identify a question and set approved to true.
+     * @param questionId, A {@code long} specifying the id of the question.
+     * @return A {@code ResponseEntity} containing a question.
+     */
     @PutMapping("review/{questionId}")
     public ResponseEntity<Question> reviewQuestion(@PathVariable long questionId) {
         return ResponseEntity.ok(moderatorService.reviewQuestion(questionId));
