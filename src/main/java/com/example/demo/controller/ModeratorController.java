@@ -3,6 +3,7 @@ package com.example.demo.controller;
 //import com.example.demo.model.QAMessage;
 //import com.example.demo.repository.MessageRepository;
 import com.example.demo.model.Question;
+import com.example.demo.model.Session;
 import com.example.demo.model.projection.QAModeratorDTO;
 import com.example.demo.service.ModeratorService;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,20 @@ public class ModeratorController {
         return ResponseEntity.ok(moderatorService.reviewQuestion(questionId));
     }
 
+    //Set session toggle value on/off
+    @PutMapping("{organisationName}/toggle/{state}")
+    public ResponseEntity<Session> toggleSession(@PathVariable String organisationName, @PathVariable String state) {
+        return ResponseEntity.ok(moderatorService.toggleSession(organisationName,state));
+    }
+
+    //Set session toggle value on/off
+    @PutMapping("{organisationName}/autoreview/{state}")
+    public ResponseEntity<Session> toggleAutoreview(@PathVariable String organisationName, @PathVariable String state) {
+        return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName,state));
+    }
+
+    //TODO: PostMapping of newSession and newOrganisation
+    //TODO: reduce boilercode
 
 
 }
