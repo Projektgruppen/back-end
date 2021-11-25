@@ -30,8 +30,10 @@ public class Application implements CommandLineRunner {
 
         //Make organisation
         Organisation forsvaret = new Organisation("forsvaret");
+        forsvaret.setCurrentSession(1);
         organisationRepository.save(forsvaret);
         Organisation politiet = new Organisation("politiet");
+        politiet.setCurrentSession(2);
         organisationRepository.save(politiet);
 
         //Make Session

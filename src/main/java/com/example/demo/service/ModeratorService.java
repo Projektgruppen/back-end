@@ -2,9 +2,11 @@ package com.example.demo.service;
 
 import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
+import com.example.demo.model.Session;
 import com.example.demo.model.projection.QAModeratorDTO;
 import com.example.demo.repository.OrganisationRepository;
 import com.example.demo.repository.QuestionRepository;
+import com.example.demo.repository.SessionRepository;
 import com.example.demo.repository.user.ModeratorRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class ModeratorService {
 
     @Autowired
     OrganisationRepository organisationRepository;
+
+    @Autowired
+    SessionRepository sessionRepository;
 
 
 
@@ -52,5 +57,39 @@ public class ModeratorService {
         return questionRepository.save(reviewQuestion);
     }
 
+    public Session toggleSession(String organisationName, String state) {
+        List<Organisation> organisations = organisationRepository.findAll();
 
+        for (Organisation organisation: organisations) {
+            if (organisation.getName().equals(organisationName)){
+                Session session = sessionRepository.getOne(organisation.getCurrentSession());
+                if (state.equals("true")){
+                    session.setLive(true);
+                } else if(state.equals("false")){
+                    session.setLive(false);
+                }
+                return sessionRepository.save(session);
+            }
+        }
+        //TODO: change to throw Exception in stead.
+        return null;
+    }
+
+    public Session toggleAutoreview(String organisationName, String state) {
+        List<Organisation> organisations = organisationRepository.findAll();
+
+        for (Organisation organisation: organisations) {
+            if (organisation.getName().equals(organisationName)){
+                Session session = sessionRepository.getOne(organisation.getCurrentSession());
+                if (state.equals("true")){
+                    session.setAutoReview(true);
+                } else if(state.equals("false")){
+                    session.setAutoReview(false);
+                }
+                return sessionRepository.save(session);
+            }
+        }
+        //TODO: change to throw Exception in stead.
+        return null;
+    }
 }

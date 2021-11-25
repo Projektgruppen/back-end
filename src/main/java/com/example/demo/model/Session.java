@@ -14,6 +14,10 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private boolean live;
+
+    private boolean autoReview;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "session")
     private List<Question> questions = new ArrayList<>();
 
@@ -31,6 +35,24 @@ public class Session {
     }
 
     //Methods
+
+
+    public boolean isLive() {
+        return live;
+    }
+
+    public void setLive(boolean live) {
+        this.live = live;
+    }
+
+    public boolean isAutoReview() {
+        return autoReview;
+    }
+
+    public void setAutoReview(boolean autoReview) {
+        this.autoReview = autoReview;
+    }
+
     public Organisation getOrganisation() {
         return organisation;
     }
@@ -51,7 +73,4 @@ public class Session {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

@@ -13,7 +13,10 @@ public class Organisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String name;
+
+    private long currentSession;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "organisation")
     @JsonIgnore
@@ -29,6 +32,16 @@ public class Organisation {
     }
 
     //Methods
+
+
+    public long getCurrentSession() {
+        return currentSession;
+    }
+
+    public void setCurrentSession(long currentSession) {
+        this.currentSession = currentSession;
+    }
+
     public List<Session> getSessions() {
         return sessions;
     }
