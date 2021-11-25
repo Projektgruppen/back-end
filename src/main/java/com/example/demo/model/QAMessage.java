@@ -11,6 +11,8 @@ package com.example.demo.model;
  *     qaMessage.setAnswer("Example answer");
  *     qaMessage.setAnswerId(0);
  * </pre></blockquote>
+ *
+ * @author Johan Nissen Riedel
  */
 public class QAMessage {
     /**
