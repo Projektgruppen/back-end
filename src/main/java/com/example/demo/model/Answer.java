@@ -46,6 +46,7 @@ public class Answer {
      * Initializes a newly created {@code Answer} object with a given answer {@code String} and {@link Question} object.
      * Id is not provided.
      * @param answer, a {@code String} object containing the answer text as a {@code String}.
+     * @param question, a {@code Question} object which the answer belongs to.
      */
     //Constructors
     public Answer(String answer, Question question){
