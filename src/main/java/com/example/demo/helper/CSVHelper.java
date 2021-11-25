@@ -13,7 +13,11 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.QuoteMode;
 
-//import com.example.demo.model.QAMessage;
+/**
+ * Library class that converts entities from a database to a .csv file.
+ * CSV files will contain every {@link com.example.demo.model.Question} and {@link com.example.demo.model.Answer} from a given session.
+ *
+ */
 
 public class CSVHelper {
 

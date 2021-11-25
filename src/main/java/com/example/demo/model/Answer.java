@@ -16,6 +16,9 @@ import javax.persistence.*;
  *     answer.setAnswer("Example answer");
  *     answer.setQuestion(question);
  * </pre></blockquote>
+ *
+ * @author Johan Nissen Riedel,
+ * @see Question
  */
 @Entity
 @Table(name = "answers")
@@ -72,7 +75,7 @@ public class Answer {
 
     /**
      * Getter for the answer text belonging to the answer object.
-     * @return the {@code answer} text of the answer object.
+     * @return the {@code answer} text of the answer.
      */
     public String getAnswer(){return answer;}
 
@@ -84,7 +87,7 @@ public class Answer {
 
     /**
      * Getter for the Id belonging to the answer object.
-     * @return a {@code Long} specifying the Id of an answer object.
+     * @return a {@code Long} specifying the Id of an answer.
      */
     public long getId() {
         return id;
