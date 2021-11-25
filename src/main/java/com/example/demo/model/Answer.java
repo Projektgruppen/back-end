@@ -25,7 +25,7 @@ import javax.persistence.*;
 public class Answer {
 
     /**
-     * Contains the Id of the answer.
+     * Contains the id of the answer.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,12 +48,14 @@ public class Answer {
      * @param answer, a {@code String} object containing the answer text as a {@code String}.
      * @param question, a {@code Question} object which the answer belongs to.
      */
-    //Constructors
     public Answer(String answer, Question question){
     this.answer = answer;
     this.question = question;
     }
 
+    /**
+     * Creates an empty {@code Answer} object.
+     */
     public Answer() {
 
     }
@@ -93,5 +95,4 @@ public class Answer {
     public long getId() {
         return id;
     }
-
 }

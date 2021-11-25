@@ -13,7 +13,6 @@ import java.util.List;
  * <p></p>
  * <blockquote><pre>
  *     Organisation organisation = new Organisation("Example name");
- *     organisation.setId(0);
  *     organisation.setCurrentSession(0);
  *     organisation.setSessions(sessions);
  * </pre></blockquote>
