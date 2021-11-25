@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 //import com.example.demo.model.QAMessage;
 //import com.example.demo.repository.MessageRepository;
+import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
 import com.example.demo.model.Session;
 import com.example.demo.model.projection.QAModeratorDTO;
@@ -57,7 +58,16 @@ public class ModeratorController {
         return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName,state));
     }
 
-    //TODO: PostMapping of newSession and newOrganisation
+
+    @PostMapping("{organisationName}/newsession")
+    public ResponseEntity<Session> newSession(@PathVariable String organisationName){
+        return ResponseEntity.ok(moderatorService.newSession(organisationName));
+    }
+
+    @PostMapping("neworganisation")
+    public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisationName){
+        return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
+    }
     //TODO: reduce boilercode
 
 

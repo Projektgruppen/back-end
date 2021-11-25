@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.model.Answer;
 import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
+import com.example.demo.model.projection.QAModeratorDTO;
 import com.example.demo.model.projection.QARecruiterDTO;
 import com.example.demo.repository.AnswerRepository;
 import com.example.demo.repository.OrganisationRepository;
@@ -23,7 +24,7 @@ public class RecruiterService {
     @Autowired
     AnswerRepository answerRepository;
 
-    public List<QARecruiterDTO> getReviewedQuestions(String organisationName) {
+    public List<QAModeratorDTO> getReviewedQuestions(String organisationName) {
         List<Organisation> organisations = organisationRepository.findAll();
 
         for (Organisation organisation: organisations) {
@@ -38,6 +39,7 @@ public class RecruiterService {
     public Answer updateAnswer(Answer answer, long questionId) {
         Question question = questionRepository.getOne(questionId);
         question.setApprove(true);
+        question.setReview(false);
         answer.setQuestion(question);
         return answerRepository.save(answer);
     }

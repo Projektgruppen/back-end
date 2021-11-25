@@ -92,4 +92,22 @@ public class ModeratorService {
         //TODO: change to throw Exception in stead.
         return null;
     }
+
+    public Session newSession(String organisationName) {
+        List<Organisation> organisations = organisationRepository.findAll();
+
+        for (Organisation organisation: organisations) {
+            if(organisation.getName().equals(organisationName)){
+                Session session = new Session(organisation);
+                sessionRepository.save(session);
+                organisation.setCurrentSession(session.getId());
+                organisationRepository.save(organisation);
+            }
+        }
+        return null;
+    }
+
+    public Organisation newOrganisation(Organisation organisation) {
+        return organisationRepository.save(organisation);
+    }
 }

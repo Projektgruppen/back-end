@@ -62,8 +62,8 @@ public class Application implements CommandLineRunner {
         //Make Answers
         Answer answer = new Answer("Svar 1", questionRepository.getOne(1L));
         answerRepository.save(answer);
-        Answer answer2 = new Answer("Svar 2", questionRepository.getOne(2L));
-        answerRepository.save(answer2);
+        //Answer answer2 = new Answer(null, questionRepository.getOne(2L));
+        //answerRepository.save(answer2);
         Answer answer3 = new Answer("Svar 3", questionRepository.getOne(3L));
         answerRepository.save(answer3);
         Answer answer4 = new Answer("Svar 4", questionRepository.getOne(4L));
