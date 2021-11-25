@@ -28,6 +28,8 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args){
 
+        //TODO: Remove this if no one has use for it.
+        /*
         //Make organisation
         Organisation forsvaret = new Organisation("forsvaret");
         forsvaret.setCurrentSession(1);
@@ -68,6 +70,7 @@ public class Application implements CommandLineRunner {
         answerRepository.save(answer3);
         Answer answer4 = new Answer("Svar 4", questionRepository.getOne(4L));
         answerRepository.save(answer4);
+        */
     }
 }
 
