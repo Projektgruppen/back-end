@@ -88,7 +88,7 @@ public class Answer {
 
     /**
      * Getter for the Id belonging to the answer object.
-     * @return a {@code Long} specifying the Id of an answer.
+     * @return a {@code long} specifying the Id of an answer.
      */
     public long getId() {
         return id;

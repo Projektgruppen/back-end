@@ -141,7 +141,7 @@ public class Question {
 
     /**
      * Getter for the Id of the question.
-     * @return a {@code Long} specifying the Id of a question.
+     * @return a {@code long} specifying the Id of a question.
      */
     public long getId() {
         return id;

@@ -103,7 +103,7 @@ public class Organisation {
 
     /**
      * Getter for the name of the organisation.
-     * @return {}
+     * @return a {@code String} containing the name of the organisation.
      */
     public String getName() {
         return name;
