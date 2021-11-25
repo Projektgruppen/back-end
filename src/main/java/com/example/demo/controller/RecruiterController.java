@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Answer;
+import com.example.demo.model.projection.QAModeratorDTO;
 import com.example.demo.model.projection.QARecruiterDTO;
 import com.example.demo.service.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class RecruiterController {
 
     //Check if message is approved.
     @GetMapping("{organisationName}/questions")
-    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName){
+    public List<QAModeratorDTO> getReviewedQuestions(@PathVariable String organisationName){
         return recruiterService.getReviewedQuestions(organisationName);
     }
     @PutMapping("answer/{questionId}")
