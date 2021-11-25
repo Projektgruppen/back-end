@@ -37,8 +37,7 @@ public class Answer {
     /**
      * Initializes a newly created {@code Answer} object with a given answer {@code String} and {@link Question} object.
      * Id is not provided.
-     * @param answer, a {@code String} object containing the answer text as a {@code String}.
-  //   * @param question, a {@code Question} object which the answer belongs to.
+     * @param answer, A {@code String} object containing the answer text as a {@code String}.
      */
     public Answer(String answer){
     this.answer = answer;
@@ -59,7 +58,7 @@ public class Answer {
 
     /**
      * Setter for the answer text belonging to the answer object.
-     * @param answer, a {@code String} containing the answer as text.
+     * @param answer, A {@code String} containing the answer as text.
      */
     public String setAnswer(String answer){return this.answer = answer;}
 

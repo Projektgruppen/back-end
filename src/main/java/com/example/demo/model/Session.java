@@ -61,7 +61,7 @@ public class Session {
 
     /**
      * Initializes a newly created {@code Session} object with a given organisation.
-     * @param organisation, an {@code Organisation} object containing which organisation the session belongs to.
+     * @param organisation, An {@code Organisation} object containing which organisation the session belongs to.
      */
     public Session(Organisation organisation) {
         this.organisation = organisation;
@@ -84,7 +84,7 @@ public class Session {
 
     /**
      * Setter for the boolean specifying whether the session is live.
-     * @param live, a {@code Boolean} specifying whether the session is live.
+     * @param live, A {@code Boolean} specifying whether the session is live.
      */
     public void setLive(boolean live) {
         this.live = live;
@@ -100,7 +100,7 @@ public class Session {
 
     /**
      * Setter for the boolean specifying whether auto review has been enabled for the session.
-     * @param autoReview, a {@code Boolean} specifying whether auto review has been enabled for the session.
+     * @param autoReview, A {@code Boolean} specifying whether auto review has been enabled for the session.
      */
     public void setAutoReview(boolean autoReview) {
         this.autoReview = autoReview;
@@ -116,7 +116,7 @@ public class Session {
 
     /**
      * Setter for the session's organisation.
-     * @param organisation, an {@code Organisation} object that specifies which organisation the session belongs to.
+     * @param organisation, An {@code Organisation} object that specifies which organisation the session belongs to.
      */
     public void setOrganisation(Organisation organisation) {
         this.organisation = organisation;
@@ -132,7 +132,7 @@ public class Session {
 
     /**
      * Setter for the list of questions in the session.
-     * @param questions, a {@code List} containing all questions in the session.
+     * @param questions, A {@code List} containing all questions in the session.
      */
     public void setQuestions(List<Question> questions) {
         this.questions = questions;

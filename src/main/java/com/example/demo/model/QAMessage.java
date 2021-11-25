@@ -38,8 +38,8 @@ public class QAMessage {
     /**
      * Initializes a newly created {@code QAMessage} object with a given questionId and question.
      * answer and answerId are not provided.
-     * @param questionId, a {@code long} specifying the Id of the question.
-     * @param question, a {@code String} object containing the question as text.
+     * @param questionId, A {@code long} specifying the Id of the question.
+     * @param question, A {@code String} object containing the question as text.
      */
     public QAMessage(long questionId, String question) {
         this.question_id = questionId;
@@ -48,7 +48,7 @@ public class QAMessage {
 
     /**
      * Setter for the answer
-     * @param answer, a {@code String} object containing the answer as text.
+     * @param answer, A {@code String} object containing the answer as text.
      */
     public void setAnswer(String answer) {
         this.answer = answer;
@@ -64,7 +64,7 @@ public class QAMessage {
 
     /**
      * Setter for the question id.
-     * @param questionId, a {@code long} specifying the id of the question.
+     * @param questionId, A {@code long} specifying the id of the question.
      */
     public void setQuestion_id(long questionId) {
         this.question_id = questionId;
@@ -80,7 +80,7 @@ public class QAMessage {
 
     /**
      * Setter for the answer id.
-     * @param answerId, a {@code long} specifying the id of the answer.
+     * @param answerId, A {@code long} specifying the id of the answer.
      */
     public void setAnswerId(long answerId) {
         this.answer_id = answerId;
