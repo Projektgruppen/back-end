@@ -17,6 +17,7 @@ public interface QuestionRepository extends JpaRepository <Question, Long> {
             "WHERE a.question.approve = true AND a.question.session.id = :session_id")
     List<QAStudentDTO> findApproved(long session_id);
 
+    //TODO: QAModeratorDTO and QARecruiterDTO is the same - consider revising into one DTO
     @Query("SELECT new com.example.demo.model.projection.QAModeratorDTO(q.question, q.id) " +
             "FROM Question q " +
             "WHERE q.review = true AND q.session.id = :session_id")
