@@ -18,7 +18,11 @@ public class RecruiterController {
     @Autowired
     private RecruiterService recruiterService;
 
-    //Check if message is approved.
+    /**
+     * Returns every question marked for review from a given organisation.
+     * @param organisationName, A {@code String} that contains the name of an organisation.
+     * @return A {@code List} containing every question marked for review from a given organisation's session.
+     */
     @GetMapping("{organisationName}/questions")
     public List<QAModeratorDTO> getReviewedQuestions(@PathVariable String organisationName){
         return recruiterService.getReviewedQuestions(organisationName);

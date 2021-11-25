@@ -17,13 +17,22 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    //Check if message is approved.
+    /**
+     * Returns every approved question from a given organisation.
+     * @param organisationName, A {@code String} that contains the name of an organisation.
+     * @return A {@code List} containing every approved question from a given organisation's session.
+     */
     @GetMapping("{organisationName}/questions")
     public List<QAStudentDTO> getAllApprovedQuestions(@PathVariable String organisationName){
         return studentService.getApprovedQuestions(organisationName);
     }
 
-    //Create new message
+    /**
+     * Creates a new question entity in the database from a given {@code Question} object and an organisation name.
+     * @param question, A {@code Question} object containing the question to send to the database.
+     * @param organisationName, A {@code String} object containing the name of an organisation.
+     * @return {@code ResponseEntity} containing a {@code Question} object.
+     */
     @PostMapping("{organisationName}/question")
     public ResponseEntity<Question> createQuestion(@RequestBody Question question, @PathVariable String organisationName){
         return ResponseEntity.ok(studentService.saveQuestion(question, organisationName));

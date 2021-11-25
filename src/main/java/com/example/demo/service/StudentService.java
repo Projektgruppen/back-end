@@ -31,7 +31,6 @@ public class StudentService {
                 return questionRepository.findApproved(organisation.getId());
             }
         }
-
         return null;
     }
 

@@ -7,7 +7,7 @@ import com.example.demo.model.Question;
 import com.example.demo.model.Session;
 import com.example.demo.model.projection.QAModeratorDTO;
 import com.example.demo.service.ModeratorService;
-        import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +20,6 @@ public class ModeratorController {
 
     @Autowired
     private ModeratorService moderatorService;
-
 
     //Get all unapproved questions from session
     @GetMapping("{session}/questions")
@@ -57,7 +56,6 @@ public class ModeratorController {
     public ResponseEntity<Session> toggleAutoreview(@PathVariable String organisationName, @PathVariable String state) {
         return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName,state));
     }
-
 
     @PostMapping("{organisationName}/newsession")
     public ResponseEntity<Session> newSession(@PathVariable String organisationName){
