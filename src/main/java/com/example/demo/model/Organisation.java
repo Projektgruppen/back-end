@@ -52,7 +52,7 @@ public class Organisation {
 
     /**
      * Initializes a newly created {@code Organisation} object with a given name.
-     * @param name, a {code String} object containing the name of the organisation.
+     * @param name, a {@code String} object containing the name of the organisation.
      */
     public Organisation(String name) {
         this.name = name;
