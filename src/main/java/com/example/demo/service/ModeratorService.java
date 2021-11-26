@@ -26,8 +26,6 @@ public class ModeratorService {
     @Autowired
     SessionRepository sessionRepository;
 
-
-
     public List<QAModeratorDTO> findUnapprovedSessionQuestions(String organisationName) {
         List<Organisation> organisations = organisationRepository.findAll();
 
