@@ -21,6 +21,8 @@ public class LogController {
     @Autowired
     CSVService fileService;
 
+
+
     @GetMapping("/download")
     public ResponseEntity<Resource> getFile() {
         String filename = "log.csv";
@@ -31,4 +33,6 @@ public class LogController {
                 .contentType(MediaType.parseMediaType("application/csv"))
                 .body(file);
     }
+
+
 }

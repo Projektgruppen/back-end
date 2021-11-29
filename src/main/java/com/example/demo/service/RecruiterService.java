@@ -27,15 +27,13 @@ public class RecruiterService {
     AnswerRepository answerRepository;
 
     public List<QAModeratorDTO> getReviewedQuestions(String organisationName) throws NotFoundException {
-        List<Organisation> organisations = organisationRepository.findAll();
+        Organisation organisation = organisationRepository.findByName(organisationName);
 
-        for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
-                return questionRepository.findReviewed(organisation.getId());
-            }
+        if (organisation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found");
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found");
 
+        return questionRepository.findReviewed(organisation.getId());
     }
 
     public Question updateAnswer(Answer answer, long questionId) throws NotFoundException{
@@ -43,6 +41,7 @@ public class RecruiterService {
         Question question = questionRepository.findById(questionId).orElseThrow( () -> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find a question with that id");
         });
+
         question.setAnswer(answer);
         question.setApproved(true);
         question.setMarkedForReview(false);
