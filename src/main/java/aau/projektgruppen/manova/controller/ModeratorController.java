@@ -27,13 +27,13 @@ public class ModeratorController {
 
     /**
      * Returns every unapproved question from a given session.
-     * @param session, A {@code String} that contains the name of a session.
+     * @param organisationName, A {@code String} that contains the name of a session.
      * @return A {@code List} containing every approved question from a given organisation's session.
      */
-    @GetMapping("{session}/questions")
-    public List<QAModeratorDTO> getAllUnapprovedSessionQuestions(@PathVariable String session){
+    @GetMapping("{organisationName}/questions")
+    public List<QAModeratorDTO> getAllUnapprovedSessionQuestions(@PathVariable String organisationName){
         try{
-            return moderatorService.findUnapprovedSessionQuestions(session);
+            return moderatorService.findUnapprovedSessionQuestions(organisationName);
         } catch (NotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions", e);
         }
