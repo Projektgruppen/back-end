@@ -90,9 +90,9 @@ class IntegrationTests {
         q4.setAnswer(a4);
         q4 = qRepo.save(q4);
 
-        q5 = qRepo.findById(1L).get();
-        q5.setAnswer(a1);
-        q5 = qRepo.save(q1);
+        q5 = qRepo.findById(5L).get();
+        q5.setAnswer(a5);
+        q5 = qRepo.save(q5);
     }
 
     @AfterEach
