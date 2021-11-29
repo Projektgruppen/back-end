@@ -107,7 +107,7 @@ public class ModeratorController {
     public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisationName){
         try{
             return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
-        } catch (BadRequestException e) {
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide correct organisation name", e);
         }
     }

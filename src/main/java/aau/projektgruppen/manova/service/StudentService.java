@@ -27,26 +27,25 @@ public class StudentService {
 
 
     public List<QAStudentDTO> getApprovedQuestions(String organisationName) throws NotFoundException {
-        List<Organisation> organisations = organisationRepository.findAll();
+        Organisation organisation = organisationRepository.findByName(organisationName);
 
-        for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
-                return questionRepository.findApproved(organisation.getId());
-            }
+        if (organisation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find approved questions for: " + organisationName);
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find approved questions for: " + organisationName);
+
+        return questionRepository.findApproved(organisation.getId());
+
+
     }
 
     public Question saveQuestion(Question question, String organisationName) throws NotFoundException{
-        List<Organisation> organisations = organisationRepository.findAll();
+        Organisation organisation = organisationRepository.findByName(organisationName);
 
-        for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
-                question.setSession(sessionRepository.getOne(organisation.getId()));
-
-                return questionRepository.save(question);
-            }
+        if (organisation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find organisation");
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not create question");
+
+        question.setSession(sessionRepository.getOne(organisation.getId()));
+        return questionRepository.save(question);
     }
 }

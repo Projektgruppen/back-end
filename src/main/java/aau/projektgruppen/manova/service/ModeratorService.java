@@ -28,22 +28,20 @@ public class ModeratorService {
     SessionRepository sessionRepository;
 
     public List<QAModeratorDTO> findUnapprovedSessionQuestions(String organisationName) throws NotFoundException {
-        List<Organisation> organisations = organisationRepository.findAll();
+        Organisation organisation = organisationRepository.findByName(organisationName);
 
-        for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
-                return questionRepository.findUnApproved(organisation.getId());
-            }
+        if (organisation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions");
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions");
+
+        return questionRepository.findUnApproved(organisation.getId());
     }
 
     public List<QAModeratorDTO> findUnapprovedQuestions() throws NotFoundException {
         return questionRepository.findAllUnApproved();
-
     }
 
-
+    //Consider changing .orElseThrow to the same structure as the other methods
     public Question approveQuestion(long questionId) throws NotFoundException {
         Question approveQuestion = questionRepository.findById(questionId).orElseThrow( () ->
             new NotFoundException("Question with id " + questionId + " not found"));
@@ -52,6 +50,7 @@ public class ModeratorService {
         return questionRepository.save(approveQuestion);
     }
 
+    //Consider changing .orElseThrow to the same structure as the other methods
     public Question reviewQuestion(long questionId) throws NotFoundException {
         Question reviewQuestion = questionRepository.findById(questionId).orElseThrow();
         reviewQuestion.setMarkedForReview(true);
@@ -59,54 +58,60 @@ public class ModeratorService {
     }
 
     public Session toggleSession(String organisationName, String state) throws NotFoundException{
-        List<Organisation> organisations = organisationRepository.findAll();
+        Organisation organisation = organisationRepository.findByName(organisationName);
 
-        for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
-                Session session = sessionRepository.getOne(organisation.getCurrentSession());
-                if (state.equals("true")){
-                    session.setLive(true);
-                } else if(state.equals("false")){
-                    session.setLive(false);
-                }
-                return sessionRepository.save(session);
-            }
+        if (organisation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation with name: " + organisationName + " not found");
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation not found in repository");
+
+        Session session = sessionRepository.getOne(organisation.getCurrentSession());
+        if (state.equals("true")){
+            session.setLive(true);
+        } else if(state.equals("false")){
+            session.setLive(false);
+        }
+
+        return sessionRepository.save(session);
+
     }
 
     public Session toggleAutoreview(String organisationName, String state) throws NotFoundException {
-        List<Organisation> organisations = organisationRepository.findAll();
+        Organisation organisation = organisationRepository.findByName(organisationName);
 
-        for (Organisation organisation: organisations) {
-            if (organisation.getName().equals(organisationName)){
-                Session session = sessionRepository.getOne(organisation.getCurrentSession());
-                if (state.equals("true")){
-                    session.setAutoReview(true);
-                } else if(state.equals("false")){
-                    session.setAutoReview(false);
-                }
-                return sessionRepository.save(session);
-            }
+        if (organisation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation with name: " + organisationName + " not found");
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation not found");
+
+        Session session = sessionRepository.getOne(organisation.getCurrentSession());
+        /*
+         * Would it make more sense to throw another exception here?
+         * after session is initialized? (question for Andres)
+         */
+
+        if (state.equals("true")){
+            session.setAutoReview(true);
+        } else if(state.equals("false")){
+            session.setAutoReview(false);
+        }
+        return sessionRepository.save(session);
     }
 
-    public Session newSession(String organisationName) throws NotFoundException{
-        List<Organisation> organisations = organisationRepository.findAll();
+    public Session newSession(String organisationName) throws NotFoundException {
+        Organisation organisation = organisationRepository.findByName(organisationName);
 
-        for (Organisation organisation: organisations) {
-            if(organisation.getName().equals(organisationName)){
-                Session session = new Session(organisation);
-                sessionRepository.save(session);
-                organisation.setCurrentSession(session.getId());
-                organisationRepository.save(organisation);
-            }
+        if (organisation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation with name: " + organisationName + " not found");
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation not found");
+
+        Session session = new Session(organisation);
+        sessionRepository.save(session);
+        organisation.setCurrentSession(session.getId());
+        organisationRepository.save(organisation);
+
+        return session;
     }
 
-    public Organisation newOrganisation(Organisation organisation) throws BadRequestException {
+    public Organisation newOrganisation(Organisation organisation) throws NotFoundException {
         return organisationRepository.save(organisation);
     }
 }
