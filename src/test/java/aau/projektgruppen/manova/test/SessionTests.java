@@ -22,6 +22,7 @@ class SessionTests {
 
     @Test
     void getIdGreaterThanZero() {
+        assertNotNull(s.getId());
         assertTrue(s.getId() > 0);
     }
 

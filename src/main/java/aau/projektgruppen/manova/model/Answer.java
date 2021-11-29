@@ -58,7 +58,9 @@ public class Answer {
      * Setter for the answer text belonging to the answer object.
      * @param answer, A {@code String} containing the answer as text.
      */
-    public String setAnswer(String answer){return this.answer = answer;}
+    public void setAnswer(String answer){
+        this.answer = answer;
+    }
 
     /**
      * Getter for the Id belonging to the answer object.
