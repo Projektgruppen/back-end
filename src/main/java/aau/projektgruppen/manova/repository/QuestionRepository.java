@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface QuestionRepository extends JpaRepository <Question, Long> {
-    @Query("SELECT new aau.projektgruppen.manova.model.projection.QAStudentDTO(q.question, q.answer.answer) " +
+    @Query("SELECT new aau.projektgruppen.manova.model.projection.QAStudentDTO(q.question, a.answer) " +
             "FROM Question q LEFT OUTER JOIN q.answer a " +
             "WHERE q.approved = true AND q.session.id = :session_id")
     List<QAStudentDTO> findApproved(long session_id);
