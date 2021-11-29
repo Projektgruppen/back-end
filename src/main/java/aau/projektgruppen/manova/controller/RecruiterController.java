@@ -2,6 +2,7 @@ package aau.projektgruppen.manova.controller;
 
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Question;
+import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
 import aau.projektgruppen.manova.service.RecruiterService;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.projection.QAModeratorDTO;
@@ -27,7 +28,7 @@ public class RecruiterController {
      * @return A {@code List} containing every question marked for review from a given organisation's session.
      */
     @GetMapping("{organisationName}/questions")
-    public List<QAModeratorDTO> getReviewedQuestions(@PathVariable String organisationName){
+    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName){
         try{
             return recruiterService.getReviewedQuestions(organisationName);
         } catch (NotFoundException e){

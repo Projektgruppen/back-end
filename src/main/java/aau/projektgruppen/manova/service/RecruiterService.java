@@ -1,5 +1,6 @@
 package aau.projektgruppen.manova.service;
 
+import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
 import aau.projektgruppen.manova.repository.QuestionRepository;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Answer;
@@ -26,7 +27,7 @@ public class RecruiterService {
     @Autowired
     AnswerRepository answerRepository;
 
-    public List<QAModeratorDTO> getReviewedQuestions(String organisationName) throws NotFoundException {
+    public List<QARecruiterDTO> getReviewedQuestions(String organisationName) throws NotFoundException {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
