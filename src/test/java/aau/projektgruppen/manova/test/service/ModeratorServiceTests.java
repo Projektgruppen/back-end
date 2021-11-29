@@ -2,7 +2,7 @@ package aau.projektgruppen.manova.test.service;
 
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.service.ModeratorService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,8 +15,13 @@ public class ModeratorServiceTests {
     private ModeratorService ms;
 
     @Test
+    public void sanityCheck() {
+        assertNotNull(ms);
+    }
+
+    @Test
     public void findUnapprovedSessionQuestions_given_null_throws_NotFoundException() {
-        String expectedExString = "No unapproved questions";
+        String expectedExString = "Organisation with name: null not found";
         NotFoundException expected = assertThrows(NotFoundException.class,
                 () -> ms.findUnapprovedSessionQuestions(null),
                 "Incorrect behavior :(");
