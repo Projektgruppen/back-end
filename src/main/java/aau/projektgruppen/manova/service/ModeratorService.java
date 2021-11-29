@@ -1,18 +1,15 @@
 package aau.projektgruppen.manova.service;
 
-import aau.projektgruppen.manova.exception.BadRequestException;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Organisation;
 import aau.projektgruppen.manova.model.Question;
+import aau.projektgruppen.manova.model.Session;
+import aau.projektgruppen.manova.model.projection.QAModeratorDTO;
 import aau.projektgruppen.manova.repository.OrganisationRepository;
 import aau.projektgruppen.manova.repository.QuestionRepository;
 import aau.projektgruppen.manova.repository.SessionRepository;
-import aau.projektgruppen.manova.model.Session;
-import aau.projektgruppen.manova.model.projection.QAModeratorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class ModeratorService {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions");
+            throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
         return questionRepository.findUnApproved(organisation.getId());
@@ -52,7 +49,8 @@ public class ModeratorService {
 
     //Consider changing .orElseThrow to the same structure as the other methods
     public Question reviewQuestion(long questionId) throws NotFoundException {
-        Question reviewQuestion = questionRepository.findById(questionId).orElseThrow();
+        Question reviewQuestion = questionRepository.findById(questionId).orElseThrow( () ->
+            new NotFoundException("Question with id: " + questionId + "not found"));
         reviewQuestion.setMarkedForReview(true);
         return questionRepository.save(reviewQuestion);
     }
@@ -61,7 +59,7 @@ public class ModeratorService {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation with name: " + organisationName + " not found");
+            throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
         Session session = sessionRepository.getOne(organisation.getCurrentSession());
@@ -79,7 +77,7 @@ public class ModeratorService {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation with name: " + organisationName + " not found");
+            throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
         Session session = sessionRepository.getOne(organisation.getCurrentSession());
@@ -100,7 +98,7 @@ public class ModeratorService {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Organisation with name: " + organisationName + " not found");
+            throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
         Session session = new Session(organisation);

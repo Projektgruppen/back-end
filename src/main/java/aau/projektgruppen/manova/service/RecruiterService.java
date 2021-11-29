@@ -1,20 +1,17 @@
 package aau.projektgruppen.manova.service;
 
-import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
-import aau.projektgruppen.manova.repository.QuestionRepository;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Organisation;
 import aau.projektgruppen.manova.model.Question;
-import aau.projektgruppen.manova.model.projection.QAModeratorDTO;
+import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
 import aau.projektgruppen.manova.repository.AnswerRepository;
 import aau.projektgruppen.manova.repository.OrganisationRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
+import aau.projektgruppen.manova.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
 
 @Service
 public class RecruiterService {
@@ -31,7 +28,7 @@ public class RecruiterService {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found");
+            throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
         return questionRepository.findReviewed(organisation.getId());
@@ -39,9 +36,8 @@ public class RecruiterService {
 
     public Question updateAnswer(Answer answer, long questionId) throws NotFoundException{
         answerRepository.save(answer);
-        Question question = questionRepository.findById(questionId).orElseThrow( () -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find a question with that id");
-        });
+        Question question = questionRepository.findById(questionId).orElseThrow( () ->
+            new NotFoundException("Could not find a question with id: " + questionId));
 
         question.setAnswer(answer);
         question.setApproved(true);
