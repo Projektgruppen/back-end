@@ -1,30 +1,22 @@
 package aau.projektgruppen.manova.model.projection;
 
-public class QARecruiterDTO {
-    private String question;
-    private long questionId;
+/**
+ * this class serves as a DTO (Data Transfer Object) between the database and the front-end, specifically transfering
+ * data that a {@link aau.projektgruppen.manova.model.user.Recruiter Recruiter} should have access to.
+ * the data from {@link aau.projektgruppen.manova.model.projection.GenericDTO} (which this class extends) is all the
+ * {@code Recruiter} needs access to which is why no extra fields are added to this class.
+ *
+ * <p>
+ *     once created, data is not mutable, hence no Setters are provided.
+ * </p>
+ *
+ * @author Tommy Grenaae
+ * @see GenericDTO
+ */
 
-    public QARecruiterDTO(String question, long questionId) {
-        this.question = question;
-        this.questionId = questionId;
+public class QARecruiterDTO extends GenericDTO {
+
+    public QARecruiterDTO(long questionId, String question) {
+        super(questionId, question);
     }
-
-
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public long getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(long questionId) {
-        this.questionId = questionId;
-    }
-
 }

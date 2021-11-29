@@ -1,32 +1,27 @@
 package aau.projektgruppen.manova.model.projection;
 
-public class QAModeratorDTO {
-    private String question;
-    private long questionId;
+/**
+ * this class serves as a DTO (Data Transfer Object) between the database and the front-end, specifically transfering
+ * data that a {@link aau.projektgruppen.manova.model.user.Moderator Moderator} should have access to. Besides the data from
+ * {@link aau.projektgruppen.manova.model.projection.GenericDTO} (which this class extends) the {@code Moderator} needs
+ * to know if a {@link aau.projektgruppen.manova.model.Question Question} is marked for review or not.
+ *
+ * <p>
+ *     Once created, data is not mutable, hence no Setters are provided.
+ * </p>
+ *
+ * @author Tommy Grenaae
+ * @see GenericDTO
+ * @see aau.projektgruppen.manova.model.user.Moderator Moderator
+ * @see aau.projektgruppen.manova.model.Question Question
+ */
+public class QAModeratorDTO extends GenericDTO{
     private boolean markedForReview;
 
-    public QAModeratorDTO(String question,long questionId, boolean markedForReview) {
-        this.question = question;
-        this.questionId = questionId;
+    public QAModeratorDTO(long questionId, String question, boolean markedForReview) {
+        super(questionId, question);
         this.markedForReview = markedForReview;
-
     }
 
     public boolean isMarkedForReview() {return markedForReview;}
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public long getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(long questionId) {
-        this.questionId = questionId;
-    }
 }
