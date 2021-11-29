@@ -2,6 +2,7 @@ package aau.projektgruppen.manova.controller;
 
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Question;
+import aau.projektgruppen.manova.model.Session;
 import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
 import aau.projektgruppen.manova.service.RecruiterService;
 import aau.projektgruppen.manova.exception.NotFoundException;
@@ -13,6 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+/**
+ * The {@code StudentController} class collects all the various functionalities that the student needs.
+ * It imports {@code StudentService} and uses its methods.
+ *
+ * @author Laurits Lippert
+ * @see Session
+ */
 
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}
 @RestController

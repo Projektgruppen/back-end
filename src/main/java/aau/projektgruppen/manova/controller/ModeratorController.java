@@ -1,8 +1,5 @@
 package aau.projektgruppen.manova.controller;
 
-//import com.example.demo.model.QAMessage;
-//import com.example.demo.repository.MessageRepository;
-import aau.projektgruppen.manova.exception.BadRequestException;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Organisation;
 import aau.projektgruppen.manova.model.Question;
@@ -16,6 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+/**
+ * The {@code ModeratorController} class collects all the various functionalities that the student needs.
+ * It imports {@code ModeratorService} and uses its methods.
+ *
+ * @author Laurits Lippert
+ * @see Session
+ */
 
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}
 @RestController

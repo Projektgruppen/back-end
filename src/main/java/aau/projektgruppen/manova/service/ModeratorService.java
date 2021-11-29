@@ -13,6 +13,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The {@code ModeratorService} class makes the following methods:
+ * {@code findUnapprovedSessionQuestions}, {@code findUnapprovedQuestions}, {@code approveQuestion}, {@code reviewQuestion},
+ * {@code toggleSession}, {@code toggleAutoreview}, {@code newSession}, {@code newOrganisation}.
+ *
+ * @author Laurits Lippert
+ * @see Session
+ */
+
 @Service
 public class ModeratorService {
     @Autowired

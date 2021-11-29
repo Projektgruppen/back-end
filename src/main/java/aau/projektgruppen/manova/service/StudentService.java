@@ -3,6 +3,7 @@ package aau.projektgruppen.manova.service;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Organisation;
 import aau.projektgruppen.manova.model.Question;
+import aau.projektgruppen.manova.model.Session;
 import aau.projektgruppen.manova.model.projection.QAStudentDTO;
 import aau.projektgruppen.manova.repository.OrganisationRepository;
 import aau.projektgruppen.manova.repository.QuestionRepository;
@@ -11,6 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+/**
+ * The {@code StudentService} class makes 2 methods {@code getApprovedQuestions} and {@code saveQuestion}.
+ *
+ * @author Laurits Lippert
+ * @see Session
+ */
 
 @Service
 public class StudentService {
