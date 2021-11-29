@@ -3,7 +3,6 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 
 /**
  * The {@code Question} class represents a question that has been asked by a student. A {@code Question} object contains an
@@ -48,14 +47,12 @@ public class Question {
     /**
      * Boolean specifying whether the question has been approved.
      */
-    //TODO refactor to approved
-    private boolean approve = false;
+    private boolean approved = false;
 
     /**
      * Boolean specifying whether the question has been marked for review.
      */
-    //TODO refactor to markedForReview
-    private boolean review = false;
+    private boolean markedForReview = false;
 
     /**
      * Object that specifies which session the question belongs to.
@@ -98,29 +95,24 @@ public class Question {
         this.session = session;
     }
 
-    //TODO merge identical functions isApprove and getApprove
-    public boolean isApprove() {
-        return approve;
-    }
-
     public boolean getApprove() {
-        return approve;
+        return approved;
     }
 
     /**
      * Getter for the Boolean review, which specifies whether the question has been marked for review.
      * @return A {@code Boolean}, which specifies whether the question has been marked for review.
      */
-    public boolean isReview() {
-        return review;
+    public boolean isMarkedForReview() {
+        return markedForReview;
     }
 
     /**
      * Setter for the Boolean review, which specifies whether the question has been marked for review.
      * @param review, A {@code Boolean} specifying whether the question has been marked for review.
      */
-    public void setReview(boolean review) {
-        this.review = review;
+    public void setMarkedForReview(boolean review) {
+        this.markedForReview = review;
     }
 
     /**
@@ -151,8 +143,8 @@ public class Question {
      * Setter for the Boolean approve, which specifies whether the question has been approved.
      * @param approve, A {@code Boolean} specifying whether the question has been approved.
      */
-    public void setApprove(boolean approve) {
-        this.approve = approve;
+    public void setApproved(boolean approve) {
+        this.approved = approve;
     }
 
     public Answer getAnswer() {
@@ -168,8 +160,8 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-                ", approve=" + approve +
-                ", review=" + review +
+                ", approve=" + approved +
+                ", review=" + markedForReview +
                 ", session=" + session +
                 '}';
     }

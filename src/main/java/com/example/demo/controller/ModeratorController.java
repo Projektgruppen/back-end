@@ -2,14 +2,19 @@ package com.example.demo.controller;
 
 //import com.example.demo.model.QAMessage;
 //import com.example.demo.repository.MessageRepository;
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Organisation;
 import com.example.demo.model.Question;
 import com.example.demo.model.Session;
 import com.example.demo.model.projection.QAModeratorDTO;
 import com.example.demo.service.ModeratorService;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,19 +33,32 @@ public class ModeratorController {
      */
     @GetMapping("{session}/questions")
     public List<QAModeratorDTO> getAllUnapprovedSessionQuestions(@PathVariable String session){
-        return moderatorService.findUnapprovedSessionQuestions(session);
+        try{
+            return moderatorService.findUnapprovedSessionQuestions(session);
+        } catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions", e);
+        }
     }
 
     //Check if message is unapproved.
     @GetMapping("questions")
     public List<QAModeratorDTO> getAllUnapprovedQuestions(){
-        return moderatorService.findUnapprovedQuestions();
+        try {
+            return moderatorService.findUnapprovedQuestions();
+        } catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions", e);
+        }
     }
 
     //Finds message by Id and set approve to true
     @PutMapping("approve/{questionId}")
     public ResponseEntity<Question> approveQuestion(@PathVariable long questionId) {
-        return ResponseEntity.ok(moderatorService.approveQuestion(questionId));
+        try {
+            return ResponseEntity.ok(moderatorService.approveQuestion(questionId));
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Question Id not found" + questionId, e);
+        }
+
     }
 
     /**
@@ -50,31 +68,49 @@ public class ModeratorController {
      */
     @PutMapping("review/{questionId}")
     public ResponseEntity<Question> reviewQuestion(@PathVariable long questionId) {
-        return ResponseEntity.ok(moderatorService.reviewQuestion(questionId));
+        try {
+            return ResponseEntity.ok(moderatorService.reviewQuestion(questionId));
+        } catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Question Id Not Found" + questionId, e);
+        }
     }
 
     //Set session toggle value on/off
     @PutMapping("{organisationName}/toggle/{state}")
     public ResponseEntity<Session> toggleSession(@PathVariable String organisationName, @PathVariable String state) {
-        return ResponseEntity.ok(moderatorService.toggleSession(organisationName,state));
+        try {
+            return ResponseEntity.ok(moderatorService.toggleSession(organisationName,state));
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
+        }
     }
 
     //Set session toggle value on/off
     @PutMapping("{organisationName}/autoreview/{state}")
     public ResponseEntity<Session> toggleAutoreview(@PathVariable String organisationName, @PathVariable String state) {
-        return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName,state));
+        try {
+            return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName,state));
+        } catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
+        }
     }
 
     @PostMapping("{organisationName}/newsession")
     public ResponseEntity<Session> newSession(@PathVariable String organisationName){
-        return ResponseEntity.ok(moderatorService.newSession(organisationName));
+        try {
+            return ResponseEntity.ok(moderatorService.newSession(organisationName));
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
+        }
     }
 
     @PostMapping("neworganisation")
     public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisationName){
-        return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
+        try{
+            return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
+        } catch (BadRequestException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide correct organisation name", e);
+        }
     }
-    //TODO: reduce boilercode
-
 
 }

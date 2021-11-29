@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Question;
 import com.example.demo.model.projection.QAStudentDTO;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,7 +27,11 @@ public class StudentController {
      */
     @GetMapping("{organisationName}/questions")
     public List<QAStudentDTO> getAllApprovedQuestions(@PathVariable String organisationName){
-        return studentService.getApprovedQuestions(organisationName);
+        try{
+            return studentService.getApprovedQuestions(organisationName);
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find approved questions for: " + organisationName, e);
+        }
     }
 
     /**
@@ -35,7 +42,11 @@ public class StudentController {
      */
     @PostMapping("{organisationName}/question")
     public ResponseEntity<Question> createQuestion(@RequestBody Question question, @PathVariable String organisationName){
-        return ResponseEntity.ok(studentService.saveQuestion(question, organisationName));
+        try{
+            return ResponseEntity.ok(studentService.saveQuestion(question, organisationName));
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not create question", e);
+        }
     }
 
 }

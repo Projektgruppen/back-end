@@ -14,24 +14,21 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository <Question, Long> {
     @Query("SELECT new com.example.demo.model.projection.QAStudentDTO(q.question, q.answer.answer) " +
             "FROM Question q LEFT OUTER JOIN q.answer a " +
-            "WHERE q.approve = true AND q.session.id = :session_id")
+            "WHERE q.approved = true AND q.session.id = :session_id")
     List<QAStudentDTO> findApproved(long session_id);
 
-    //TODO: QAModeratorDTO and QARecruiterDTO is the same - consider revising into one DTO
     @Query("SELECT new com.example.demo.model.projection.QAModeratorDTO(q.question, q.id) " +
             "FROM Question q " +
-            "WHERE q.review = true AND q.session.id = :session_id")
+            "WHERE q.markedForReview = true AND q.session.id = :session_id")
     List<QAModeratorDTO> findReviewed(long session_id);
 
     @Query("SELECT new com.example.demo.model.projection.QAModeratorDTO(q.question, q.id) " +
             "FROM Question q " +
-            "WHERE q.approve = false AND q.session.id = :session_id")
+            "WHERE q.approved = false AND q.session.id = :session_id")
     List<QAModeratorDTO> findUnApproved(long session_id);
 
     @Query("SELECT new com.example.demo.model.projection.QAModeratorDTO(q.question, q.id) " +
             "FROM Question q " +
-            "WHERE q.approve = false")
+            "WHERE q.approved = false")
     List<QAModeratorDTO> findAllUnApproved();
-
-//TODO: change answer_id to be in Question
 }
