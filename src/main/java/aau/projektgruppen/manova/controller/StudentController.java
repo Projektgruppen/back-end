@@ -49,7 +49,8 @@ public class StudentController {
      * @return {@code ResponseEntity} containing a {@code Question} object.
      */
     @PostMapping("{organisationName}/question")
-    public ResponseEntity<Question> createQuestion(@RequestBody Question question, @PathVariable String organisationName){
+    public ResponseEntity<Question> createQuestion(@PathVariable String organisationName, @RequestBody Question question){
+        System.out.println(organisationName + " " + question);
         try{
             return ResponseEntity.ok(studentService.saveQuestion(question, organisationName));
         } catch (NotFoundException e) {
