@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 /**
- * this class holds all the queries regarding getting access to questions with specific attributes. the class is an
- * interface extended from {@link JpaRepository}.
+ * this class holds all the queries regarding getting access to {@link aau.projektgruppen.manova.model.Question questions}
+ * with specific attributes. the class is an interface extended from {@link JpaRepository}.
  *
  * @author Tommy Grenaae
  */
