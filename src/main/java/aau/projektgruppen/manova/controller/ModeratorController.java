@@ -1,5 +1,6 @@
 package aau.projektgruppen.manova.controller;
 
+import aau.projektgruppen.manova.exception.BadRequestException;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Organisation;
 import aau.projektgruppen.manova.model.Question;
@@ -44,17 +45,18 @@ public class ModeratorController {
         }
     }
 
-    //Check if message is unapproved.
+    /**
+     * @return if message is unapproved.
+     */
     @GetMapping("questions")
     public List<QAModeratorDTO> getAllUnapprovedQuestions(){
-        try {
-            return moderatorService.findUnapprovedQuestions();
-        } catch (NotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions", e);
-        }
+        return moderatorService.findUnapprovedQuestions();
     }
 
-    //Finds message by Id and set approve to true
+    /**
+     * @param questionId a long that has the id of question.
+     * @return Finds message by {@code questionId} and set approve to true
+     */
     @PutMapping("approve/{questionId}")
     public ResponseEntity<Question> approveQuestion(@PathVariable long questionId) {
         try {
@@ -79,26 +81,44 @@ public class ModeratorController {
         }
     }
 
-    //Set session toggle value on/off
+    /**
+     * @param organisationName, takes a string as input to see if the repository knows of the organisation.
+     * @param state, takes a string that should be either true or false.
+     * @throws org.springframework.web.server.ResponseStatusException throws a not found or bad request exception
+     * @return Set session toggle value on/off
+     */
     @PutMapping("{organisationName}/toggle/{state}")
     public ResponseEntity<Session> toggleSession(@PathVariable String organisationName, @PathVariable String state) {
         try {
-            return ResponseEntity.ok(moderatorService.toggleSession(organisationName,state));
+            return ResponseEntity.ok(moderatorService.toggleSession(organisationName, state));
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
+        } catch (BadRequestException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false");
         }
     }
 
-    //Set session toggle value on/off
+    /**
+     * @param organisationName, takes a string as input to see if the repository knows of the organisation.
+     * @param state, takes a string that should be either true or false.
+     * @throws org.springframework.web.server.ResponseStatusException throws a not found or bad request exception
+     * @return Set session toggle value on/off
+     */
     @PutMapping("{organisationName}/autoreview/{state}")
     public ResponseEntity<Session> toggleAutoreview(@PathVariable String organisationName, @PathVariable String state) {
         try {
-            return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName,state));
+            return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName, state));
         } catch (NotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
+        } catch (BadRequestException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false");
         }
     }
 
+    /**
+     * @param organisationName, takes a string as input to see if the repository knows of the organisation.
+     * @return creates new session for the given {@code organisationName}
+     */
     @PostMapping("{organisationName}/newsession")
     public ResponseEntity<Session> newSession(@PathVariable String organisationName){
         try {
@@ -108,13 +128,13 @@ public class ModeratorController {
         }
     }
 
+    /**
+     * @param organisationName, takes a string as input to see if the repository knows of the organisation.
+     * @return creates a new organisation with the name {@code organisationName}.
+     */
     @PostMapping("neworganisation")
     public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisationName){
-        try{
-            return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
-        } catch (NotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide correct organisation name", e);
-        }
+        return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
     }
 
 }

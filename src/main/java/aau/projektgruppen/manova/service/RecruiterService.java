@@ -16,11 +16,9 @@ import java.util.List;
 
 /**
  * The {@code RecruiterService} class makes two methods {@code getReviewedQuestions} and {@code updateAnswer}.
- *
  * @author Laurits Lippert
  * @see Session
  */
-
 @Service
 public class RecruiterService {
     @Autowired
@@ -32,6 +30,11 @@ public class RecruiterService {
     @Autowired
     AnswerRepository answerRepository;
 
+    /**
+     * @param organisationName, takes a string as input to see if the repository knows of the organisation.
+     * @return the reviewed questions for a given organisation with the ID that the {@code getId()} returns
+     * @throws NotFoundException if the repository doesn't know of the organisation.
+     */
     public List<QARecruiterDTO> getReviewedQuestions(String organisationName) throws NotFoundException {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
@@ -42,6 +45,14 @@ public class RecruiterService {
         return questionRepository.findReviewed(organisation.getId());
     }
 
+    /**
+     * @param answer, of type Answer. Saves answer to {@code answerRepository} and later sets the answer to the
+     *                corresponding question and changes the {@code setApproved} to true in the question
+     * @param questionId, of type long. The method need the correct questionId in order to save the answer to the
+     *                    correct question being answered.
+     * @return the questionRepository and saves the question with all its new attributes.
+     * @throws NotFoundException if the repository doesn't know if the organisation.
+     */
     public Question updateAnswer(Answer answer, long questionId) throws NotFoundException{
         answerRepository.save(answer);
         Question question = questionRepository.findById(questionId).orElseThrow( () ->

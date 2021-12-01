@@ -22,7 +22,6 @@ import java.util.List;
  * @author Laurits Lippert
  * @see Session
  */
-
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}
 @RestController
 @RequestMapping("/api/v1/recruiter")
@@ -44,6 +43,13 @@ public class RecruiterController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found", e);
         }
     }
+
+    /**
+     *
+     * @param questionId
+     * @param answer, of type Answer. Updates {@code answer} to question with {@code questionId}
+     * @return
+     */
     @PutMapping("answer/{questionId}")
     public ResponseEntity<Question> updateAnswer(@PathVariable long questionId, @RequestBody Answer answer) {
         try {
