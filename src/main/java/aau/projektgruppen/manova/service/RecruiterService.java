@@ -1,6 +1,7 @@
 package aau.projektgruppen.manova.service;
 
 import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
+import aau.projektgruppen.manova.model.projection.QASessionDTO;
 import aau.projektgruppen.manova.repository.QuestionRepository;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Answer;
@@ -9,6 +10,7 @@ import aau.projektgruppen.manova.model.Question;
 import aau.projektgruppen.manova.model.projection.QAModeratorDTO;
 import aau.projektgruppen.manova.repository.AnswerRepository;
 import aau.projektgruppen.manova.repository.OrganisationRepository;
+import aau.projektgruppen.manova.repository.SessionRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class RecruiterService {
 
     @Autowired
     AnswerRepository answerRepository;
+
+    @Autowired
+    SessionRepository sessionRepository;
 
     public List<QARecruiterDTO> getReviewedQuestions(String organisationName) throws NotFoundException {
         Organisation organisation = organisationRepository.findByName(organisationName);
@@ -47,5 +52,15 @@ public class RecruiterService {
         question.setApproved(true);
         question.setMarkedForReview(false);
         return questionRepository.save(question);
+    }
+
+    public List<QASessionDTO> getAllSessionsByOrganisationName(String organisationName) throws NotFoundException {
+        Organisation organisation = organisationRepository.findByName(organisationName);
+
+        if (organisation == null) {
+            throw new NotFoundException("Organisation does not exist!");
+        }
+
+        return sessionRepository.findAllSessionsByOrganisationName(organisation.getCurrentSession(),organisation.getId());
     }
 }

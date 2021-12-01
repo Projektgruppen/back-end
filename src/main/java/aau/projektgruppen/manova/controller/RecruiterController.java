@@ -3,6 +3,7 @@ package aau.projektgruppen.manova.controller;
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Question;
 import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
+import aau.projektgruppen.manova.model.projection.QASessionDTO;
 import aau.projektgruppen.manova.service.RecruiterService;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.projection.QAModeratorDTO;
@@ -43,5 +44,14 @@ public class RecruiterController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found", e);
         }
     }
+    @GetMapping("{organisationName}/logs")
+    public List<QASessionDTO>getAllSessionsByOrganisationName(@PathVariable String organisationName){
+        try{
+            return recruiterService.getAllSessionsByOrganisationName(organisationName);
+        } catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " Organisation not found", e);
+        }
+    }
+
 
 }
