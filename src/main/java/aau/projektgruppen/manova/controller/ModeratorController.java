@@ -136,6 +136,15 @@ public class ModeratorController {
         }
     }
 
+    @PostMapping("/newsessionforall")
+    public ResponseEntity<List<Organisation>> newSessionForAll(){
+        try {
+            return ResponseEntity.ok(moderatorService.newSessionForAll());
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisations", e);
+        }
+    }
+
     /**
      * @param organisation, takes a string as input to see if the repository knows of the organisation.
      * @return creates a new organisation with the name {@code organisationName}.
@@ -144,5 +153,7 @@ public class ModeratorController {
     public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation){
         return ResponseEntity.ok(moderatorService.newOrganisation(organisation));
     }
+
+
 
 }

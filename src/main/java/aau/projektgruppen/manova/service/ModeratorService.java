@@ -179,4 +179,18 @@ public class ModeratorService {
     public List<Organisation> findAllOrganisations() {
         return organisationRepository.findAll();
     }
+
+    public List<Organisation> newSessionForAll() throws NotFoundException {
+        List<Organisation> organisations = organisationRepository.findAll();
+        if (organisations == null) {
+            throw new NotFoundException("Organisations not found");
+        }
+        for(Organisation organisation : organisations){
+            Session session = new Session(organisation);
+            sessionRepository.save(session);
+            organisation.setCurrentSession(session.getId());
+            organisationRepository.save(organisation);
+        }
+        return organisations;
+    }
 }
