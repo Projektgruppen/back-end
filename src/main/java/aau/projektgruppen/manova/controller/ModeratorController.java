@@ -46,7 +46,7 @@ public class ModeratorController {
     }
 
     /**
-     * @return if message is unapproved.
+     * @returns all unapproved messages regardless of session id.
      */
     @GetMapping("questions")
     public List<QAModeratorDTO> getAllUnapprovedQuestions(){
