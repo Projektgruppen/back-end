@@ -18,13 +18,11 @@ public class CSVService {
 
     @Autowired
     QuestionRepository qRepository;
-    AnswerRepository aRepository;
 
-    public ByteArrayInputStream load() {
-        List<Question> questions = qRepository.findAll();
-        List<Answer> answers = aRepository.findAll();
+    public ByteArrayInputStream load(Long sessionId) {
+        List<Question> questions = qRepository.findAllBySessionId(sessionId);
 
-        ByteArrayInputStream in = CSVHelper.qaMessageToCSV(questions, answers);
+        ByteArrayInputStream in = CSVHelper.questionToCSV(questions);
         return in;
     }
 }

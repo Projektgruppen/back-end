@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import aau.projektgruppen.manova.service.CSVService;
@@ -23,10 +24,10 @@ public class LogController {
 
 
 
-    @GetMapping("/download")
-    public ResponseEntity<Resource> getFile() {
+    @GetMapping("{sessionId}/download")
+    public ResponseEntity<Resource> getFile(@PathVariable Long sessionId) {
         String filename = "log.csv";
-        InputStreamResource file = new InputStreamResource(fileService.load());
+        InputStreamResource file = new InputStreamResource(fileService.load(sessionId));
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)

@@ -1,5 +1,8 @@
 package aau.projektgruppen.manova.service;
 
+import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
+import aau.projektgruppen.manova.model.projection.QASessionDTO;
+import aau.projektgruppen.manova.repository.QuestionRepository;
 import aau.projektgruppen.manova.exception.NotFoundException;
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Organisation;
@@ -8,9 +11,13 @@ import aau.projektgruppen.manova.model.Session;
 import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
 import aau.projektgruppen.manova.repository.AnswerRepository;
 import aau.projektgruppen.manova.repository.OrganisationRepository;
+import aau.projektgruppen.manova.repository.SessionRepository;
+import org.springframework.http.HttpStatus;
 import aau.projektgruppen.manova.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -30,11 +37,15 @@ public class RecruiterService {
     @Autowired
     AnswerRepository answerRepository;
 
+    @Autowired
+    SessionRepository sessionRepository;
     /**
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
      * @return the reviewed questions for a given organisation with the ID that the {@code getId()} returns
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
+
+
     public List<QARecruiterDTO> getReviewedQuestions(String organisationName) throws NotFoundException {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
@@ -62,5 +73,15 @@ public class RecruiterService {
         question.setApproved(true);
         question.setMarkedForReview(false);
         return questionRepository.save(question);
+    }
+
+    public List<QASessionDTO> getAllSessionsByOrganisationName(String organisationName) throws NotFoundException {
+        Organisation organisation = organisationRepository.findByName(organisationName);
+
+        if (organisation == null) {
+            throw new NotFoundException("Organisation does not exist!");
+        }
+
+        return sessionRepository.findAllSessionsByOrganisationName(organisation.getCurrentSession(),organisation.getId());
     }
 }

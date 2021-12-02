@@ -4,8 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Question;
@@ -21,24 +24,36 @@ import org.apache.commons.csv.QuoteMode;
 
 public class CSVHelper {
 
-    public static ByteArrayInputStream qaMessageToCSV(List<Question> questions, List<Answer> answers) {
+    public static ByteArrayInputStream questionToCSV(List<Question> questions) {
 
-        //Answer answer = new Answer();
 
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
+             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
+
+            List<String> data = new ArrayList<>();
+            data.add("Number of messages, Question Id,Question,Session Id, Answer ");
+            csvPrinter.printRecord(data);
             for (Question question : questions) {
-                List<String> data = Arrays.asList(
+                if(question.getAnswer() == null){
+                    Answer answer = new Answer();
+                    answer.setAnswer("no answer");
+                    question.setAnswer(answer);
+                }
+
+                 data = Arrays.asList(
                         String.valueOf(question.getId()),
                         question.getQuestion(),
-                        String.valueOf(question.getApprove())
-                        //answer.getAnswer()
+                        String.valueOf(question.getSession().getId()),
+                        question.getAnswer().getAnswer()
+
                 );
 
-                csvPrinter.printRecord(data);
+            csvPrinter.printRecord(data);
             }
+
+
 
             csvPrinter.flush();
             return new ByteArrayInputStream(out.toByteArray());
