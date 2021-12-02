@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The {@code StudentService} class makes 2 methods {@code getApprovedQuestions} and {@code saveQuestion}.
@@ -61,7 +62,12 @@ public class StudentService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
+        Session session = sessionRepository.getOne(organisation.getCurrentSession());
+        if(session.isAutoReview()){
+            question.setMarkedForReview(true);
+        }
         question.setSession(sessionRepository.getOne(organisation.getCurrentSession()));
+
         return questionRepository.save(question);
     }
 }
