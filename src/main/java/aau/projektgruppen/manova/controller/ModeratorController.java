@@ -137,12 +137,13 @@ public class ModeratorController {
     }
 
     /**
-     * @param organisationName, takes a string as input to see if the repository knows of the organisation.
+     * @param organisation, takes a string as input to see if the repository knows of the organisation.
      * @return creates a new organisation with the name {@code organisationName}.
      */
     @PostMapping("neworganisation")
-    public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisationName){
-        return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
+    public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation){
+        System.out.println(organisation);
+        return ResponseEntity.ok(moderatorService.newOrganisation(organisation));
     }
 
 }
