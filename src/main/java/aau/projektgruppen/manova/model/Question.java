@@ -3,6 +3,8 @@ package aau.projektgruppen.manova.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The {@code Question} class represents a question that has been asked by a student. A {@code Question} object contains an
@@ -22,6 +24,7 @@ import javax.persistence.*;
  * </pre></blockquote>
  *
  * @author Johan Nissen Riedel,
+ * @author Tommy Grenaae
  * @see Answer
  * @see Session
  */
@@ -40,6 +43,11 @@ public class Question {
      * Contains the question as text.
      */
     private String question;
+
+    /**
+     * represents the time of which the {@code Question} was created.
+     */
+    private final String timeOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
 
     @OneToOne
     private Answer answer;
@@ -155,15 +163,7 @@ public class Question {
         this.answer = answer;
     }
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", question='" + question + '\'' +
-                ", answer=" + answer +
-                ", approved=" + approved +
-                ", markedForReview=" + markedForReview +
-                ", session=" + session.getId() +
-                '}';
+    public String getTimeOfCreation() {
+        return timeOfCreation;
     }
 }

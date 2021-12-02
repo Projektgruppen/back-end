@@ -22,13 +22,35 @@ package aau.projektgruppen.manova.model.projection;
 public class QAStudentDTO extends GenericDTO {
     private String answer;
 
-    public QAStudentDTO(long questionId, String question, String answer) {
+    private String timeOfCreationForQuestion;
+
+    private String timeOfCreationForAnswer;
+
+    public QAStudentDTO(long questionId, String question, String timeOfCreationForQuestion, String answer, String timeOfCreationForAnswer) {
         super(questionId, question);
+        this.timeOfCreationForQuestion = timeOfCreationForQuestion;
         this.answer = answer;
+        this.timeOfCreationForAnswer = timeOfCreationForAnswer;
     }
 
     public String getAnswer() {
         return answer;
     }
 
+    public String getTimeOfCreationForQuestion() {
+        return timeOfCreationForQuestion;
+    }
+
+    public String getTimeOfCreationForAnswer() {
+        return timeOfCreationForAnswer;
+    }
+
+    @Override
+    public String toString() {
+        return "QAStudentDTO{" +
+                "answer='" + answer + '\'' +
+                ", timeOfCreationForQuestion='" + timeOfCreationForQuestion + '\'' +
+                ", timeOfCreationForAnswer='" + timeOfCreationForAnswer + '\'' +
+                '}';
+    }
 }

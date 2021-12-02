@@ -1,6 +1,8 @@
 package aau.projektgruppen.manova.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The {@code Answer} class represents an answer to question asked by a student. A {@code Answer} object contains an
@@ -16,6 +18,7 @@ import javax.persistence.*;
  * </pre></blockquote>
  *
  * @author Johan Nissen Riedel,
+ * @author Tommy Grenaae
  * @see Question
  */
 @Entity
@@ -31,6 +34,11 @@ public class Answer {
 
     /** Contains the answer as a String.*/
     private String answer;
+
+    /**
+     * represents the time of which the {@code Answer} was created.
+     */
+    private final String timeOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
 
     /**
      * Initializes a newly created {@code Answer} object with a given answer {@code String} and {@link Question} object.
@@ -68,6 +76,10 @@ public class Answer {
      */
     public long getId() {
         return id;
+    }
+
+    public String getTimeOfCreation() {
+        return timeOfCreation;
     }
 
     @Override

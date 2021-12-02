@@ -31,4 +31,12 @@ public class GenericDTO {
     public String getQuestion() {
         return question;
     }
+
+    @Override
+    public String toString() {
+        return "GenericDTO{" +
+                "questionId=" + questionId +
+                ", question='" + question + '\'' +
+                '}';
+    }
 }

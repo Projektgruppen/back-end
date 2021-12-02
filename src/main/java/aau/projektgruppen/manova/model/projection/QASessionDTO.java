@@ -1,7 +1,5 @@
 package aau.projektgruppen.manova.model.projection;
 
-import java.time.LocalDateTime;
-
 public class QASessionDTO {
     private long sessionId;
     private long organisationId;

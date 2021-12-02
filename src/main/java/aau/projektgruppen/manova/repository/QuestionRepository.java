@@ -22,7 +22,7 @@ public interface QuestionRepository extends JpaRepository <Question, Long> {
      *                   there should be returned questions from.
      * @return a list of {@link aau.projektgruppen.manova.model.projection.QAStudentDTO QAStudentDTO}.
      */
-    @Query("SELECT new aau.projektgruppen.manova.model.projection.QAStudentDTO(q.id, q.question, a.answer) " +
+    @Query("SELECT new aau.projektgruppen.manova.model.projection.QAStudentDTO(q.id, q.question, q.timeOfCreation, a.answer, a.timeOfCreation) " +
             "FROM Question q LEFT OUTER JOIN q.answer a " +
             "WHERE q.approved = true AND q.session.id = :session_id")
     List<QAStudentDTO> findApproved(long session_id);
