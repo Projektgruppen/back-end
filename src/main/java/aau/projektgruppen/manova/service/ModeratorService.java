@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -47,7 +48,7 @@ public class ModeratorService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        return questionRepository.findUnApproved(organisation.getId());
+        return questionRepository.findUnApproved(organisation.getCurrentSession());
     }
 
     public List<QAModeratorDTO> findUnapprovedQuestions(){
@@ -171,6 +172,7 @@ public class ModeratorService {
      * @return saves organisation to organisation repository
      */
     public Organisation newOrganisation(Organisation organisation){
+        organisation.setName(organisation.getName().toLowerCase());
         return organisationRepository.save(organisation);
     }
 
