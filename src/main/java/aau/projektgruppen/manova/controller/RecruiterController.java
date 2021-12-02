@@ -7,7 +7,6 @@ import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
 import aau.projektgruppen.manova.model.projection.QASessionDTO;
 import aau.projektgruppen.manova.service.RecruiterService;
 import aau.projektgruppen.manova.exception.NotFoundException;
-import aau.projektgruppen.manova.model.projection.QAModeratorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package aau.projektgruppen.manova.helper;
+package aau.projektgruppen.manova.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
