@@ -82,6 +82,6 @@ public class RecruiterService {
             throw new NotFoundException("Organisation does not exist!");
         }
 
-        return sessionRepository.findAllSessionsByOrganisationName(organisation.getCurrentSession(),organisation.getId());
+        return sessionRepository.findAllSessionsByOrganisationName(organisation.getId());
     }
 }

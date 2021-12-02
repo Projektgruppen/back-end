@@ -16,8 +16,8 @@ import java.util.List;
 public interface SessionRepository extends JpaRepository<Session, Long> {
     @Query("SELECT new aau.projektgruppen.manova.model.projection.QASessionDTO(s.id,s.organisation.id,s.timeOfCreation)"+
             "FROM Session s " +
-            "WHERE s.id = :sessionId AND s.organisation.id = :organisationId"
+            "WHERE s.organisation.id = :organisationId"
     )
-    List<QASessionDTO> findAllSessionsByOrganisationName(long sessionId, long organisationId);
+    List<QASessionDTO> findAllSessionsByOrganisationName(long organisationId);
 
 }
