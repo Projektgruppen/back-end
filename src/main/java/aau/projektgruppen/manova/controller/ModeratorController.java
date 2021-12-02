@@ -54,6 +54,14 @@ public class ModeratorController {
     }
 
     /**
+     * @returns all organisations in the system
+     */
+    @GetMapping("organisations")
+    public List<Organisation> getAllOrganisations(){
+        return moderatorService.findAllOrganisations();
+    }
+
+    /**
      * @param questionId a long that has the id of question.
      * @return Finds message by {@code questionId} and set approve to true
      */
@@ -128,13 +136,24 @@ public class ModeratorController {
         }
     }
 
+    @PostMapping("/newsessionforall")
+    public ResponseEntity<List<Organisation>> newSessionForAll(){
+        try {
+            return ResponseEntity.ok(moderatorService.newSessionForAll());
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisations", e);
+        }
+    }
+
     /**
-     * @param organisationName, takes a string as input to see if the repository knows of the organisation.
+     * @param organisation, takes a string as input to see if the repository knows of the organisation.
      * @return creates a new organisation with the name {@code organisationName}.
      */
     @PostMapping("neworganisation")
-    public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisationName){
-        return ResponseEntity.ok(moderatorService.newOrganisation(organisationName));
+    public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation){
+        return ResponseEntity.ok(moderatorService.newOrganisation(organisation));
     }
+
+
 
 }

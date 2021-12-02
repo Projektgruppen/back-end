@@ -41,7 +41,7 @@ public class StudentService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        return questionRepository.findApproved(organisation.getId());
+        return questionRepository.findApproved(organisation.getCurrentSession());
 
 
     }
@@ -61,7 +61,7 @@ public class StudentService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        question.setSession(sessionRepository.getOne(organisation.getId()));
+        question.setSession(sessionRepository.getOne(organisation.getCurrentSession()));
         return questionRepository.save(question);
     }
 }

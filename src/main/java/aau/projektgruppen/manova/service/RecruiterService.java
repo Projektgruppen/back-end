@@ -53,7 +53,7 @@ public class RecruiterService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        return questionRepository.findReviewed(organisation.getId());
+        return questionRepository.findReviewed(organisation.getCurrentSession());
     }
 
     /**
