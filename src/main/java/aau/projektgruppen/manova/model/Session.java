@@ -37,7 +37,7 @@ public class Session {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     /**
      * Specifies whether the session is live.
@@ -148,7 +148,7 @@ public class Session {
      * Getter for the session's id.
      * @return {@code long} specifying the id of the session.
      */
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
