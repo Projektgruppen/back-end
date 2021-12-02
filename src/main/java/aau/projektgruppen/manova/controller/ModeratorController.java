@@ -142,7 +142,6 @@ public class ModeratorController {
      */
     @PostMapping("neworganisation")
     public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation){
-        System.out.println(organisation);
         return ResponseEntity.ok(moderatorService.newOrganisation(organisation));
     }
 
