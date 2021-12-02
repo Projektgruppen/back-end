@@ -59,4 +59,8 @@ public interface QuestionRepository extends JpaRepository <Question, Long> {
             "FROM Question q " +
             "WHERE q.approved = false")
     List<QAModeratorDTO> findAllUnApproved();
+
+
+    @Query("SELECT q FROM Question q WHERE q.session.id = :session_id")
+    List<Question> findAllBySessionId(long session_id);
 }

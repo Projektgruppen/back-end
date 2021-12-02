@@ -3,7 +3,10 @@ package aau.projektgruppen.manova.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,6 +47,8 @@ public class Session {
      * Specifies whether auto review has been enabled for the session.
      */
     private boolean autoReview;
+
+    private final String timeOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
     /**
      * List containing every question in the session.

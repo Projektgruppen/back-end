@@ -160,9 +160,10 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-                ", approve=" + approved +
-                ", review=" + markedForReview +
-                ", session=" + session +
+                ", answer=" + answer +
+                ", approved=" + approved +
+                ", markedForReview=" + markedForReview +
+                ", session=" + session.getId() +
                 '}';
     }
 }

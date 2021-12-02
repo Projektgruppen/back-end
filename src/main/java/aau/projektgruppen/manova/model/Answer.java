@@ -69,4 +69,12 @@ public class Answer {
     public long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", answer='" + answer + '\'' +
+                '}';
+    }
 }
