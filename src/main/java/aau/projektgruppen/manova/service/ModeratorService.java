@@ -173,4 +173,8 @@ public class ModeratorService {
     public Organisation newOrganisation(Organisation organisation){
         return organisationRepository.save(organisation);
     }
+
+    public List<Organisation> findAllOrganisations() {
+        return organisationRepository.findAll();
+    }
 }

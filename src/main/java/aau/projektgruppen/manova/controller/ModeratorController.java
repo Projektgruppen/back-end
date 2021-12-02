@@ -54,6 +54,14 @@ public class ModeratorController {
     }
 
     /**
+     * @returns all organisations in the system
+     */
+    @GetMapping("organisations")
+    public List<Organisation> getAllOrganisations(){
+        return moderatorService.findAllOrganisations();
+    }
+
+    /**
      * @param questionId a long that has the id of question.
      * @return Finds message by {@code questionId} and set approve to true
      */
