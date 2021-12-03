@@ -71,7 +71,6 @@ public class ModeratorController {
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Question Id not found" + questionId, e);
         }
-
     }
 
     /**
@@ -101,7 +100,7 @@ public class ModeratorController {
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
         } catch (BadRequestException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false", e);
         }
     }
 
@@ -118,7 +117,7 @@ public class ModeratorController {
         } catch (NotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
         } catch (BadRequestException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false", e);
         }
     }
 
@@ -152,7 +151,4 @@ public class ModeratorController {
     public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation){
         return ResponseEntity.ok(moderatorService.newOrganisation(organisation));
     }
-
-
-
 }

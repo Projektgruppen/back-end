@@ -1,7 +1,5 @@
 package aau.projektgruppen.manova.model.user;
 
-import aau.projektgruppen.manova.model.Session;
-
 import javax.persistence.*;
 
 /**
@@ -15,7 +13,6 @@ import javax.persistence.*;
  * </pre></blockquote>
  *
  * @author Johan Nissen Riedel,
- * @see Session
  */
 @Entity
 @Table(name = "students")
@@ -31,9 +28,7 @@ public class Student {
     /**
      * Creates an empty Student object.
      */
-    //Constructors
     public Student(){
-
     }
 
     /**
