@@ -7,8 +7,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Question;
@@ -33,7 +31,7 @@ public class CSVHelper {
              CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
 
             List<String> data = new ArrayList<>();
-            data.add("Number of messages, Question Id,Question,Session Id, Answer ");
+            data.add("Question,Question_time,Answer,Answer_time");
             csvPrinter.printRecord(data);
             for (Question question : questions) {
                 if(question.getAnswer() == null){
@@ -43,11 +41,10 @@ public class CSVHelper {
                 }
 
                  data = Arrays.asList(
-                        String.valueOf(question.getId()),
                         question.getQuestion(),
-                        String.valueOf(question.getSession().getId()),
-                        question.getAnswer().getAnswer()
-
+                        question.getTimeOfCreation(),
+                        question.getAnswer().getAnswer(),
+                        question.getAnswer().getTimeOfCreation()
                 );
 
             csvPrinter.printRecord(data);
