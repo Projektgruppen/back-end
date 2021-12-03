@@ -3,6 +3,7 @@ package aau.projektgruppen.manova.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -47,7 +48,7 @@ public class Question {
     /**
      * represents the time of which the {@code Question} was created.
      */
-    private final String timeOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+    private String timeOfApproval;
 
     @OneToOne
     private Answer answer;
@@ -163,7 +164,11 @@ public class Question {
         this.answer = answer;
     }
 
-    public String getTimeOfCreation() {
-        return timeOfCreation;
+    public String getTimeOfApproval() {
+        return timeOfApproval;
+    }
+
+    public void setTimeOfApproval(String timeOfApproval) {
+        this.timeOfApproval = timeOfApproval;
     }
 }

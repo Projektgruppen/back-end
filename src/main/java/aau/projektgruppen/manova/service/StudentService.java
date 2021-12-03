@@ -5,12 +5,14 @@ import aau.projektgruppen.manova.model.Organisation;
 import aau.projektgruppen.manova.model.Question;
 import aau.projektgruppen.manova.model.Session;
 import aau.projektgruppen.manova.model.projection.QAStudentDTO;
+import aau.projektgruppen.manova.model.projection.QAStudentDTOComparator;
 import aau.projektgruppen.manova.repository.OrganisationRepository;
 import aau.projektgruppen.manova.repository.QuestionRepository;
 import aau.projektgruppen.manova.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,10 +42,9 @@ public class StudentService {
         if (organisation == null) {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
-
-        return questionRepository.findApproved(organisation.getCurrentSession());
-
-
+        List<QAStudentDTO> approvedQuestions = questionRepository.findApproved(organisation.getCurrentSession());
+        Collections.sort(approvedQuestions, new QAStudentDTOComparator());
+        return approvedQuestions;
     }
 
     /**
