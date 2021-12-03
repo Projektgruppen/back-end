@@ -42,7 +42,7 @@ public class CSVHelper {
 
                  data = Arrays.asList(
                         question.getQuestion(),
-                        question.getTimeOfCreation(),
+                        question.getTimeOfApproval(),
                         question.getAnswer().getAnswer(),
                         question.getAnswer().getTimeOfCreation()
                 );
