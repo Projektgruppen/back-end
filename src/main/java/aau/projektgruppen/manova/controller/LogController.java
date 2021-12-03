@@ -26,7 +26,7 @@ public class LogController {
 
     @GetMapping("{sessionId}/download")
     public ResponseEntity<Resource> getFile(@PathVariable Long sessionId) {
-        String filename = "log.csv";
+        String filename = String.format("log %d.csv",sessionId);
         InputStreamResource file = new InputStreamResource(fileService.load(sessionId));
 
         return ResponseEntity.ok()
