@@ -1,6 +1,7 @@
 package aau.projektgruppen.manova.repository;
 
 import aau.projektgruppen.manova.model.Organisation;
+import aau.projektgruppen.manova.repository.user.ModeratorRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

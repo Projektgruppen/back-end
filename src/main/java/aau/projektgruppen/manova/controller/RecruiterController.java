@@ -2,7 +2,6 @@ package aau.projektgruppen.manova.controller;
 
 import aau.projektgruppen.manova.model.Answer;
 import aau.projektgruppen.manova.model.Question;
-import aau.projektgruppen.manova.model.Session;
 import aau.projektgruppen.manova.model.projection.QARecruiterDTO;
 import aau.projektgruppen.manova.model.projection.QASessionDTO;
 import aau.projektgruppen.manova.service.RecruiterService;
@@ -20,7 +19,6 @@ import java.util.List;
  * It imports {@code StudentService} and uses its methods.
  *
  * @author Laurits Lippert
- * @see Session
  */
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}
 @RestController
@@ -45,10 +43,9 @@ public class RecruiterController {
     }
 
     /**
-     *
-     * @param questionId
+     * @param questionId, a long containing the ID of the question.
      * @param answer, of type Answer. Updates {@code answer} to question with {@code questionId}
-     * @return
+     * @return a call to the {@code updateAnswer} in the recruiter service layer.
      */
     @PutMapping("answer/{questionId}")
     public ResponseEntity<Question> updateAnswer(@PathVariable long questionId, @RequestBody Answer answer) {
@@ -58,6 +55,11 @@ public class RecruiterController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found", e);
         }
     }
+
+    /**
+     * @param organisationName
+     * @return a call to the {@code updateAnswer} in the recruiter service layer.
+     */
     @GetMapping("{organisationName}/logs")
     public List<QASessionDTO>getAllSessionsByOrganisationName(@PathVariable String organisationName){
         try{

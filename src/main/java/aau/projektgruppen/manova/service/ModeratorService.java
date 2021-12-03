@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -22,7 +21,10 @@ import java.util.Optional;
  * {@code toggleSession}, {@code toggleAutoreview}, {@code newSession}, {@code newOrganisation}.
  *
  * @author Laurits Lippert
- * @see Session
+ * @see aau.projektgruppen.manova.controller.ModeratorController
+ * @see OrganisationRepository
+ * @see QuestionRepository
+ * @see SessionRepository
  */
 
 @Service
@@ -176,10 +178,18 @@ public class ModeratorService {
         return organisationRepository.save(organisation);
     }
 
+    /**
+     * @return all organisations in the organisation repository
+     */
     public List<Organisation> findAllOrganisations() {
         return organisationRepository.findAll();
     }
 
+    /**
+     *
+     * @return a list of all organisations with a new session.
+     * @throws NotFoundException if the findAll method returns no organisations
+     */
     public List<Organisation> newSessionForAll() throws NotFoundException {
         List<Organisation> organisations = organisationRepository.findAll();
         if (organisations == null) {

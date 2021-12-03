@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The {@code StudentService} class makes 2 methods {@code getApprovedQuestions} and {@code saveQuestion}.
  * @author Laurits Lippert
- * @see Session
+ * @see aau.projektgruppen.manova.controller.StudentController
+ * @see OrganisationRepository
+ * @see QuestionRepository
+ * @see SessionRepository
  */
 @Service
 public class StudentService {

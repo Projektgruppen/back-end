@@ -2,7 +2,6 @@ package aau.projektgruppen.manova.controller;
 
 import aau.projektgruppen.manova.model.Question;
 import aau.projektgruppen.manova.exception.NotFoundException;
-import aau.projektgruppen.manova.model.Session;
 import aau.projektgruppen.manova.model.projection.QAStudentDTO;
 import aau.projektgruppen.manova.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import java.util.List;
  * It imports {@code StudentService} and uses its methods.
  *
  * @author Laurits Lippert
- * @see Session
  */
 
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}
