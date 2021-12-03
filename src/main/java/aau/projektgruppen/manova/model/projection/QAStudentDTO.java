@@ -1,5 +1,8 @@
 package aau.projektgruppen.manova.model.projection;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 /**
  * this class serves as a DTO (Data Transfer Object) between the database and the front-end, specifically transfering
  * data that a {@link aau.projektgruppen.manova.model.user.Student Student} should have access to. Besides the data from
@@ -22,13 +25,13 @@ package aau.projektgruppen.manova.model.projection;
 public class QAStudentDTO extends GenericDTO {
     private String answer;
 
-    private String timeOfCreationForQuestion;
+    private String timeOfApprovalForQuestion;
 
     private String timeOfCreationForAnswer;
 
-    public QAStudentDTO(long questionId, String question, String timeOfCreationForQuestion, String answer, String timeOfCreationForAnswer) {
+    public QAStudentDTO(long questionId, String question, String timeOfApprovalForQuestion, String answer, String timeOfCreationForAnswer) {
         super(questionId, question);
-        this.timeOfCreationForQuestion = timeOfCreationForQuestion;
+        this.timeOfApprovalForQuestion = timeOfApprovalForQuestion;
         this.answer = answer;
         this.timeOfCreationForAnswer = timeOfCreationForAnswer;
     }
@@ -37,8 +40,8 @@ public class QAStudentDTO extends GenericDTO {
         return answer;
     }
 
-    public String getTimeOfCreationForQuestion() {
-        return timeOfCreationForQuestion;
+    public String getTimeOfApprovalForQuestion() {
+        return timeOfApprovalForQuestion;
     }
 
     public String getTimeOfCreationForAnswer() {
@@ -49,7 +52,7 @@ public class QAStudentDTO extends GenericDTO {
     public String toString() {
         return "QAStudentDTO{" +
                 "answer='" + answer + '\'' +
-                ", timeOfCreationForQuestion='" + timeOfCreationForQuestion + '\'' +
+                ", timeOfCreationForQuestion='" + timeOfApprovalForQuestion + '\'' +
                 ", timeOfCreationForAnswer='" + timeOfCreationForAnswer + '\'' +
                 '}';
     }
