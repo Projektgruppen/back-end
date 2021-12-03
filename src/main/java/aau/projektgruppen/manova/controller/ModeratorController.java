@@ -20,7 +20,6 @@ import java.util.List;
  * It imports {@code ModeratorService} and uses its methods.
  *
  * @author Laurits Lippert
- * @see Session
  */
 
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}
