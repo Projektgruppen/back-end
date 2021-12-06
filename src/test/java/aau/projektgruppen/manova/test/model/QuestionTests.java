@@ -6,6 +6,8 @@ import aau.projektgruppen.manova.model.Session;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -103,8 +105,29 @@ class QuestionTests {
         assertEquals(expected, actual);
     }
 
-    // --- Further improvements not implemented --------------------------------
+    @Test
+    void getTimeOfApproval_default_is_null_if_getApprove_is_false() {
+        assertFalse(q.getApprove());
+        assertNull(q.getTimeOfApproval());
+    }
 
+    @Test
+    void setTimeOfApproval_then_getTimeOfApproval() {
+        String expectedTime = LocalTime.now().toString();
+        q.setTimeOfApproval(expectedTime);
+        assertEquals(expectedTime, q.getTimeOfApproval());
+    }
+
+    @Test
+    void getTimeOfApproval_is_not_null_if_getApprove_is_true() {
+        q.setApproved(true);
+        assertTrue(q.getApprove());
+        assertNotNull(q.getTimeOfApproval());
+    }
+
+    // --- Further improvements not implemented --------------------------------
+    // TODO: Maybe garden this later?
+/*
     @Test
     void getTimestamp() {
         fail("Not Implemented");
@@ -119,4 +142,5 @@ class QuestionTests {
     void getStudent() {
         fail("Not Implemented");
     }
+*/
 }
