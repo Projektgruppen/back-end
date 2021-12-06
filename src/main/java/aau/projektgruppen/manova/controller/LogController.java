@@ -23,17 +23,18 @@ public class LogController {
     CSVService fileService;
 
 
-
     @GetMapping("{sessionId}/download")
     public ResponseEntity<Resource> getFile(@PathVariable Long sessionId) {
-        String filename = String.format("log %d.csv",sessionId);
+        String filename = String.format("log %d.csv", sessionId);
         InputStreamResource file = new InputStreamResource(fileService.load(sessionId));
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
-                .contentType(MediaType.parseMediaType("application/csv"))
-                .body(file);
+        try {
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+                    .contentType(MediaType.parseMediaType("application/csv"))
+                    .body(file);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
+        }
     }
-
-
 }

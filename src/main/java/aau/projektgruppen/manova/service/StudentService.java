@@ -45,7 +45,7 @@ public class StudentService {
         if (organisation == null) {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
-        List<QAStudentDTO> approvedQuestions = questionRepository.findApproved(organisation.getCurrentSession());
+        List<QAStudentDTO> approvedQuestions = questionRepository.findApproved(organisation.getCurrentSessionId());
         Collections.sort(approvedQuestions, new QAStudentDTOComparator());
         return approvedQuestions;
     }
@@ -65,11 +65,11 @@ public class StudentService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        Session session = sessionRepository.getOne(organisation.getCurrentSession());
+        Session session = sessionRepository.getOne(organisation.getCurrentSessionId());
         if(session.isAutoReview()){
             question.setMarkedForReview(true);
         }
-        question.setSession(sessionRepository.getOne(organisation.getCurrentSession()));
+        question.setSession(sessionRepository.getOne(organisation.getCurrentSessionId()));
 
         return questionRepository.save(question);
     }

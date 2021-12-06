@@ -28,16 +28,16 @@ class AnswerTests {
     }
 
     @Test
-    void constructor_given_null_throws_InstantiationException() {
-        Exception ex = assertThrows(InstantiationException.class,
+    void constructor_given_null_throws_RuntimeException() {
+        RuntimeException ex = assertThrows(RuntimeException.class,
                 () -> new Answer(null),
                 "Answer object instantiated with NULL as String!");
         assertFalse(ex.getMessage().isEmpty());
     }
 
     @Test
-    void constructor_given_empty_String_throws_InstantiationException() {
-        Exception ex = assertThrows(InstantiationException.class,
+    void constructor_given_empty_String_throws_RuntimeException() {
+        RuntimeException ex = assertThrows(RuntimeException.class,
                 () -> new Answer(""),
                 "Answer object instantiated with empty String!");
         assertFalse(ex.getMessage().isEmpty());
@@ -57,5 +57,18 @@ class AnswerTests {
     @Test
     void getAnswer_default_is_not_null() {
         assertNotNull(a.getAnswer());
+    }
+
+    @Test
+    void getTimeOfCreation_default_is_not_null() {
+        assertNotNull(a.getTimeOfCreation());
+    }
+
+    @Test
+    void toString_contains_answer() {
+        a.setAnswer("foo2string");
+        String s = a.toString();
+        assertNotNull(s);
+        assertTrue(s.contains("foo2string"));
     }
 }

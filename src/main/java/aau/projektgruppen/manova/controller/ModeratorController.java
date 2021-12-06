@@ -32,32 +32,46 @@ public class ModeratorController {
 
     /**
      * Returns every unapproved question from a given session.
+     *
      * @param organisationName, A {@code String} that contains the name of a session.
      * @return A {@code List} containing every approved question from a given organisation's session.
      */
     @GetMapping("{organisationName}/questions")
-    public List<QAModeratorDTO> getAllUnapprovedSessionQuestions(@PathVariable String organisationName){
-        try{
+    public List<QAModeratorDTO> getAllUnapprovedSessionQuestions(@PathVariable String organisationName) {
+        try {
             return moderatorService.findUnapprovedSessionQuestions(organisationName);
-        } catch (NotFoundException e){
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No unapproved questions", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
     /**
-     * @returns all unapproved messages regardless of session id.
+     * @return all unapproved messages regardless of session id.
      */
     @GetMapping("questions")
-    public List<QAModeratorDTO> getAllUnapprovedQuestions(){
-        return moderatorService.findUnapprovedQuestions();
+    public List<QAModeratorDTO> getAllUnapprovedQuestions() {
+        try {
+            return moderatorService.findUnapprovedQuestions();
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
+        }
     }
 
     /**
-     * @returns all organisations in the system
+     * @return all organisations in the system
      */
     @GetMapping("organisations")
-    public List<Organisation> getAllOrganisations(){
-        return moderatorService.findAllOrganisations();
+    public List<Organisation> getAllOrganisations() {
+        try {
+            return moderatorService.findAllOrganisations();
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -70,11 +84,15 @@ public class ModeratorController {
             return ResponseEntity.ok(moderatorService.approveQuestion(questionId));
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Question Id not found" + questionId, e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
     /**
      * Uses a given id to identify a question and set approved to true.
+     *
      * @param questionId, A {@code long} specifying the id of the question.
      * @return A {@code ResponseEntity} containing a question.
      */
@@ -82,16 +100,19 @@ public class ModeratorController {
     public ResponseEntity<Question> reviewQuestion(@PathVariable long questionId) {
         try {
             return ResponseEntity.ok(moderatorService.reviewQuestion(questionId));
-        } catch (NotFoundException e){
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Question Id Not Found" + questionId, e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
     /**
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @param state, takes a string that should be either true or false.
-     * @throws org.springframework.web.server.ResponseStatusException throws a not found or bad request exception
+     * @param state,            takes a string that should be either true or false.
      * @return Set session toggle value on/off
+     * @throws org.springframework.web.server.ResponseStatusException throws a not found or bad request exception
      */
     @PutMapping("{organisationName}/toggle/{state}")
     public ResponseEntity<Session> toggleSession(@PathVariable String organisationName, @PathVariable String state) {
@@ -101,23 +122,29 @@ public class ModeratorController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
         } catch (BadRequestException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
     /**
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @param state, takes a string that should be either true or false.
-     * @throws org.springframework.web.server.ResponseStatusException throws a not found or bad request exception
+     * @param state,            takes a string that should be either true or false.
      * @return Set session toggle value on/off
+     * @throws org.springframework.web.server.ResponseStatusException throws a not found or bad request exception
      */
     @PutMapping("{organisationName}/autoreview/{state}")
     public ResponseEntity<Session> toggleAutoreview(@PathVariable String organisationName, @PathVariable String state) {
         try {
             return ResponseEntity.ok(moderatorService.toggleAutoreview(organisationName, state));
-        } catch (NotFoundException e){
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
         } catch (BadRequestException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide a legal value for state. Either true or false", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
@@ -126,20 +153,26 @@ public class ModeratorController {
      * @return creates new session for the given {@code organisationName}
      */
     @PostMapping("{organisationName}/newsession")
-    public ResponseEntity<Session> newSession(@PathVariable String organisationName){
+    public ResponseEntity<Session> newSession(@PathVariable String organisationName) {
         try {
             return ResponseEntity.ok(moderatorService.newSession(organisationName));
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisation name", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
     @PostMapping("/newsessionforall")
-    public ResponseEntity<List<Organisation>> newSessionForAll(){
+    public ResponseEntity<List<Organisation>> newSessionForAll() {
         try {
             return ResponseEntity.ok(moderatorService.newSessionForAll());
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct organisations", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
@@ -148,7 +181,12 @@ public class ModeratorController {
      * @return creates a new organisation with the name {@code organisationName}.
      */
     @PostMapping("neworganisation")
-    public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation){
-        return ResponseEntity.ok(moderatorService.newOrganisation(organisation));
+    public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation) {
+        try {
+            return ResponseEntity.ok(moderatorService.newOrganisation(organisation));
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
+        }
     }
 }
