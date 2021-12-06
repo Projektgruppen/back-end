@@ -16,29 +16,14 @@ public class UserTests {
     }
 
     @Test
-    void Student_setId() {
-        fail("Not implemented");
-    }
-
-    @Test
     void Recruiter_getId_default_is_not_negative() {
         Recruiter user = new Recruiter();
         assertFalse(user.getId() < 0);
     }
 
     @Test
-    void Recruiter_setId() {
-        fail("Not implemented");
-    }
-
-    @Test
     void Moderator_getId_default_is_not_negative() {
         Moderator user = new Moderator();
         assertFalse(user.getId() < 0);
-    }
-
-    @Test
-    void Moderator_setId() {
-        fail("Not implemented");
     }
 }

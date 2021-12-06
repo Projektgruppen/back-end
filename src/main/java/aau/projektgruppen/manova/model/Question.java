@@ -26,6 +26,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Johan Nissen Riedel,
  * @author Tommy Grenaae
+ * @author Mathias Gigas
  * @see Answer
  * @see Session
  */
@@ -43,7 +44,7 @@ public class Question {
     /**
      * Contains the question as text.
      */
-    private String question;
+    private String question = "";
 
     /**
      * represents the time of which the {@code Question} was created.
@@ -78,6 +79,9 @@ public class Question {
      * @param session, A {@code Session} specifying which session the question belongs to.
      */
     public Question(String question, Session session) {
+        if (session == null) throw new RuntimeException("Cannot instantiate a question with null Session");
+        if (question == null) throw new RuntimeException("Cannot instantiate a question with null String");
+        if (question.isEmpty()) throw new RuntimeException("Cannot instantiate a question with empty String");
         this.question = question;
         this.session = session;
     }
@@ -153,6 +157,7 @@ public class Question {
      * @param approve, A {@code Boolean} specifying whether the question has been approved.
      */
     public void setApproved(boolean approve) {
+        if (approve) this.setTimeOfApproval(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
         this.approved = approve;
     }
 
