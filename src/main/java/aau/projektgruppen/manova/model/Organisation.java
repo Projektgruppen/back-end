@@ -18,6 +18,7 @@ import java.util.List;
  * </pre></blockquote>
  *
  * @author Johan Nissen Riedel
+ * @author Mathias Gigas
  * @see Session
  */
 @Entity
@@ -34,7 +35,7 @@ public class Organisation {
     /**
      * Contains the name of the organisation.
      */
-    private String name;
+    private String name = "";
 
     /**
      * Contains the id of the organisation's current session.
@@ -54,6 +55,7 @@ public class Organisation {
      * @param name, A {@code String} object containing the name of the organisation.
      */
     public Organisation(String name) {
+        if (name == null) throw new RuntimeException("Cannot instantiate an organisation with null name");
         this.name = name;
     }
     public Organisation() {
@@ -64,7 +66,7 @@ public class Organisation {
      * Getter for the current session.
      * @return the {@code Long} specifying the organisation's current session.
      */
-    public long getCurrentSession() {
+    public long getCurrentSessionId() {
         return currentSession;
     }
 
@@ -72,7 +74,7 @@ public class Organisation {
      * Setter for the current session.
      * @param currentSession, a {@code Long} specifying the organisation's current session.
      */
-    public void setCurrentSession(long currentSession) {
+    public void setCurrentSessionId(long currentSession) {
         this.currentSession = currentSession;
     }
 

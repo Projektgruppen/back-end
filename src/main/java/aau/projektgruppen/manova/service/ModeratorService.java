@@ -52,7 +52,7 @@ public class ModeratorService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        return questionRepository.findUnApproved(organisation.getCurrentSession());
+        return questionRepository.findUnApproved(organisation.getCurrentSessionId());
     }
 
     public List<QAModeratorDTO> findUnapprovedQuestions(){
@@ -111,7 +111,7 @@ public class ModeratorService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        Session session = sessionRepository.getOne(organisation.getCurrentSession());
+        Session session = sessionRepository.getOne(organisation.getCurrentSessionId());
         if (state.equals("true")){
             session.setLive(true);
         } else if(state.equals("false")){
@@ -139,7 +139,7 @@ public class ModeratorService {
             throw new NotFoundException("Organisation with name: " + organisationName + " not found");
         }
 
-        Session session = sessionRepository.getOne(organisation.getCurrentSession());
+        Session session = sessionRepository.getOne(organisation.getCurrentSessionId());
 
         if (state.equals("true")){
             session.setAutoReview(true);
@@ -166,7 +166,7 @@ public class ModeratorService {
 
         Session session = new Session(organisation);
         sessionRepository.save(session);
-        organisation.setCurrentSession(session.getId());
+        organisation.setCurrentSessionId(session.getId());
         organisationRepository.save(organisation);
 
         return session;
@@ -201,7 +201,7 @@ public class ModeratorService {
         for(Organisation organisation : organisations){
             Session session = new Session(organisation);
             sessionRepository.save(session);
-            organisation.setCurrentSession(session.getId());
+            organisation.setCurrentSessionId(session.getId());
             organisationRepository.save(organisation);
         }
         return organisations;
