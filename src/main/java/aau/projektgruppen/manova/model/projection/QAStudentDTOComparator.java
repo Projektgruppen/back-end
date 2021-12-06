@@ -6,7 +6,8 @@ public class QAStudentDTOComparator implements Comparator<QAStudentDTO> {
 
     @Override
     public int compare(QAStudentDTO o1, QAStudentDTO o2) {
-        return o1.getTimeOfApprovalForQuestion().compareTo(o2.getTimeOfApprovalForQuestion());
+        return o2.getTimeOfApprovalForQuestion().compareTo(o1.getTimeOfApprovalForQuestion());
     }
 }
 
+ 

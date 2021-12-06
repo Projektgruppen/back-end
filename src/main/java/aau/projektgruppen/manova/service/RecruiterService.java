@@ -13,6 +13,8 @@ import aau.projektgruppen.manova.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -68,6 +70,7 @@ public class RecruiterService {
             new NotFoundException("Could not find a question with id: " + questionId));
 
         question.setAnswer(answer);
+        question.setTimeOfApproval(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
         question.setApproved(true);
         question.setMarkedForReview(false);
         return questionRepository.save(question);
