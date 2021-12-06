@@ -30,29 +30,36 @@ public class RecruiterController {
 
     /**
      * Returns every question marked for review from a given organisation.
+     *
      * @param organisationName, A {@code String} that contains the name of an organisation.
      * @return A {@code List} containing every question marked for review from a given organisation's session.
      */
     @GetMapping("{organisationName}/questions")
-    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName){
-        try{
+    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName) {
+        try {
             return recruiterService.getReviewedQuestions(organisationName);
-        } catch (NotFoundException e){
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
     /**
      * @param questionId, a long containing the ID of the question.
-     * @param answer, of type Answer. Updates {@code answer} to question with {@code questionId}
+     * @param answer,     of type Answer. Updates {@code answer} to question with {@code questionId}
      * @return a call to the {@code updateAnswer} in the recruiter service layer.
      */
     @PutMapping("answer/{questionId}")
     public ResponseEntity<Question> updateAnswer(@PathVariable long questionId, @RequestBody Answer answer) {
         try {
             return ResponseEntity.ok(recruiterService.updateAnswer(answer, questionId));
-        } catch (NotFoundException e){
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
@@ -61,11 +68,14 @@ public class RecruiterController {
      * @return a call to the {@code updateAnswer} in the recruiter service layer.
      */
     @GetMapping("{organisationName}/logs")
-    public List<QASessionDTO>getAllSessionsByOrganisationName(@PathVariable String organisationName){
-        try{
+    public List<QASessionDTO> getAllSessionsByOrganisationName(@PathVariable String organisationName) {
+        try {
             return recruiterService.getAllSessionsByOrganisationName(organisationName);
-        } catch (NotFoundException e){
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, " Organisation not found", e);
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            return null;
         }
     }
 
