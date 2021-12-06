@@ -64,7 +64,7 @@ public class RecruiterController {
     }
 
     /**
-     * @param organisationName
+     * @param organisationName The name of the specific organisation.
      * @return a call to the {@code updateAnswer} in the recruiter service layer.
      */
     @GetMapping("{organisationName}/logs")

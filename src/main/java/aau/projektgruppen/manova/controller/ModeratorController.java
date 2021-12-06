@@ -49,7 +49,7 @@ public class ModeratorController {
     }
 
     /**
-     * @returns all unapproved messages regardless of session id.
+     * @return all unapproved messages regardless of session id.
      */
     @GetMapping("questions")
     public List<QAModeratorDTO> getAllUnapprovedQuestions() {
@@ -62,7 +62,7 @@ public class ModeratorController {
     }
 
     /**
-     * @returns all organisations in the system
+     * @return all organisations in the system
      */
     @GetMapping("organisations")
     public List<Organisation> getAllOrganisations() {
