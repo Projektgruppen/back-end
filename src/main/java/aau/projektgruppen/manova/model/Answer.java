@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Johan Nissen Riedel,
  * @author Tommy Grenaae
+ * @author Mathias Gigas
  * @see Question
  */
 @Entity
@@ -33,7 +34,7 @@ public class Answer {
     private long id;
 
     /** Contains the answer as a String.*/
-    private String answer;
+    private String answer = "";
 
     /**
      * represents the time of which the {@code Answer} was created.
@@ -45,8 +46,10 @@ public class Answer {
      * Id is not provided.
      * @param answer, A {@code String} object containing the answer text as a {@code String}.
      */
-    public Answer(String answer){
-    this.answer = answer;
+    public Answer(String answer) {
+        if (answer == null) throw new RuntimeException("Cannot instantiate an answer with null String");
+        if (answer.isEmpty()) throw new RuntimeException("Cannot instantiate an answer with empty String");
+        this.answer = answer;
     }
 
     /**
