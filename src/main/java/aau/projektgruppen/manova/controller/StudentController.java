@@ -34,7 +34,7 @@ public class StudentController {
      * @return A {@code List} containing every approved question from a given organisation's session.
      */
     @GetMapping("{organisationName}/questions")
-    public List<QAStudentDTO> getAllApprovedQuestions(@PathVariable String organisationName) {
+    public List<QAStudentDTO> findAllApprovedQuestions(@PathVariable String organisationName) {
         try {
             return studentService.findAllApprovedQuestions(organisationName);
         } catch (NotFoundException e) {
