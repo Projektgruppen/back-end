@@ -42,7 +42,7 @@ public class ModeratorService {
 
     /**
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @return all the unapproved questions in the question repository for that organisation.
+     * @return All the unapproved questions in the question repository for that organisation.
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
     public List<QAModeratorDTO> findUnapprovedSessionQuestions(String organisationName) throws NotFoundException {
@@ -62,7 +62,7 @@ public class ModeratorService {
     /**
      *
      * @param questionId, of type long. The method need the correct questionId in order to save the answer to the correct question being answered.
-     * @return a new boolean value (true) for approveQuestion to the questionRepository if the if-statement is fulfilled
+     * @return A new boolean value (true) for approveQuestion to the questionRepository if the if-statement is fulfilled
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
     public Question approveQuestion(long questionId) throws NotFoundException {
@@ -82,7 +82,7 @@ public class ModeratorService {
     /**
      *
      * @param questionId, of type long. The method need the correct questionId in order to save the answer to the correct question being answered.
-     * @return a new boolean value (true) for reviewQuestion to the questionRepository if the if-statement is fulfilled.
+     * @return A new boolean value (true) for reviewQuestion to the questionRepository if the if-statement is fulfilled.
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
     public Question reviewQuestion(long questionId) throws NotFoundException {
@@ -100,7 +100,7 @@ public class ModeratorService {
     /**
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
      * @param state, takes a string that should be either true or false.
-     * @return session to the sessionRepository.
+     * @return Session to the sessionRepository.
      * @throws NotFoundException if the repository doesn't know of the organisation or state.
      * @throws BadRequestException if the given state is not valid.
      */
@@ -128,7 +128,7 @@ public class ModeratorService {
      *
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
      * @param state, takes a string that should be either true or false.
-     * @return session to the sessionRepository.
+     * @return Session to the sessionRepository.
      * @throws NotFoundException if the repository doesn't know of the organisation.
      * @throws BadRequestException if the given state is not valid
      */
@@ -154,7 +154,7 @@ public class ModeratorService {
     /**
      *
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @return {@code session} containing a organisation.
+     * @return {@code Session} containing an organisation.
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
     public Session newSession(String organisationName) throws NotFoundException {
@@ -174,7 +174,7 @@ public class ModeratorService {
 
     /**
      * @param organisation, takes a string as input to see if the repository knows of the organisation.
-     * @return saves organisation to organisation repository
+     * @return Organisation to organisation repository
      */
     public Organisation newOrganisation(Organisation organisation){
         organisation.setName(organisation.getName().toLowerCase());
@@ -182,7 +182,7 @@ public class ModeratorService {
     }
 
     /**
-     * @return all organisations in the organisation repository
+     * @return All organisations in the organisation repository
      */
     public List<Organisation> findAllOrganisations() {
         return organisationRepository.findAll();
@@ -190,7 +190,7 @@ public class ModeratorService {
 
     /**
      *
-     * @return a list of all organisations with a new session.
+     * @return A list of all organisations with a new session.
      * @throws NotFoundException if the findAll method returns no organisations
      */
     public List<Organisation> newSessionForAll() throws NotFoundException {

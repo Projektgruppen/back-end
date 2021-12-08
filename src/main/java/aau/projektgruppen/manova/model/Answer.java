@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 public class Answer {
 
     /**
-     * Contains the id of the answer.
+     * Contains the id of the {@code Answer}.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class Answer {
     private String answer = "";
 
     /**
-     * represents the time of which the {@code Answer} was created.
+     * Represents the time of which the {@code Answer} was created.
      */
     private final String timeOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
 

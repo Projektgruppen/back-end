@@ -5,8 +5,8 @@ import aau.projektgruppen.manova.model.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * this class handles all queries regarding {@link aau.projektgruppen.manova.model.Answer answers}. the class is an
- * interface extended from {@link JpaRepository}.
+ * This interface handles all queries regarding {@link aau.projektgruppen.manova.model.Answer answers}.
+ * It is extended from {@link JpaRepository}.
  *
  * @author Tommy Grenaae
  */

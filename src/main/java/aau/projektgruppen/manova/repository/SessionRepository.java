@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 /**
- * this class handles all queries regarding {@link aau.projektgruppen.manova.model.Session sessions}. the class is an
- * interface extended from {@link JpaRepository}.
+ * This interface handles all queries regarding {@link aau.projektgruppen.manova.model.Session sessions}. It is extended from {@link JpaRepository}.
  *
  * @author Tommy Grenaae
  */

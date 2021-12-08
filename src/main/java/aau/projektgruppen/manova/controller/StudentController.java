@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * The {@code StudentController} class collects all the various functionalities that the student needs.
- * It imports {@code StudentService} and uses its methods.
+ * Imports {@code StudentService} and uses its methods.
  *
  * @author Laurits Lippert
  */
@@ -50,7 +50,7 @@ public class StudentController {
      *
      * @param question,         A {@code Question} object containing the question to send to the database.
      * @param organisationName, A {@code String} object containing the name of an organisation.
-     * @return {@code ResponseEntity} containing a {@code Question} object.
+     * @return A {@code ResponseEntity} containing a {@code Question} object.
      */
     @PostMapping("{organisationName}/question")
     public ResponseEntity<Question> createQuestion(@PathVariable String organisationName, @RequestBody Question question) {

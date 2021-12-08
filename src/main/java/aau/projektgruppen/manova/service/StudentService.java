@@ -36,7 +36,7 @@ public class StudentService {
 
     /**
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @return the list of questions where the {@code findApproved} is true of the organisation id corresponds with the name.
+     * @return The list of questions where the {@code findApproved} is true of the organisation id corresponds with the name.
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
     public List<QAStudentDTO> getApprovedQuestions(String organisationName) throws NotFoundException {
@@ -55,7 +55,7 @@ public class StudentService {
      *                  Inside the method the question is set to a specific session that gets an ID
      *                  for the organisation.
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @return saves the question to the question repository
+     * @return Saves the question to the question repository
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
     public Question saveQuestion(Question question, String organisationName) throws NotFoundException{

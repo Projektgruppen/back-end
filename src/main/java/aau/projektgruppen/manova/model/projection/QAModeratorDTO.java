@@ -1,8 +1,8 @@
 package aau.projektgruppen.manova.model.projection;
 
 /**
- * this class serves as a DTO (Data Transfer Object) between the database and the front-end, specifically transfering
- * data that a {@link aau.projektgruppen.manova.model.user.Moderator Moderator} should have access to. Besides the data from
+ * This class serves as a DTO (Data Transfer Object) between the database and the front-end, specifically transferring
+ * data that a {@link aau.projektgruppen.manova.model.user.Moderator Moderator} should have access to. Beside the data from
  * {@link aau.projektgruppen.manova.model.projection.GenericDTO} (which this class extends) the {@code Moderator} needs
  * to know if a {@link aau.projektgruppen.manova.model.Question Question} is marked for review or not.
  *

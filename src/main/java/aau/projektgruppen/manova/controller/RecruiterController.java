@@ -48,8 +48,8 @@ public class RecruiterController {
 
     /**
      * @param questionId, a long containing the ID of the question.
-     * @param answer,     of type Answer. Updates {@code answer} to question with {@code questionId}
-     * @return a call to the {@code updateAnswer} in the recruiter service layer.
+     * @param answer, of type Answer. Updates {@code answer} to question with {@code questionId}
+     * @return A call to the {@code updateAnswer} in the recruiter service layer.
      */
     @PutMapping("answer/{questionId}")
     public ResponseEntity<Question> updateAnswer(@PathVariable long questionId, @RequestBody Answer answer) {
@@ -65,7 +65,7 @@ public class RecruiterController {
 
     /**
      * @param organisationName The name of the specific organisation ex. forsvaret or politiet.
-     * @return a call to the {@code updateAnswer} in the recruiter service layer.
+     * @return A call to the {@code updateAnswer} in the recruiter service layer.
      */
     @GetMapping("{organisationName}/logs")
     public List<QASessionDTO> getAllSessionsByOrganisationName(@PathVariable String organisationName) {

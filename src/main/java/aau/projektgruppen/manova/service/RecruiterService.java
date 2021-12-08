@@ -41,7 +41,7 @@ public class RecruiterService {
     SessionRepository sessionRepository;
     /**
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @return the reviewed questions for a given organisation with the ID that the {@code getId()} returns
+     * @return The reviewed questions for a given organisation with the ID that the {@code getId()} returns
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
 
@@ -61,7 +61,7 @@ public class RecruiterService {
      *                corresponding question and changes the {@code setApproved} to true in the question
      * @param questionId, of type long. The method need the correct questionId in order to save the answer to the
      *                    correct question being answered.
-     * @return the questionRepository and saves the question with all its new attributes.
+     * @return The questionRepository and saves the question with all its new attributes.
      * @throws NotFoundException if the repository doesn't know if the organisation.
      */
     public Question updateAnswer(Answer answer, long questionId) throws NotFoundException{
@@ -79,7 +79,7 @@ public class RecruiterService {
     /**
      *
      * @param organisationName, takes a string as input to see if the repository knows of the organisation.
-     * @return the id of the given organisation name by using the {@code findAllSessionsByOrganisationName}
+     * @return The id of the given organisation name by using the {@code findAllSessionsByOrganisationName}
      * @throws NotFoundException, if no organisation with the given {@code organisationName} exists in the {@code organisationRepository}.
      */
     public List<QASessionDTO> getAllSessionsByOrganisationName(String organisationName) throws NotFoundException {

@@ -49,7 +49,7 @@ public class ModeratorController {
     }
 
     /**
-     * @return all unapproved messages regardless of session id.
+     * @return All unapproved messages regardless of session id.
      */
     @GetMapping("questions")
     public List<QAModeratorDTO> getAllUnapprovedQuestions() {
@@ -62,7 +62,7 @@ public class ModeratorController {
     }
 
     /**
-     * @return all organisations in the system
+     * @return All organisations in the system
      */
     @GetMapping("organisations")
     public List<Organisation> getAllOrganisations() {
@@ -75,8 +75,8 @@ public class ModeratorController {
     }
 
     /**
-     * @param questionId a long that has the id of question.
-     * @return Finds message by {@code questionId} and set approve to true
+     * @param questionId a long representing the id of a question.
+     * @return Finds message by {@code questionId} and sets approve to true
      */
     @PutMapping("approve/{questionId}")
     public ResponseEntity<Question> approveQuestion(@PathVariable long questionId) {
@@ -178,7 +178,7 @@ public class ModeratorController {
 
     /**
      * @param organisation, takes a string as input to see if the repository knows of the organisation.
-     * @return creates a new organisation with the name {@code organisationName}.
+     * @return A new organisation with the name {@code organisationName}.
      */
     @PostMapping("neworganisation")
     public ResponseEntity<Organisation> newOrganisation(@RequestBody Organisation organisation) {
