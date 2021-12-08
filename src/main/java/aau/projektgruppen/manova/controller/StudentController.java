@@ -36,7 +36,7 @@ public class StudentController {
     @GetMapping("{organisationName}/questions")
     public List<QAStudentDTO> getAllApprovedQuestions(@PathVariable String organisationName) {
         try {
-            return studentService.getApprovedQuestions(organisationName);
+            return studentService.findAllApprovedQuestions(organisationName);
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find approved questions for: " + organisationName, e);
         } catch (Exception e) {

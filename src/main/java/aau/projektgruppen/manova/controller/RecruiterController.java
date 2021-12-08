@@ -37,7 +37,7 @@ public class RecruiterController {
     @GetMapping("{organisationName}/questions")
     public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName) {
         try {
-            return recruiterService.getReviewedQuestions(organisationName);
+            return recruiterService.findReviewedQuestions(organisationName);
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found", e);
         } catch (Exception e) {
@@ -70,7 +70,7 @@ public class RecruiterController {
     @GetMapping("{organisationName}/logs")
     public List<QASessionDTO> getAllSessionsByOrganisationName(@PathVariable String organisationName) {
         try {
-            return recruiterService.getAllSessionsByOrganisationName(organisationName);
+            return recruiterService.findAllSessionsByOrganisationName(organisationName);
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, " Organisation not found", e);
         } catch (Exception e) {

@@ -20,7 +20,7 @@ class StudentServiceTests {
     void getApprovedQuestions_given_nonexistent_org_throws_NotFoundException() {
         String expectedExString = "Organisation with name: Nonexistent Org not found";
         NotFoundException expected = assertThrows(NotFoundException.class,
-                () -> ss.getApprovedQuestions("Nonexistent Org"),
+                () -> ss.findAllApprovedQuestions("Nonexistent Org"),
                 "Incorrect behavior :(");
         assertNotNull(expected.getMessage());
         assertEquals(expectedExString, expected.getMessage());
