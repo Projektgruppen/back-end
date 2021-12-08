@@ -46,7 +46,7 @@ public class RecruiterService {
      */
 
 
-    public List<QARecruiterDTO> getReviewedQuestions(String organisationName) throws NotFoundException {
+    public List<QARecruiterDTO> findReviewedQuestions(String organisationName) throws NotFoundException {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
@@ -82,7 +82,7 @@ public class RecruiterService {
      * @return The id of the given organisation name by using the {@code findAllSessionsByOrganisationName}
      * @throws NotFoundException, if no organisation with the given {@code organisationName} exists in the {@code organisationRepository}.
      */
-    public List<QASessionDTO> getAllSessionsByOrganisationName(String organisationName) throws NotFoundException {
+    public List<QASessionDTO> findAllSessionsByOrganisationName(String organisationName) throws NotFoundException {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {

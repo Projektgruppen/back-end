@@ -35,9 +35,9 @@ public class RecruiterController {
      * @return A {@code List} containing every question marked for review from a given organisation's session.
      */
     @GetMapping("{organisationName}/questions")
-    public List<QARecruiterDTO> getReviewedQuestions(@PathVariable String organisationName) {
+    public List<QARecruiterDTO> findReviewedQuestions(@PathVariable String organisationName) {
         try {
-            return recruiterService.getReviewedQuestions(organisationName);
+            return recruiterService.findReviewedQuestions(organisationName);
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reviewed questions not found", e);
         } catch (Exception e) {
@@ -68,9 +68,9 @@ public class RecruiterController {
      * @return A call to the {@code updateAnswer} in the recruiter service layer.
      */
     @GetMapping("{organisationName}/logs")
-    public List<QASessionDTO> getAllSessionsByOrganisationName(@PathVariable String organisationName) {
+    public List<QASessionDTO> findAllSessionsByOrganisationName(@PathVariable String organisationName) {
         try {
-            return recruiterService.getAllSessionsByOrganisationName(organisationName);
+            return recruiterService.findAllSessionsByOrganisationName(organisationName);
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, " Organisation not found", e);
         } catch (Exception e) {

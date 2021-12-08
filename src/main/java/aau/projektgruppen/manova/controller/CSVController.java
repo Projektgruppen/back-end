@@ -17,7 +17,7 @@ import aau.projektgruppen.manova.service.CSVService;
 @CrossOrigin("*")
 @Controller
 @RequestMapping("/api/v1/logs")
-public class LogController {
+public class CSVController {
 
     @Autowired
     CSVService fileService;

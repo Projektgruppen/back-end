@@ -16,10 +16,10 @@ class RecruiterServiceTests {
     private RecruiterService rs;
 
     @Test
-    void getReviewedQuestions_given_nonexistent_organisation_throws_NotFoundException() {
+    void findReviewedQuestions_given_nonexistent_organisation_throws_NotFoundException() {
         String expectedExString = "Organisation with name: Nonexistent Org not found";
         NotFoundException expected = assertThrows(NotFoundException.class,
-                () -> rs.getReviewedQuestions("Nonexistent Org"),
+                () -> rs.findReviewedQuestions("Nonexistent Org"),
                 "Incorrect behavior :(");
         assertNotNull(expected.getMessage());
         assertEquals(expectedExString, expected.getMessage());

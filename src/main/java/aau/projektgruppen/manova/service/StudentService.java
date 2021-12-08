@@ -39,7 +39,7 @@ public class StudentService {
      * @return The list of questions where the {@code findApproved} is true of the organisation id corresponds with the name.
      * @throws NotFoundException if the repository doesn't know of the organisation.
      */
-    public List<QAStudentDTO> getApprovedQuestions(String organisationName) throws NotFoundException {
+    public List<QAStudentDTO> findAllApprovedQuestions(String organisationName) throws NotFoundException {
         Organisation organisation = organisationRepository.findByName(organisationName);
 
         if (organisation == null) {
