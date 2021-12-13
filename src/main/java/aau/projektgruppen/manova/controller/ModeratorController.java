@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 /**
- * The {@code ModeratorController} class collects all the various functionalities that the student needs.
+ * The {@code ModeratorController} class collects all the various functionalities that the moderator needs.
  * It imports {@code ModeratorService} and uses its methods.
  *
  * @author Laurits Lippert
