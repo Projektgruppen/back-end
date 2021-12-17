@@ -14,7 +14,6 @@ package aau.projektgruppen.manova.model.projection;
  *     GenericDTO genericDTO = new GenericDTO(id, question);
  * </pre></blockquote>
  *
- * @author Tommy Grenaae
  * @see QAStudentDTO
  * @see QARecruiterDTO
  * @see QAModeratorDTO

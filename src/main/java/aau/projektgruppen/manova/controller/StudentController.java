@@ -16,7 +16,6 @@ import java.util.List;
  * The {@code StudentController} class collects all the various functionalities that the student needs.
  * Imports {@code StudentService} and uses its methods.
  *
- * @author Laurits Lippert
  */
 
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}

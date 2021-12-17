@@ -24,9 +24,6 @@ import java.time.format.DateTimeFormatter;
  *     question.setReview(False);
  * </pre></blockquote>
  *
- * @author Johan Nissen Riedel,
- * @author Tommy Grenaae
- * @author Mathias Gigas
  * @see Answer
  * @see Session
  */

@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * This interface handles all queries regarding {@link aau.projektgruppen.manova.model.Session sessions}. It is extended from {@link JpaRepository}.
  *
- * @author Tommy Grenaae
  */
 public interface SessionRepository extends JpaRepository<Session, Long> {
     @Query("SELECT new aau.projektgruppen.manova.model.projection.QASessionDTO(s.id,s.organisation.id,s.timeOfCreation)"+

@@ -17,9 +17,6 @@ import java.time.format.DateTimeFormatter;
  *     answer.setQuestion(question);
  * </pre></blockquote>
  *
- * @author Johan Nissen Riedel,
- * @author Tommy Grenaae
- * @author Mathias Gigas
  * @see Question
  */
 @Entity

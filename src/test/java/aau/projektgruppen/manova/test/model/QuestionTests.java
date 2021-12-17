@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for the {@link aau.projektgruppen.manova.model.Question} class
  *
- * @author Mathias Gigas
  */
 class QuestionTests {
 

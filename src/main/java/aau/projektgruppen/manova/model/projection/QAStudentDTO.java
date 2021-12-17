@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
  *     Once created, data is not mutable, hence no Setters are implemented.
  * </p>
  *
- * @author Tommy Grenaae
  * @see GenericDTO
  * @see aau.projektgruppen.manova.model.user.Student Student
  * @see aau.projektgruppen.manova.model.Answer Answer

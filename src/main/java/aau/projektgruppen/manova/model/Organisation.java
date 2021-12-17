@@ -17,8 +17,6 @@ import java.util.List;
  *     organisation.setSessions(sessions);
  * </pre></blockquote>
  *
- * @author Johan Nissen Riedel
- * @author Mathias Gigas
  * @see Session
  */
 @Entity

@@ -22,7 +22,6 @@ import java.util.Optional;
  * {@code findUnapprovedSessionQuestions}, {@code findUnapprovedQuestions}, {@code approveQuestion}, {@code reviewQuestion},
  * {@code toggleSession}, {@code toggleAutoreview}, {@code newSession}, {@code newOrganisation}.
  *
- * @author Laurits Lippert
  * @see aau.projektgruppen.manova.controller.ModeratorController
  * @see OrganisationRepository
  * @see QuestionRepository

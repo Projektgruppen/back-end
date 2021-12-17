@@ -12,7 +12,6 @@ import javax.persistence.*;
  *     Moderator moderator = new Moderator();
  * </pre></blockquote>
  *
- * @author Johan Nissen Riedel
  */
 @Entity
 @Table(name = "moderators")
