@@ -23,8 +23,6 @@ import java.util.List;
  *     session.setQuestions(questions);
  * </pre></blockquote>
  *
- * @author Johan Nissen Riedel,
- * @author Tommy Grenaae
  * @see Organisation
  * @see Question
  */

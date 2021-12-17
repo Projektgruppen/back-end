@@ -13,7 +13,6 @@ import java.util.List;
  * This interface contains all the queries regarding getting access to {@link aau.projektgruppen.manova.model.Question questions}
  * with specific attributes. The interface is extended from {@link JpaRepository}.
  *
- * @author Tommy Grenaae
  */
 public interface QuestionRepository extends JpaRepository <Question, Long> {
     /**

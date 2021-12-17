@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * The {@code RecruiterService} class makes two methods {@code getReviewedQuestions} and {@code updateAnswer}.
- * @author Laurits Lippert
  * @see aau.projektgruppen.manova.controller.RecruiterController
  * @see OrganisationRepository
  * @see QuestionRepository

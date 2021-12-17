@@ -11,7 +11,6 @@ import java.util.List;
  * This interface handles all queries regarding {@link aau.projektgruppen.manova.model.Organisation organisations}.
  * It is extended from {@link JpaRepository}.
  *
- * @author Tommy Grenaae
  */
 public interface OrganisationRepository extends JpaRepository<Organisation, Long> {
     /**

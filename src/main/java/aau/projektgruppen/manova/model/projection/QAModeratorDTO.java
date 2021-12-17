@@ -10,7 +10,6 @@ package aau.projektgruppen.manova.model.projection;
  *     Once created, data is not mutable, hence no Setters are provided.
  * </p>
  *
- * @author Tommy Grenaae
  * @see GenericDTO
  * @see aau.projektgruppen.manova.model.user.Moderator Moderator
  * @see aau.projektgruppen.manova.model.Question Question

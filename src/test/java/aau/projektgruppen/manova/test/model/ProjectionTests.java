@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for the {@link aau.projektgruppen.manova.model.projection} package.
  * Contains tests for all the DTO classes
  *
- * @author Mathias Gigas
  */
 public class ProjectionTests {
 

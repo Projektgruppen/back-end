@@ -17,7 +17,6 @@ import java.util.List;
 
 /**
  * The {@code StudentService} class makes 2 methods {@code getApprovedQuestions} and {@code saveQuestion}.
- * @author Laurits Lippert
  * @see aau.projektgruppen.manova.controller.StudentController
  * @see OrganisationRepository
  * @see QuestionRepository

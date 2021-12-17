@@ -19,7 +19,6 @@ import java.util.List;
  * The {@code ModeratorController} class collects all the various functionalities that the student needs.
  * It imports {@code ModeratorService} and uses its methods.
  *
- * @author Laurits Lippert
  */
 
 @CrossOrigin("*") //makes it so that everyone can access the api Alternative use: origins = {"http://localhost:3000/"}

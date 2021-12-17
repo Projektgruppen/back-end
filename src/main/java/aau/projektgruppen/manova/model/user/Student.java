@@ -12,7 +12,6 @@ import javax.persistence.*;
  *     Student student = new Student();
  * </pre></blockquote>
  *
- * @author Johan Nissen Riedel,
  */
 @Entity
 @Table(name = "students")

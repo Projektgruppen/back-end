@@ -12,7 +12,6 @@ import javax.persistence.*;
  *     Recruiter recruiter = new Recruiter();
  * </pre></blockquote>
  *
- * @author Johan Nissen Riedel
  */
 @Entity
 @Table(name = "recruiters")
